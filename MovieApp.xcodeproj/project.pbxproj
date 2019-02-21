@@ -12,6 +12,25 @@
 		AEF511DD201E161CEC9628D9 /* Pods_MovieApp_Tests_MovieAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6134C4E9F70867009D9DAAA /* Pods_MovieApp_Tests_MovieAppUITests.framework */; };
 		CC98EA4430C621117222DE0D /* Pods_MovieApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3596551B207810E81B16885 /* Pods_MovieApp.framework */; };
 		E23D02EE22169DCD004D0D9F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23D02ED22169DCD004D0D9F /* SignUpViewController.swift */; };
+		E25F9848221E485B00A01AC4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25F9847221E485B00A01AC4 /* Constants.swift */; };
+		E25F984D221EA92A00A01AC4 /* BaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25F984C221EA92A00A01AC4 /* BaseUITests.swift */; };
+		E25F9850221EB43300A01AC4 /* UserServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25F984F221EB43300A01AC4 /* UserServiceSpec.swift */; };
+		E25F9860221EC20000A01AC4 /* FirebaseAuthTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25F985F221EC20000A01AC4 /* FirebaseAuthTest.swift */; };
+		E25F9861221EC27000A01AC4 /* FirebaseAuthTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25F985F221EC20000A01AC4 /* FirebaseAuthTest.swift */; };
+		E25F9862221EC27000A01AC4 /* FirebaseAuthTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25F985F221EC20000A01AC4 /* FirebaseAuthTest.swift */; };
+		E25F9864221EC6B100A01AC4 /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25F9863221EC6B100A01AC4 /* TestConstants.swift */; };
+		E25F9865221EC6D300A01AC4 /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25F9863221EC6B100A01AC4 /* TestConstants.swift */; };
+		E25F9866221EC6D300A01AC4 /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25F9863221EC6B100A01AC4 /* TestConstants.swift */; };
+		E25F9869221EC99F00A01AC4 /* BaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25F9868221EC99F00A01AC4 /* BaseTests.swift */; };
+		E26BC59A221C6627001CDEBA /* SignUpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26BC599221C6627001CDEBA /* SignUpTests.swift */; };
+		E26BC59C221C664A001CDEBA /* KIF+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26BC59B221C664A001CDEBA /* KIF+Extension.swift */; };
+		E26BC59E221C675D001CDEBA /* LandingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26BC59D221C675D001CDEBA /* LandingTests.swift */; };
+		E26BC5A1221C68C5001CDEBA /* CommonSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26BC5A0221C68C5001CDEBA /* CommonSteps.swift */; };
+		E26BC5A4221C72E0001CDEBA /* AuthenticationScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26BC5A3221C72E0001CDEBA /* AuthenticationScreens.swift */; };
+		E291647F221B1AA70052997B /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291647D221B1AA70052997B /* UserService.swift */; };
+		E2916480221B1AA70052997B /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291647E221B1AA70052997B /* API.swift */; };
+		E2916483221B1AE90052997B /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2916482221B1AE90052997B /* UIViewController+Extension.swift */; };
+		E2916485221B1CF70052997B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E2916484221B1CF70052997B /* GoogleService-Info.plist */; };
 		E2F2E34922165E8B00C235E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2E34822165E8B00C235E2 /* AppDelegate.swift */; };
 		E2F2E34B22165E8B00C235E2 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2E34A22165E8B00C235E2 /* LandingViewController.swift */; };
 		E2F2E35022165E8C00C235E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2F2E34F22165E8C00C235E2 /* Assets.xcassets */; };
@@ -62,6 +81,27 @@
 		D08F3B89CDACD78C52349D13 /* Pods-MovieApp-Tests-MovieAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieApp-Tests-MovieAppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovieApp-Tests-MovieAppUITests/Pods-MovieApp-Tests-MovieAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E1172E041CFECC365C5DAFDD /* Pods-MovieApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovieApp/Pods-MovieApp.debug.xcconfig"; sourceTree = "<group>"; };
 		E23D02ED22169DCD004D0D9F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		E25F9847221E485B00A01AC4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E25F984C221EA92A00A01AC4 /* BaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUITests.swift; sourceTree = "<group>"; };
+		E25F984F221EB43300A01AC4 /* UserServiceSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceSpec.swift; sourceTree = "<group>"; };
+		E25F9855221EC1DA00A01AC4 /* ExtensionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExtensionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E25F9859221EC1DA00A01AC4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E25F985F221EC20000A01AC4 /* FirebaseAuthTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthTest.swift; sourceTree = "<group>"; };
+		E25F9863221EC6B100A01AC4 /* TestConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConstants.swift; sourceTree = "<group>"; };
+		E25F9868221EC99F00A01AC4 /* BaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTests.swift; sourceTree = "<group>"; };
+		E26B0C44221BB13B00C09D27 /* MovieAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E26B0C48221BB13B00C09D27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E26B0C52221BB14500C09D27 /* MovieAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E26B0C56221BB14500C09D27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E26BC599221C6627001CDEBA /* SignUpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTests.swift; sourceTree = "<group>"; };
+		E26BC59B221C664A001CDEBA /* KIF+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KIF+Extension.swift"; sourceTree = "<group>"; };
+		E26BC59D221C675D001CDEBA /* LandingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingTests.swift; sourceTree = "<group>"; };
+		E26BC5A0221C68C5001CDEBA /* CommonSteps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonSteps.swift; sourceTree = "<group>"; };
+		E26BC5A3221C72E0001CDEBA /* AuthenticationScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationScreens.swift; sourceTree = "<group>"; };
+		E291647D221B1AA70052997B /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserService.swift; path = MovieApp/Controllers/UserService.swift; sourceTree = SOURCE_ROOT; };
+		E291647E221B1AA70052997B /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = API.swift; path = MovieApp/Controllers/API.swift; sourceTree = SOURCE_ROOT; };
+		E2916482221B1AE90052997B /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+Extension.swift"; path = "MovieApp/Extensions/UIViewController+Extension.swift"; sourceTree = SOURCE_ROOT; };
+		E2916484221B1CF70052997B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E2F2E34522165E8B00C235E2 /* MovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2F2E34822165E8B00C235E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2F2E34A22165E8B00C235E2 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
@@ -132,6 +172,113 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		E25F9844221E482600A01AC4 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E25F9847221E485B00A01AC4 /* Constants.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		E25F984B221EA91E00A01AC4 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				E25F984C221EA92A00A01AC4 /* BaseUITests.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		E25F984E221EB40E00A01AC4 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				E25F984F221EB43300A01AC4 /* UserServiceSpec.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		E25F9856221EC1DA00A01AC4 /* ExtensionTests */ = {
+			isa = PBXGroup;
+			children = (
+				E25F985F221EC20000A01AC4 /* FirebaseAuthTest.swift */,
+				E25F9859221EC1DA00A01AC4 /* Info.plist */,
+				E25F9863221EC6B100A01AC4 /* TestConstants.swift */,
+			);
+			path = ExtensionTests;
+			sourceTree = "<group>";
+		};
+		E25F9867221EC99000A01AC4 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				E25F9868221EC99F00A01AC4 /* BaseTests.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		E26B0C45221BB13B00C09D27 /* MovieAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E25F984B221EA91E00A01AC4 /* Base */,
+				E26BC598221C660F001CDEBA /* Authentication */,
+				E26BC59F221C68AC001CDEBA /* Steps */,
+				E26BC5A2221C72AE001CDEBA /* Screens */,
+				E26BC597221C65FE001CDEBA /* Extensions */,
+				E26B0C48221BB13B00C09D27 /* Info.plist */,
+			);
+			path = MovieAppUITests;
+			sourceTree = "<group>";
+		};
+		E26B0C53221BB14500C09D27 /* MovieAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				E25F9867221EC99000A01AC4 /* Base */,
+				E25F984E221EB40E00A01AC4 /* API */,
+				E26B0C56221BB14500C09D27 /* Info.plist */,
+			);
+			path = MovieAppTests;
+			sourceTree = "<group>";
+		};
+		E26BC597221C65FE001CDEBA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E26BC59B221C664A001CDEBA /* KIF+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E26BC598221C660F001CDEBA /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				E26BC59D221C675D001CDEBA /* LandingTests.swift */,
+				E26BC599221C6627001CDEBA /* SignUpTests.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		E26BC59F221C68AC001CDEBA /* Steps */ = {
+			isa = PBXGroup;
+			children = (
+				E26BC5A0221C68C5001CDEBA /* CommonSteps.swift */,
+			);
+			path = Steps;
+			sourceTree = "<group>";
+		};
+		E26BC5A2221C72AE001CDEBA /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				E26BC5A3221C72E0001CDEBA /* AuthenticationScreens.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		E2916481221B1AC10052997B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E2916482221B1AE90052997B /* UIViewController+Extension.swift */,
+			);
+			name = Extensions;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		E2F2E33C22165E8B00C235E2 = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +309,8 @@
 				E2F2E34822165E8B00C235E2 /* AppDelegate.swift */,
 				E2F2E35C221660AB00C235E2 /* Controllers */,
 				E2F2E35D221660EA00C235E2 /* APIs */,
+				E25F9844221E482600A01AC4 /* Helpers */,
+				E2916481221B1AC10052997B /* Extensions */,
 				E2F2E35B221660A800C235E2 /* Storyboards */,
 				E2F2E35A221660A400C235E2 /* Supporting Files */,
 				E2916484221B1CF70052997B /* GoogleService-Info.plist */,
@@ -191,6 +340,7 @@
 			isa = PBXGroup;
 			children = (
 				E2F2E34A22165E8B00C235E2 /* LandingViewController.swift */,
+				E23D02ED22169DCD004D0D9F /* SignUpViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -198,6 +348,8 @@
 		E2F2E35D221660EA00C235E2 /* APIs */ = {
 			isa = PBXGroup;
 			children = (
+				E291647E221B1AA70052997B /* API.swift */,
+				E291647D221B1AA70052997B /* UserService.swift */,
 			);
 			path = APIs;
 			sourceTree = "<group>";
