@@ -9,4 +9,20 @@ target 'MovieApp' do
   pod 'Firebase/Core'
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
+
+  abstract_target 'Tests' do
+    pod 'OHHTTPStubs'
+    pod 'Fakery'
+    pod 'Nimble'
+
+    target 'MovieAppTests' do
+      pod 'Quick'
+    end
+
+    target 'MovieAppUITests' do
+      pod 'KIF'
+    end
+
+    target 'ExtensionTests'
+  end
 end
