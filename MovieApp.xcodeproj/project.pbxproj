@@ -8,20 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		E2F2E34922165E8B00C235E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2E34822165E8B00C235E2 /* AppDelegate.swift */; };
-		E2F2E34B22165E8B00C235E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2E34A22165E8B00C235E2 /* ViewController.swift */; };
-		E2F2E34E22165E8B00C235E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2F2E34C22165E8B00C235E2 /* Main.storyboard */; };
+		E2F2E34B22165E8B00C235E2 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2E34A22165E8B00C235E2 /* LandingViewController.swift */; };
 		E2F2E35022165E8C00C235E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2F2E34F22165E8C00C235E2 /* Assets.xcassets */; };
-		E2F2E35322165E8C00C235E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2F2E35122165E8C00C235E2 /* LaunchScreen.storyboard */; };
+		E2F2E35322165E8C00C235E2 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2F2E35122165E8C00C235E2 /* Authentication.storyboard */; };
+		E2F2E35F22166DC700C235E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2F2E35E22166DC700C235E2 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E2F2E34522165E8B00C235E2 /* MovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2F2E34822165E8B00C235E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E2F2E34A22165E8B00C235E2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		E2F2E34D22165E8B00C235E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E2F2E34A22165E8B00C235E2 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		E2F2E34F22165E8C00C235E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E2F2E35222165E8C00C235E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E2F2E35222165E8C00C235E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Authentication.storyboard; sourceTree = "<group>"; };
 		E2F2E35422165E8C00C235E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2F2E35E22166DC700C235E2 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,13 +55,45 @@
 			isa = PBXGroup;
 			children = (
 				E2F2E34822165E8B00C235E2 /* AppDelegate.swift */,
-				E2F2E34A22165E8B00C235E2 /* ViewController.swift */,
-				E2F2E34C22165E8B00C235E2 /* Main.storyboard */,
-				E2F2E34F22165E8C00C235E2 /* Assets.xcassets */,
-				E2F2E35122165E8C00C235E2 /* LaunchScreen.storyboard */,
+				E2F2E35C221660AB00C235E2 /* Controllers */,
+				E2F2E35D221660EA00C235E2 /* APIs */,
+				E2F2E35B221660A800C235E2 /* Storyboards */,
+				E2F2E35A221660A400C235E2 /* Supporting Files */,
 				E2F2E35422165E8C00C235E2 /* Info.plist */,
 			);
 			path = MovieApp;
+			sourceTree = "<group>";
+		};
+		E2F2E35A221660A400C235E2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E2F2E34F22165E8C00C235E2 /* Assets.xcassets */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E2F2E35B221660A800C235E2 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				E2F2E35122165E8C00C235E2 /* Authentication.storyboard */,
+				E2F2E35E22166DC700C235E2 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		E2F2E35C221660AB00C235E2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E2F2E34A22165E8B00C235E2 /* LandingViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		E2F2E35D221660EA00C235E2 /* APIs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = APIs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,9 +154,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2F2E35322165E8C00C235E2 /* LaunchScreen.storyboard in Resources */,
+				E2F2E35322165E8C00C235E2 /* Authentication.storyboard in Resources */,
 				E2F2E35022165E8C00C235E2 /* Assets.xcassets in Resources */,
-				E2F2E34E22165E8B00C235E2 /* Main.storyboard in Resources */,
+				E2F2E35F22166DC700C235E2 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,7 +167,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2F2E34B22165E8B00C235E2 /* ViewController.swift in Sources */,
+				E2F2E34B22165E8B00C235E2 /* LandingViewController.swift in Sources */,
 				E2F2E34922165E8B00C235E2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,20 +175,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		E2F2E34C22165E8B00C235E2 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E2F2E34D22165E8B00C235E2 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		E2F2E35122165E8C00C235E2 /* LaunchScreen.storyboard */ = {
+		E2F2E35122165E8C00C235E2 /* Authentication.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				E2F2E35222165E8C00C235E2 /* Base */,
 			);
-			name = LaunchScreen.storyboard;
+			name = Authentication.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

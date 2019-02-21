@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Landing View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" customClass="LandingViewController" customModule="MovieApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="M6i-DV-sx4">
+                                <rect key="frame" x="97.5" y="200" width="180" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="M6i-DV-sx4" secondAttribute="height" multiplier="60:30" id="0iD-LW-td6"/>
+                                    <constraint firstAttribute="width" constant="180" id="Tg8-Tr-oyg"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n6S-AJ-gdk" userLabel="Button Group">
+                                <rect key="frame" x="0.0" y="335" width="375" height="82"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="3Gd-qL-g8x">
+                                        <rect key="frame" x="30" y="0.0" width="315" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UGo-8Y-cDC">
+                                                <rect key="frame" x="0.0" y="0.0" width="150" height="40"/>
+                                                <color key="backgroundColor" red="0.26666666666666666" green="0.30588235294117649" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <state key="normal" title="Sign In">
+                                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l4o-rE-nvE">
+                                                <rect key="frame" x="165" y="0.0" width="150" height="40"/>
+                                                <color key="backgroundColor" red="0.2666666667" green="0.30588235289999999" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <state key="normal" title="Sign Up">
+                                                    <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="eYT-MN-U9P"/>
+                                        </constraints>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="t3F-Ye-Ivv">
+                                        <rect key="frame" x="150" y="60" width="75" height="22"/>
+                                        <inset key="imageEdgeInsets" minX="10" minY="5" maxX="0.0" maxY="5"/>
+                                        <state key="normal" title="Or Skip" image="skip">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="3Gd-qL-g8x" firstAttribute="leading" secondItem="n6S-AJ-gdk" secondAttribute="leading" constant="30" id="AB9-lX-Yev"/>
+                                    <constraint firstItem="t3F-Ye-Ivv" firstAttribute="top" secondItem="3Gd-qL-g8x" secondAttribute="bottom" constant="20" id="HQ1-RP-Ztd"/>
+                                    <constraint firstItem="3Gd-qL-g8x" firstAttribute="top" secondItem="n6S-AJ-gdk" secondAttribute="top" id="hb8-vw-e9v"/>
+                                    <constraint firstAttribute="trailing" secondItem="3Gd-qL-g8x" secondAttribute="trailing" constant="30" id="hcA-oz-Ep9"/>
+                                    <constraint firstAttribute="bottom" secondItem="t3F-Ye-Ivv" secondAttribute="bottom" id="kLz-eT-aw4"/>
+                                    <constraint firstItem="t3F-Ye-Ivv" firstAttribute="centerX" secondItem="n6S-AJ-gdk" secondAttribute="centerX" id="vVp-Xp-2ak"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.18823529411764706" green="0.23137254901960785" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="n6S-AJ-gdk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Lr0-Lc-vie"/>
+                            <constraint firstItem="M6i-DV-sx4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="180" id="POo-Xt-ldy">
+                                <variation key="heightClass=compact" constant="50"/>
+                            </constraint>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="n6S-AJ-gdk" secondAttribute="trailing" id="Y2r-nP-QQ7"/>
+                            <constraint firstItem="M6i-DV-sx4" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="dJz-h2-Ygo"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="n6S-AJ-gdk" secondAttribute="bottom" constant="250" id="pyV-XL-kFm">
+                                <variation key="heightClass=compact" constant="60"/>
+                            </constraint>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="logo" width="512" height="305"/>
+        <image name="skip" width="15" height="15"/>
+    </resources>
+</document>
