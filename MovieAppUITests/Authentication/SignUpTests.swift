@@ -76,6 +76,11 @@ class SignUpTests: BaseUITests {
 
   func testCancelButton() {
     tapButton("Cancel")
-    expectToSeeLandingScreen() 
+    expectToSeeLandingScreen()
+  }
+
+  func testSwitchToSignInScreen() {
+    tapButton("Sign In")
+    expectToSeeSignInScreen()
   }
 }
