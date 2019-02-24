@@ -32,14 +32,14 @@ class SignUpViewController: UIViewController {
         self.activityIndicator.stopAnimating()
 
         if let error = error {
-          self.showErrorAlertView(withTitle: Constants.errorTitleAlert, message: error.localizedDescription)
+          self.showErrorAlertView(withTitle: Constants.TitleAlert.error, message: error.localizedDescription)
         } else {
           // TODO: Move to Main Screen
         }
       }
     } catch let error {
       self.activityIndicator.stopAnimating()
-      showErrorAlertView(withTitle: Constants.errorTitleAlert, message: error.localizedDescription)
+      showErrorAlertView(withTitle: Constants.TitleAlert.error, message: error.localizedDescription)
     }
   }
 

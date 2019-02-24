@@ -27,6 +27,21 @@ extension API {
       }
     }
 
+    class func signIn(withEmail email: String, password: String, completionHandler: @escaping ErrorHandler) throws {
+      // Validation
+      try validateEmail(email)
+      try validateSignInPassword(password)
+
+      Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+        if let error = error {
+          print("Failed to sign user in with Firebase: ", error.localizedDescription)
+          completionHandler(error)
+        } else {
+          completionHandler(nil)
+        }
+      }
+    }
+
     private class func validateEmail(_ email: String) throws {
       if email.count == 0 {
         throw NSError(domain: hostDomain, code: hostErrorCode, userInfo: [NSLocalizedDescriptionKey: Constants.ErrorMessage.requiredEmail])
@@ -36,6 +51,12 @@ extension API {
     private class func validatePassword(_ password: String) throws {
       if password.count < Constants.Policy.minimumPasswordLength {
         throw NSError(domain: hostDomain, code: hostErrorCode, userInfo: [NSLocalizedDescriptionKey: Constants.ErrorMessage.passwordLimitation])
+      }
+    }
+
+    private class func validateSignInPassword(_ password: String) throws {
+      if password.count == 0 {
+        throw NSError(domain: hostDomain, code: hostErrorCode, userInfo: [NSLocalizedDescriptionKey: Constants.ErrorMessage.requiredPassword])
       }
     }
   }

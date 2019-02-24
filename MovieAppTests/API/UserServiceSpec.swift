@@ -95,5 +95,99 @@ class UserServiceSpec: BaseTests {
         }
       }
     }
+
+    describe(".signIn") {
+      beforeEach {
+        email = Faker().internet.email()
+        password = Faker().lorem.characters(amount: 6)
+      }
+
+      context("with invalid credential") {
+        var errorMessage: String!
+
+        afterEach {
+          expect {
+            try API.UserService.signIn(withEmail: email, password: password, completionHandler: { (_) in })
+            }.to(throwError { (error: NSError) in
+              expect(error.localizedDescription) == errorMessage
+            })
+        }
+
+        context("email is empty") {
+          beforeEach { email = "" }
+
+          it("throws required email error") {
+            errorMessage = "An email address must be provided."
+          }
+        }
+
+        context("password is empty") {
+          beforeEach { password = "" }
+
+          it("throws required password error") {
+            errorMessage = "A password must be provided."
+          }
+        }
+      }
+
+      context("incorrect email") {
+        beforeEach {
+          email = TestConstants.unRegisteredEmail
+        }
+
+        it("returns user_not_found error") {
+          let expectation = XCTestExpectation(description: "Sign Firebase user in")
+          try! API.UserService.signIn(withEmail: email, password: password, completionHandler: { (error) in
+            expect(error).toNot(beNil())
+            expect(error?._code).to(equal(AuthErrorCode.userNotFound.rawValue))
+            expect(error?.localizedDescription).to(equal("There is no user record corresponding to this identifier. The user may have been deleted."))
+            expectation.fulfill()
+          })
+          self.wait(for: [expectation], timeout: 10.0)
+        }
+      }
+
+      context("incorrect password") {
+        beforeEach {
+          email = TestConstants.registeredEmail
+          self.createUser(withEmail: email, password: password)
+        }
+
+        afterEach {
+          self.deleteUser(withEmail: email, password: password)
+        }
+
+        it("returns wrong_password error") {
+          let expectation = XCTestExpectation(description: "Sign Firebase user in")
+          try! API.UserService.signIn(withEmail: email, password: "incorrect-\(password!)", completionHandler: { (error) in
+            expect(error).toNot(beNil())
+            expect(error?._code).to(equal(AuthErrorCode.wrongPassword.rawValue))
+            expect(error?.localizedDescription).to(equal("The password is invalid or the user does not have a password."))
+            expectation.fulfill()
+          })
+          self.wait(for: [expectation], timeout: 10.0)
+        }
+      }
+
+      context("sign user in successfully") {
+        beforeEach {
+          email = TestConstants.registeredEmail
+          self.createUser(withEmail: email, password: password)
+        }
+
+        afterEach {
+          self.deleteUser(withEmail: email, password: password)
+        }
+
+        it("returns successfully") {
+          let expectation = XCTestExpectation(description: "Sign Firebase user in")
+          try! API.UserService.signIn(withEmail: email, password: password, completionHandler: { (error) in
+            expect(error).to(beNil())
+            expectation.fulfill()
+          })
+          self.wait(for: [expectation], timeout: 50.0)
+        }
+      }
+    }
   }
 }
