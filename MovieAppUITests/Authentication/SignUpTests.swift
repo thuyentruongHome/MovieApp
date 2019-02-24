@@ -73,4 +73,9 @@ class SignUpTests: BaseUITests {
 
     deleteUser(withEmail: email, password: userPassword)
   }
+
+  func testCancelButton() {
+    tapButton("Cancel")
+    expectToSeeLandingScreen() 
+  }
 }

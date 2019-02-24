@@ -10,6 +10,11 @@ import KIF
 
 extension KIFTestCase {
 
+  func expectToSeeLandingScreen() {
+    expectToSee("Sign In", "Sign Up")
+    expectToSee("Or Skip")
+  }
+
   func expectToSeeSignUpScreen() {
     expectToSee("Email TextField", "Password TextField")
     expectToSee("Cancel", "Sign Up")

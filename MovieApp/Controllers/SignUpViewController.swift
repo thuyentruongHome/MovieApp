@@ -27,7 +27,8 @@ class SignUpViewController: UIViewController {
     let password = passwordTextField.text!
 
     do {
-      try API.UserService.signUp(withEmail: email, password: password) { (error) in
+      try API.UserService.signUp(withEmail: email, password: password) { [weak self] (error) in
+        guard let self = self else { return }
         self.activityIndicator.stopAnimating()
 
         if let error = error {
@@ -40,6 +41,10 @@ class SignUpViewController: UIViewController {
       self.activityIndicator.stopAnimating()
       showErrorAlertView(withTitle: Constants.errorTitleAlert, message: error.localizedDescription)
     }
+  }
+
+  @IBAction func cancel(_ sender: Any) {
+    navigationController?.popToRootViewController(animated: true)
   }
 
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
