@@ -15,4 +15,9 @@ class LandingTests: KIFTestCase {
     tapButton("Sign Up")
     expectToSeeSignUpScreen()
   }
+
+  func testSignInButton() {
+    tapButton("Sign In")
+    expectToSeeSignInScreen()
+  }
 }

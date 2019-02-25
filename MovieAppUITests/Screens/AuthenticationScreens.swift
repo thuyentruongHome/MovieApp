@@ -17,6 +17,12 @@ extension KIFTestCase {
 
   func expectToSeeSignUpScreen() {
     expectToSee("Email TextField", "Password TextField")
-    expectToSee("Cancel", "Sign Up")
+    expectToSee("Cancel", "Sign Up", "Sign In")
+  }
+
+  func expectToSeeSignInScreen() {
+    expectToSee("Email TextField", "Password TextField")
+    expectToSee("Cancel", "Sign In", "Sign Up")
+    expectToSee("forgot your password?")
   }
 }

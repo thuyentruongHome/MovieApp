@@ -11,6 +11,8 @@
 		A32068721F0BB7A243AFC592 /* Pods_MovieApp_Tests_ExtensionTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7E3CF37035D6F60B2C9A9AC /* Pods_MovieApp_Tests_ExtensionTests.framework */; };
 		AEF511DD201E161CEC9628D9 /* Pods_MovieApp_Tests_MovieAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6134C4E9F70867009D9DAAA /* Pods_MovieApp_Tests_MovieAppUITests.framework */; };
 		CC98EA4430C621117222DE0D /* Pods_MovieApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3596551B207810E81B16885 /* Pods_MovieApp.framework */; };
+		E20944E2222307E700FD7B08 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20944E1222307E700FD7B08 /* SignInViewController.swift */; };
+		E20944E4222316DA00FD7B08 /* SignInTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20944E3222316DA00FD7B08 /* SignInTests.swift */; };
 		E23D02EE22169DCD004D0D9F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23D02ED22169DCD004D0D9F /* SignUpViewController.swift */; };
 		E25F9848221E485B00A01AC4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25F9847221E485B00A01AC4 /* Constants.swift */; };
 		E25F984D221EA92A00A01AC4 /* BaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25F984C221EA92A00A01AC4 /* BaseUITests.swift */; };
@@ -80,6 +82,8 @@
 		B727FDC51CE1034E645B758B /* Pods-MovieApp-Tests-ExtensionTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieApp-Tests-ExtensionTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovieApp-Tests-ExtensionTests/Pods-MovieApp-Tests-ExtensionTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D08F3B89CDACD78C52349D13 /* Pods-MovieApp-Tests-MovieAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieApp-Tests-MovieAppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovieApp-Tests-MovieAppUITests/Pods-MovieApp-Tests-MovieAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E1172E041CFECC365C5DAFDD /* Pods-MovieApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovieApp/Pods-MovieApp.debug.xcconfig"; sourceTree = "<group>"; };
+		E20944E1222307E700FD7B08 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		E20944E3222316DA00FD7B08 /* SignInTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInTests.swift; sourceTree = "<group>"; };
 		E23D02ED22169DCD004D0D9F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		E25F9847221E485B00A01AC4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E25F984C221EA92A00A01AC4 /* BaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUITests.swift; sourceTree = "<group>"; };
@@ -250,6 +254,7 @@
 			children = (
 				E26BC59D221C675D001CDEBA /* LandingTests.swift */,
 				E26BC599221C6627001CDEBA /* SignUpTests.swift */,
+				E20944E3222316DA00FD7B08 /* SignInTests.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -341,6 +346,7 @@
 			children = (
 				E2F2E34A22165E8B00C235E2 /* LandingViewController.swift */,
 				E23D02ED22169DCD004D0D9F /* SignUpViewController.swift */,
+				E20944E1222307E700FD7B08 /* SignInViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -781,6 +787,7 @@
 				E25F9865221EC6D300A01AC4 /* TestConstants.swift in Sources */,
 				E25F9862221EC27000A01AC4 /* FirebaseAuthTest.swift in Sources */,
 				E26BC5A4221C72E0001CDEBA /* AuthenticationScreens.swift in Sources */,
+				E20944E4222316DA00FD7B08 /* SignInTests.swift in Sources */,
 				E26BC59E221C675D001CDEBA /* LandingTests.swift in Sources */,
 				E26BC59A221C6627001CDEBA /* SignUpTests.swift in Sources */,
 			);
@@ -805,6 +812,7 @@
 				E291647F221B1AA70052997B /* UserService.swift in Sources */,
 				E23D02EE22169DCD004D0D9F /* SignUpViewController.swift in Sources */,
 				E2F2E34B22165E8B00C235E2 /* LandingViewController.swift in Sources */,
+				E20944E2222307E700FD7B08 /* SignInViewController.swift in Sources */,
 				E25F9848221E485B00A01AC4 /* Constants.swift in Sources */,
 				E2F2E34922165E8B00C235E2 /* AppDelegate.swift in Sources */,
 				E2916480221B1AA70052997B /* API.swift in Sources */,

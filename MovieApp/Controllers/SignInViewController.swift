@@ -1,14 +1,15 @@
 //
-//  SignUpViewController.swift
+//  SignInViewController.swift
 //  MovieApp
 //
-//  Created by Macintosh on 2/15/19.
+//  Created by Macintosh on 2/25/19.
 //  Copyright © 2019 thuyentruong. All rights reserved.
 //
 
 import UIKit
+import Firebase
 
-class SignUpViewController: UIViewController {
+class SignInViewController: UIViewController {
 
   // MARK: - Properties
   @IBOutlet weak var emailTextField: UITextField!
@@ -21,18 +22,26 @@ class SignUpViewController: UIViewController {
   }
 
   // MARK: - Handlers
-  @IBAction func signUserUp(_ sender: Any) {
+  @IBAction func signUserIn(_ sender: Any) {
     activityIndicator.startAnimating()
     let email = emailTextField.text!
     let password = passwordTextField.text!
 
     do {
-      try API.UserService.signUp(withEmail: email, password: password) { [weak self] (error) in
+      try API.UserService.signIn(withEmail: email, password: password) { [weak self] (error) in
         guard let self = self else { return }
         self.activityIndicator.stopAnimating()
 
         if let error = error {
-          self.showErrorAlertView(withTitle: Constants.TitleAlert.error, message: error.localizedDescription)
+          guard let authErrorCode = AuthErrorCode(rawValue: error._code) else { return }
+          switch authErrorCode {
+          case .userNotFound:
+            self.showErrorAlertView(withTitle: Constants.TitleAlert.incorrectEmail, message: Constants.ErrorMessage.incorrectEmail)
+          case .wrongPassword:
+            self.showErrorAlertView(withTitle: Constants.TitleAlert.incorrectPassword, message: Constants.ErrorMessage.incorrectPassword)
+          default:
+            self.showErrorAlertView(withTitle: Constants.TitleAlert.error, message: error.localizedDescription)
+          }
         } else {
           // TODO: Move to Main Screen
         }
@@ -52,8 +61,7 @@ class SignUpViewController: UIViewController {
   }
 }
 
-extension SignUpViewController: UITextFieldDelegate {
-
+extension SignInViewController: UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     view.endEditing(true)
     return true
