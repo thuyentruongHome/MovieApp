@@ -13,6 +13,7 @@
 		CC98EA4430C621117222DE0D /* Pods_MovieApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3596551B207810E81B16885 /* Pods_MovieApp.framework */; };
 		E20944E2222307E700FD7B08 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20944E1222307E700FD7B08 /* SignInViewController.swift */; };
 		E20944E4222316DA00FD7B08 /* SignInTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20944E3222316DA00FD7B08 /* SignInTests.swift */; };
+		E22A498D2223AE4700B91EFA /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A498C2223AE4700B91EFA /* ForgotPasswordViewController.swift */; };
 		E23D02EE22169DCD004D0D9F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23D02ED22169DCD004D0D9F /* SignUpViewController.swift */; };
 		E25F9848221E485B00A01AC4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25F9847221E485B00A01AC4 /* Constants.swift */; };
 		E25F984D221EA92A00A01AC4 /* BaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25F984C221EA92A00A01AC4 /* BaseUITests.swift */; };
@@ -84,6 +85,7 @@
 		E1172E041CFECC365C5DAFDD /* Pods-MovieApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovieApp/Pods-MovieApp.debug.xcconfig"; sourceTree = "<group>"; };
 		E20944E1222307E700FD7B08 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		E20944E3222316DA00FD7B08 /* SignInTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInTests.swift; sourceTree = "<group>"; };
+		E22A498C2223AE4700B91EFA /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		E23D02ED22169DCD004D0D9F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		E25F9847221E485B00A01AC4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E25F984C221EA92A00A01AC4 /* BaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUITests.swift; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 				E2F2E34A22165E8B00C235E2 /* LandingViewController.swift */,
 				E23D02ED22169DCD004D0D9F /* SignUpViewController.swift */,
 				E20944E1222307E700FD7B08 /* SignInViewController.swift */,
+				E22A498C2223AE4700B91EFA /* ForgotPasswordViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -813,6 +816,7 @@
 				E23D02EE22169DCD004D0D9F /* SignUpViewController.swift in Sources */,
 				E2F2E34B22165E8B00C235E2 /* LandingViewController.swift in Sources */,
 				E20944E2222307E700FD7B08 /* SignInViewController.swift in Sources */,
+				E22A498D2223AE4700B91EFA /* ForgotPasswordViewController.swift in Sources */,
 				E25F9848221E485B00A01AC4 /* Constants.swift in Sources */,
 				E2F2E34922165E8B00C235E2 /* AppDelegate.swift in Sources */,
 				E2916480221B1AA70052997B /* API.swift in Sources */,
