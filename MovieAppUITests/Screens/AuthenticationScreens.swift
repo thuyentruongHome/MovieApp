@@ -25,4 +25,10 @@ extension KIFTestCase {
     expectToSee("Cancel", "Sign In", "Sign Up")
     expectToSee("forgot your password?")
   }
+
+  func expectToSeeForgotPasswordScreen() {
+    expectToSee("Please enter your email so we can send you link to reset password")
+    expectToSee("Email TextField")
+    expectToSee("Cancel", "Submit")
+  }
 }

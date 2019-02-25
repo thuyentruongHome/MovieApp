@@ -18,9 +18,14 @@ public struct Constants {
   }
 
   public struct TitleAlert {
+    public static let forgotPassword = "Forgot Password"
     public static let error = "Error"
     public static let incorrectEmail = "Incorrect Email"
     public static let incorrectPassword = "Incorrect Password"
+  }
+
+  public struct Message {
+    public static let sentForgotPasswordMail = "Your password reset email was sent. Please check your inbox!"
   }
 
   // MARK: Error Constants

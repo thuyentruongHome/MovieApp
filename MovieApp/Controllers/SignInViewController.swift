@@ -36,11 +36,11 @@ class SignInViewController: UIViewController {
           guard let authErrorCode = AuthErrorCode(rawValue: error._code) else { return }
           switch authErrorCode {
           case .userNotFound:
-            self.showErrorAlertView(withTitle: Constants.TitleAlert.incorrectEmail, message: Constants.ErrorMessage.incorrectEmail)
+            self.showInformedAlert(withTitle: Constants.TitleAlert.incorrectEmail, message: Constants.ErrorMessage.incorrectEmail)
           case .wrongPassword:
-            self.showErrorAlertView(withTitle: Constants.TitleAlert.incorrectPassword, message: Constants.ErrorMessage.incorrectPassword)
+            self.showInformedAlert(withTitle: Constants.TitleAlert.incorrectPassword, message: Constants.ErrorMessage.incorrectPassword)
           default:
-            self.showErrorAlertView(withTitle: Constants.TitleAlert.error, message: error.localizedDescription)
+            self.showInformedAlert(withTitle: Constants.TitleAlert.error, message: error.localizedDescription)
           }
         } else {
           // TODO: Move to Main Screen
@@ -48,7 +48,7 @@ class SignInViewController: UIViewController {
       }
     } catch let error {
       self.activityIndicator.stopAnimating()
-      showErrorAlertView(withTitle: Constants.TitleAlert.error, message: error.localizedDescription)
+      showInformedAlert(withTitle: Constants.TitleAlert.error, message: error.localizedDescription)
     }
   }
 

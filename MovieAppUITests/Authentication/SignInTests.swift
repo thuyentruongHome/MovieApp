@@ -79,4 +79,9 @@ class SignInTests: BaseUITests {
     tapButton("Sign Up")
     expectToSeeSignUpScreen()
   }
+
+  func testForgotPasswordButton() {
+    tapButton("forgot your password?")
+    expectToSeeForgotPasswordScreen()
+  }
 }

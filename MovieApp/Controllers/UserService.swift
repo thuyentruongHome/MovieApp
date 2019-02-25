@@ -42,6 +42,18 @@ extension API {
       }
     }
 
+    class func submitForgotPassword(withEmail email: String, completionHandler: @escaping ErrorHandler) throws {
+      try validateEmail(email)
+      Auth.auth().sendPasswordReset(withEmail: email) { (error) in
+        if let error = error {
+          completionHandler(error)
+        } else {
+          completionHandler(nil)
+        }
+        return
+      }
+    }
+
     private class func validateEmail(_ email: String) throws {
       if email.count == 0 {
         throw NSError(domain: hostDomain, code: hostErrorCode, userInfo: [NSLocalizedDescriptionKey: Constants.ErrorMessage.requiredEmail])

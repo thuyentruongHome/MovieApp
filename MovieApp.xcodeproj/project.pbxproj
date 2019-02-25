@@ -11,6 +11,7 @@
 		A32068721F0BB7A243AFC592 /* Pods_MovieApp_Tests_ExtensionTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7E3CF37035D6F60B2C9A9AC /* Pods_MovieApp_Tests_ExtensionTests.framework */; };
 		AEF511DD201E161CEC9628D9 /* Pods_MovieApp_Tests_MovieAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6134C4E9F70867009D9DAAA /* Pods_MovieApp_Tests_MovieAppUITests.framework */; };
 		CC98EA4430C621117222DE0D /* Pods_MovieApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3596551B207810E81B16885 /* Pods_MovieApp.framework */; };
+		E20521582223EFD700B91306 /* ForgotPasswordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20521572223EFD700B91306 /* ForgotPasswordTests.swift */; };
 		E20944E2222307E700FD7B08 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20944E1222307E700FD7B08 /* SignInViewController.swift */; };
 		E20944E4222316DA00FD7B08 /* SignInTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20944E3222316DA00FD7B08 /* SignInTests.swift */; };
 		E22A498D2223AE4700B91EFA /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A498C2223AE4700B91EFA /* ForgotPasswordViewController.swift */; };
@@ -83,6 +84,7 @@
 		B727FDC51CE1034E645B758B /* Pods-MovieApp-Tests-ExtensionTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieApp-Tests-ExtensionTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovieApp-Tests-ExtensionTests/Pods-MovieApp-Tests-ExtensionTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D08F3B89CDACD78C52349D13 /* Pods-MovieApp-Tests-MovieAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieApp-Tests-MovieAppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovieApp-Tests-MovieAppUITests/Pods-MovieApp-Tests-MovieAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E1172E041CFECC365C5DAFDD /* Pods-MovieApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovieApp/Pods-MovieApp.debug.xcconfig"; sourceTree = "<group>"; };
+		E20521572223EFD700B91306 /* ForgotPasswordTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordTests.swift; sourceTree = "<group>"; };
 		E20944E1222307E700FD7B08 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		E20944E3222316DA00FD7B08 /* SignInTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInTests.swift; sourceTree = "<group>"; };
 		E22A498C2223AE4700B91EFA /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				E26BC59D221C675D001CDEBA /* LandingTests.swift */,
 				E26BC599221C6627001CDEBA /* SignUpTests.swift */,
 				E20944E3222316DA00FD7B08 /* SignInTests.swift */,
+				E20521572223EFD700B91306 /* ForgotPasswordTests.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -785,6 +788,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E26BC5A1221C68C5001CDEBA /* CommonSteps.swift in Sources */,
+				E20521582223EFD700B91306 /* ForgotPasswordTests.swift in Sources */,
 				E26BC59C221C664A001CDEBA /* KIF+Extension.swift in Sources */,
 				E25F984D221EA92A00A01AC4 /* BaseUITests.swift in Sources */,
 				E25F9865221EC6D300A01AC4 /* TestConstants.swift in Sources */,

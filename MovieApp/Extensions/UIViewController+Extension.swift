@@ -10,7 +10,7 @@ import UIKit
 
 extension UIViewController {
 
-  func showErrorAlertView(withTitle title: String, message: String) {
+  func showInformedAlert(withTitle title: String, message: String) {
     let alertView = UIAlertController(title: title, message: message, preferredStyle: .alert)
     alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
     present(alertView, animated: true, completion: nil)
