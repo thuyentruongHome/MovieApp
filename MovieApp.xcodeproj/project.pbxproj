@@ -35,6 +35,9 @@
 		E2916480221B1AA70052997B /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291647E221B1AA70052997B /* API.swift */; };
 		E2916483221B1AE90052997B /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2916482221B1AE90052997B /* UIViewController+Extension.swift */; };
 		E2916485221B1CF70052997B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E2916484221B1CF70052997B /* GoogleService-Info.plist */; };
+		E29EAF50222537D400737CEF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E29EAF4F222537D400737CEF /* Main.storyboard */; };
+		E29EAF542225385E00737CEF /* ContainerMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29EAF532225385E00737CEF /* ContainerMainVC.swift */; };
+		E29EAF5622253E0200737CEF /* HamburgerMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29EAF5522253E0200737CEF /* HamburgerMenuVC.swift */; };
 		E2F2E34922165E8B00C235E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2E34822165E8B00C235E2 /* AppDelegate.swift */; };
 		E2F2E34B22165E8B00C235E2 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2E34A22165E8B00C235E2 /* LandingViewController.swift */; };
 		E2F2E35022165E8C00C235E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2F2E34F22165E8C00C235E2 /* Assets.xcassets */; };
@@ -110,6 +113,9 @@
 		E291647E221B1AA70052997B /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = API.swift; path = MovieApp/Controllers/API.swift; sourceTree = SOURCE_ROOT; };
 		E2916482221B1AE90052997B /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+Extension.swift"; path = "MovieApp/Extensions/UIViewController+Extension.swift"; sourceTree = SOURCE_ROOT; };
 		E2916484221B1CF70052997B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E29EAF4F222537D400737CEF /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		E29EAF532225385E00737CEF /* ContainerMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerMainVC.swift; sourceTree = "<group>"; };
+		E29EAF5522253E0200737CEF /* HamburgerMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerMenuVC.swift; sourceTree = "<group>"; };
 		E2F2E34522165E8B00C235E2 /* MovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2F2E34822165E8B00C235E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2F2E34A22165E8B00C235E2 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
@@ -289,6 +295,26 @@
 			path = "New Group";
 			sourceTree = "<group>";
 		};
+		E29EAF51222537E700737CEF /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				E2F2E34A22165E8B00C235E2 /* LandingViewController.swift */,
+				E23D02ED22169DCD004D0D9F /* SignUpViewController.swift */,
+				E20944E1222307E700FD7B08 /* SignInViewController.swift */,
+				E22A498C2223AE4700B91EFA /* ForgotPasswordViewController.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		E29EAF522225384200737CEF /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				E29EAF532225385E00737CEF /* ContainerMainVC.swift */,
+				E29EAF5522253E0200737CEF /* HamburgerMenuVC.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		E2F2E33C22165E8B00C235E2 = {
 			isa = PBXGroup;
 			children = (
@@ -342,6 +368,7 @@
 			children = (
 				E2F2E35122165E8C00C235E2 /* Authentication.storyboard */,
 				E2F2E35E22166DC700C235E2 /* LaunchScreen.storyboard */,
+				E29EAF4F222537D400737CEF /* Main.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -349,10 +376,8 @@
 		E2F2E35C221660AB00C235E2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E2F2E34A22165E8B00C235E2 /* LandingViewController.swift */,
-				E23D02ED22169DCD004D0D9F /* SignUpViewController.swift */,
-				E20944E1222307E700FD7B08 /* SignInViewController.swift */,
-				E22A498C2223AE4700B91EFA /* ForgotPasswordViewController.swift */,
+				E29EAF522225384200737CEF /* Main */,
+				E29EAF51222537E700737CEF /* Authentication */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -540,6 +565,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2F2E35322165E8C00C235E2 /* Authentication.storyboard in Resources */,
+				E29EAF50222537D400737CEF /* Main.storyboard in Resources */,
 				E2916485221B1CF70052997B /* GoogleService-Info.plist in Resources */,
 				E2F2E35022165E8C00C235E2 /* Assets.xcassets in Resources */,
 				E2F2E35F22166DC700C235E2 /* LaunchScreen.storyboard in Resources */,
@@ -817,11 +843,13 @@
 			files = (
 				E2916483221B1AE90052997B /* UIViewController+Extension.swift in Sources */,
 				E291647F221B1AA70052997B /* UserService.swift in Sources */,
+				E29EAF5622253E0200737CEF /* HamburgerMenuVC.swift in Sources */,
 				E23D02EE22169DCD004D0D9F /* SignUpViewController.swift in Sources */,
 				E2F2E34B22165E8B00C235E2 /* LandingViewController.swift in Sources */,
 				E20944E2222307E700FD7B08 /* SignInViewController.swift in Sources */,
 				E22A498D2223AE4700B91EFA /* ForgotPasswordViewController.swift in Sources */,
 				E25F9848221E485B00A01AC4 /* Constants.swift in Sources */,
+				E29EAF542225385E00737CEF /* ContainerMainVC.swift in Sources */,
 				E2F2E34922165E8B00C235E2 /* AppDelegate.swift in Sources */,
 				E2916480221B1AA70052997B /* API.swift in Sources */,
 			);
