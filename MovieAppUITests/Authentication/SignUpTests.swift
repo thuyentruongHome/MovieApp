@@ -19,7 +19,7 @@ class SignUpTests: BaseUITests {
 
   // MARK: - Init
   override func beforeEach() {
-    backToRoot()
+    gotoLandingScreen()
     tapButton("Sign Up")
   }
 
@@ -69,8 +69,7 @@ class SignUpTests: BaseUITests {
     fillIn("Email TextField", with: email)
     fillIn("Password TextField", with: userPassword)
     tapButton("Sign Up")
-    // MARK: ToDo: Expect go to Home Page
-
+    expectToSeeMainScreen()
     deleteUser(withEmail: email, password: userPassword)
   }
 

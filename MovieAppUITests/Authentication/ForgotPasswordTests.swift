@@ -18,7 +18,7 @@ class ForgotPasswordTests: BaseUITests {
   private let userPassword = Faker().lorem.characters(amount: 6)
 
   override func beforeEach() {
-    backToRoot()
+    gotoLandingScreen()
     tapButton("Sign In")
     tapButton("forgot your password?")
   }

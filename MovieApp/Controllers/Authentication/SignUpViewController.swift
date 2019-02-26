@@ -34,7 +34,7 @@ class SignUpViewController: UIViewController {
         if let error = error {
           self.showInformedAlert(withTitle: Constants.TitleAlert.error, message: error.localizedDescription)
         } else {
-          // TODO: Move to Main Screen
+          self.gotoMainScreen()
         }
       }
     } catch let error {

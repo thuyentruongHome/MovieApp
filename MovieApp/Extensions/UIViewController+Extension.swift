@@ -10,9 +10,18 @@ import UIKit
 
 extension UIViewController {
 
+  // MARK: - Alert
   func showInformedAlert(withTitle title: String, message: String) {
     let alertView = UIAlertController(title: title, message: message, preferredStyle: .alert)
     alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
     present(alertView, animated: true, completion: nil)
+  }
+
+  // MARK: - Flow Navigation
+  func gotoMainScreen() {
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    if let initialMainVC = storyboard.instantiateInitialViewController() {
+      present(initialMainVC, animated: true, completion: nil)
+    }
   }
 }

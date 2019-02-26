@@ -35,6 +35,7 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gCJ-FS-Dmg">
                                                 <rect key="frame" x="10" y="0.0" width="45" height="60"/>
+                                                <accessibility key="accessibilityConfiguration" label="Hamburger Menu Icon"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="gCJ-FS-Dmg" secondAttribute="height" multiplier="15:20" id="3VE-ae-lvF"/>
                                                 </constraints>

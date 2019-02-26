@@ -38,6 +38,7 @@
 		E29EAF50222537D400737CEF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E29EAF4F222537D400737CEF /* Main.storyboard */; };
 		E29EAF542225385E00737CEF /* ContainerMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29EAF532225385E00737CEF /* ContainerMainVC.swift */; };
 		E29EAF5622253E0200737CEF /* HamburgerMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29EAF5522253E0200737CEF /* HamburgerMenuVC.swift */; };
+		E29EAF5A22256C5900737CEF /* MainScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29EAF5922256C5900737CEF /* MainScreens.swift */; };
 		E2F2E34922165E8B00C235E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2E34822165E8B00C235E2 /* AppDelegate.swift */; };
 		E2F2E34B22165E8B00C235E2 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2E34A22165E8B00C235E2 /* LandingViewController.swift */; };
 		E2F2E35022165E8C00C235E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2F2E34F22165E8C00C235E2 /* Assets.xcassets */; };
@@ -116,6 +117,7 @@
 		E29EAF4F222537D400737CEF /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		E29EAF532225385E00737CEF /* ContainerMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerMainVC.swift; sourceTree = "<group>"; };
 		E29EAF5522253E0200737CEF /* HamburgerMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerMenuVC.swift; sourceTree = "<group>"; };
+		E29EAF5922256C5900737CEF /* MainScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreens.swift; sourceTree = "<group>"; };
 		E2F2E34522165E8B00C235E2 /* MovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2F2E34822165E8B00C235E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2F2E34A22165E8B00C235E2 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				E26BC5A3221C72E0001CDEBA /* AuthenticationScreens.swift */,
+				E29EAF5922256C5900737CEF /* MainScreens.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -813,6 +816,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E29EAF5A22256C5900737CEF /* MainScreens.swift in Sources */,
 				E26BC5A1221C68C5001CDEBA /* CommonSteps.swift in Sources */,
 				E20521582223EFD700B91306 /* ForgotPasswordTests.swift in Sources */,
 				E26BC59C221C664A001CDEBA /* KIF+Extension.swift in Sources */,
