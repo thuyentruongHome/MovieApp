@@ -16,7 +16,26 @@ class MasterViewController: UIViewController {
   private let movieThumbnailRadio: CGFloat = 125 / 185
   private let (interItemSpacing, lineSpacing): (CGFloat, CGFloat) = (4, 4)
 
+  private var popularMovies = [Movie]()
+
   @IBOutlet weak var movieCollectionView: UICollectionView!
+
+  // MARK: - Init
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    API.MovieService.fetchPopularMovies { [weak self] (result, error) in
+      guard let self = self else { return }
+      if let error = error {
+        self.showInformedAlert(withTitle: Constants.TitleAlert.error, message: error.localizedDescription)
+      }
+      if let result = result {
+        self.popularMovies = result.list
+        self.movieCollectionView.reloadData()
+      }
+    }
+  }
 
   // MARK: - Handlers
 
@@ -31,12 +50,15 @@ class MasterViewController: UIViewController {
 // MARK: - UICollectionViewDataSource
 extension MasterViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 4
+    return popularMovies.count
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    cell.backgroundColor = .black
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MovieCollectionView
+    let movie = popularMovies[indexPath.row]
+    API.MovieService.fetchMovieImage(posterPath: movie.posterPath, completionHandler: { (image) in
+      cell.moviePoster.image = image
+    })
     return cell
   }
 }

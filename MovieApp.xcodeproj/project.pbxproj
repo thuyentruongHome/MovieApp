@@ -16,6 +16,8 @@
 		E20944E4222316DA00FD7B08 /* SignInTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20944E3222316DA00FD7B08 /* SignInTests.swift */; };
 		E22A498D2223AE4700B91EFA /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A498C2223AE4700B91EFA /* ForgotPasswordViewController.swift */; };
 		E23D02EE22169DCD004D0D9F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23D02ED22169DCD004D0D9F /* SignUpViewController.swift */; };
+		E2590174222784E700F575AA /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = E2590173222784E700F575AA /* keys.plist */; };
+		E259017622278B3B00F575AA /* Credential.swift in Sources */ = {isa = PBXBuildFile; fileRef = E259017522278B3B00F575AA /* Credential.swift */; };
 		E259017922278FB500F575AA /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E259017822278FB500F575AA /* MasterViewController.swift */; };
 		E25F9848221E485B00A01AC4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25F9847221E485B00A01AC4 /* Constants.swift */; };
 		E25F984D221EA92A00A01AC4 /* BaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25F984C221EA92A00A01AC4 /* BaseUITests.swift */; };
@@ -43,6 +45,10 @@
 		E29EAF5622253E0200737CEF /* HamburgerMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29EAF5522253E0200737CEF /* HamburgerMenuVC.swift */; };
 		E29EAF5A22256C5900737CEF /* MainScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29EAF5922256C5900737CEF /* MainScreens.swift */; };
 		E2B9D6432227B6040034FD5E /* SpitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B9D6422227B6040034FD5E /* SpitViewController.swift */; };
+		E2B9D6452227BEA40034FD5E /* MovieService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B9D6442227BEA40034FD5E /* MovieService.swift */; };
+		E2B9D6482227C9490034FD5E /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B9D6472227C9490034FD5E /* Movie.swift */; };
+		E2B9D64A2227DC650034FD5E /* MoviesResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B9D6492227DC650034FD5E /* MoviesResult.swift */; };
+		E2B9D64C22283BFD0034FD5E /* MovieCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B9D64B22283BFD0034FD5E /* MovieCollectionView.swift */; };
 		E2F2E34922165E8B00C235E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2E34822165E8B00C235E2 /* AppDelegate.swift */; };
 		E2F2E34B22165E8B00C235E2 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2E34A22165E8B00C235E2 /* LandingViewController.swift */; };
 		E2F2E35022165E8C00C235E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2F2E34F22165E8C00C235E2 /* Assets.xcassets */; };
@@ -97,6 +103,8 @@
 		E20944E3222316DA00FD7B08 /* SignInTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInTests.swift; sourceTree = "<group>"; };
 		E22A498C2223AE4700B91EFA /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		E23D02ED22169DCD004D0D9F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		E2590173222784E700F575AA /* keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = keys.plist; sourceTree = "<group>"; };
+		E259017522278B3B00F575AA /* Credential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credential.swift; sourceTree = "<group>"; };
 		E259017822278FB500F575AA /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		E25F9847221E485B00A01AC4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E25F984C221EA92A00A01AC4 /* BaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUITests.swift; sourceTree = "<group>"; };
@@ -126,6 +134,10 @@
 		E29EAF5522253E0200737CEF /* HamburgerMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerMenuVC.swift; sourceTree = "<group>"; };
 		E29EAF5922256C5900737CEF /* MainScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreens.swift; sourceTree = "<group>"; };
 		E2B9D6422227B6040034FD5E /* SpitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpitViewController.swift; sourceTree = "<group>"; };
+		E2B9D6442227BEA40034FD5E /* MovieService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MovieService.swift; path = MovieApp/Controllers/Main/Movies/MovieService.swift; sourceTree = SOURCE_ROOT; };
+		E2B9D6472227C9490034FD5E /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		E2B9D6492227DC650034FD5E /* MoviesResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesResult.swift; sourceTree = "<group>"; };
+		E2B9D64B22283BFD0034FD5E /* MovieCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionView.swift; sourceTree = "<group>"; };
 		E2F2E34522165E8B00C235E2 /* MovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2F2E34822165E8B00C235E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2F2E34A22165E8B00C235E2 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
@@ -196,6 +208,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		E2590172222781FA00F575AA /* Secrets */ = {
+			isa = PBXGroup;
+			children = (
+				E2916484221B1CF70052997B /* GoogleService-Info.plist */,
+				E2590173222784E700F575AA /* keys.plist */,
+			);
+			path = Secrets;
+			sourceTree = "<group>";
+		};
 		E259017722278F9200F575AA /* Movies */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				E25F9847221E485B00A01AC4 /* Constants.swift */,
+				E259017522278B3B00F575AA /* Credential.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -377,6 +399,15 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		E2B9D6462227C92F0034FD5E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E2B9D6472227C9490034FD5E /* Movie.swift */,
+				E2B9D6492227DC650034FD5E /* MoviesResult.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		E2F2E33C22165E8B00C235E2 = {
 			isa = PBXGroup;
 			children = (
@@ -407,12 +438,13 @@
 				E28B26812226C0B80090C5EC /* FIrebase */,
 				E2F2E34822165E8B00C235E2 /* AppDelegate.swift */,
 				E2F2E35C221660AB00C235E2 /* Controllers */,
+				E2B9D6462227C92F0034FD5E /* Models */,
 				E2F2E35D221660EA00C235E2 /* APIs */,
 				E25F9844221E482600A01AC4 /* Helpers */,
 				E2916481221B1AC10052997B /* Extensions */,
 				E2F2E35B221660A800C235E2 /* Storyboards */,
 				E2F2E35A221660A400C235E2 /* Supporting Files */,
-				E2916484221B1CF70052997B /* GoogleService-Info.plist */,
+				E2590172222781FA00F575AA /* Secrets */,
 				E2F2E35422165E8C00C235E2 /* Info.plist */,
 			);
 			path = MovieApp;
@@ -432,6 +464,7 @@
 				E2F2E35122165E8C00C235E2 /* Authentication.storyboard */,
 				E2F2E35E22166DC700C235E2 /* LaunchScreen.storyboard */,
 				E29EAF4F222537D400737CEF /* Main.storyboard */,
+				E2B9D64B22283BFD0034FD5E /* MovieCollectionView.swift */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -450,6 +483,7 @@
 			children = (
 				E291647E221B1AA70052997B /* API.swift */,
 				E291647D221B1AA70052997B /* UserService.swift */,
+				E2B9D6442227BEA40034FD5E /* MovieService.swift */,
 			);
 			path = APIs;
 			sourceTree = "<group>";
@@ -629,6 +663,7 @@
 			files = (
 				E2F2E35322165E8C00C235E2 /* Authentication.storyboard in Resources */,
 				E29EAF50222537D400737CEF /* Main.storyboard in Resources */,
+				E2590174222784E700F575AA /* keys.plist in Resources */,
 				E2916485221B1CF70052997B /* GoogleService-Info.plist in Resources */,
 				E2F2E35022165E8C00C235E2 /* Assets.xcassets in Resources */,
 				E2F2E35F22166DC700C235E2 /* LaunchScreen.storyboard in Resources */,
@@ -691,6 +726,8 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MovieApp/Pods-MovieApp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -700,6 +737,8 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
@@ -719,6 +758,8 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MovieApp-Tests-ExtensionTests/Pods-MovieApp-Tests-ExtensionTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -731,6 +772,8 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
@@ -797,6 +840,8 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MovieApp-Tests-MovieAppUITests/Pods-MovieApp-Tests-MovieAppUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -810,6 +855,8 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
@@ -833,6 +880,8 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MovieApp-Tests-MovieAppTests/Pods-MovieApp-Tests-MovieAppTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -846,6 +895,8 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
@@ -912,12 +963,17 @@
 				E2B9D6432227B6040034FD5E /* SpitViewController.swift in Sources */,
 				E29EAF5622253E0200737CEF /* HamburgerMenuVC.swift in Sources */,
 				E23D02EE22169DCD004D0D9F /* SignUpViewController.swift in Sources */,
+				E2B9D64C22283BFD0034FD5E /* MovieCollectionView.swift in Sources */,
 				E2F2E34B22165E8B00C235E2 /* LandingViewController.swift in Sources */,
+				E2B9D6482227C9490034FD5E /* Movie.swift in Sources */,
 				E20944E2222307E700FD7B08 /* SignInViewController.swift in Sources */,
+				E2B9D64A2227DC650034FD5E /* MoviesResult.swift in Sources */,
 				E22A498D2223AE4700B91EFA /* ForgotPasswordViewController.swift in Sources */,
 				E25F9848221E485B00A01AC4 /* Constants.swift in Sources */,
+				E2B9D6452227BEA40034FD5E /* MovieService.swift in Sources */,
 				E29EAF542225385E00737CEF /* ContainerMainVC.swift in Sources */,
 				E2F2E34922165E8B00C235E2 /* AppDelegate.swift in Sources */,
+				E259017622278B3B00F575AA /* Credential.swift in Sources */,
 				E2916480221B1AA70052997B /* API.swift in Sources */,
 				E259017922278FB500F575AA /* MasterViewController.swift in Sources */,
 			);

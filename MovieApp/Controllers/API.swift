@@ -6,9 +6,11 @@
 //  Copyright © 2019 thuyentruong. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class API {
 
   typealias ErrorHandler = (Error?) -> Void
+  typealias MoviesResponseHanlder = (MoviesResult?, Error?) -> Void
+  typealias ImageResponseHanlder = (UIImage?) -> Void
 }

@@ -112,13 +112,27 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MovieCell" id="9Ah-F6-erE">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MovieCell" id="9Ah-F6-erE" customClass="MovieCollectionView" customModule="MovieApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lzb-yO-qm1">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                </imageView>
+                                            </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="lzb-yO-qm1" secondAttribute="bottom" id="0qd-pn-JsD"/>
+                                            <constraint firstAttribute="trailing" secondItem="lzb-yO-qm1" secondAttribute="trailing" id="7La-z9-OfM"/>
+                                            <constraint firstItem="lzb-yO-qm1" firstAttribute="leading" secondItem="9Ah-F6-erE" secondAttribute="leading" id="zI4-mv-YSs"/>
+                                            <constraint firstItem="lzb-yO-qm1" firstAttribute="top" secondItem="9Ah-F6-erE" secondAttribute="top" id="zRl-Fr-gZJ"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="moviePoster" destination="lzb-yO-qm1" id="LrQ-TQ-SYc"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>

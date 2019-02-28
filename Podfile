@@ -9,6 +9,8 @@ target 'MovieApp' do
   pod 'Firebase/Core'
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
+  pod 'Alamofire'
+  pod 'AlamofireImage'
 
   abstract_target 'Tests' do
     pod 'OHHTTPStubs'
