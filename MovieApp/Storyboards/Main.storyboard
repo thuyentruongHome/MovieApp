@@ -102,8 +102,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="836"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VRs-Yg-3jn">
+                                <rect key="frame" x="80" y="56" width="254" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="HU7-OD-bP0"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Popular"/>
+                                    <segment title="Most Rated"/>
+                                    <segment title="My Fav"/>
+                                </segments>
+                                <connections>
+                                    <action selector="categorySegmentTapped:" destination="8N3-hx-HJ6" eventType="valueChanged" id="Yuo-HE-HRc"/>
+                                </connections>
+                            </segmentedControl>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SYg-ng-Yz7">
-                                <rect key="frame" x="12" y="144" width="390" height="658"/>
+                                <rect key="frame" x="12" y="116" width="390" height="686"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Yys-I9-e8Z">
                                     <size key="itemSize" width="50" height="50"/>

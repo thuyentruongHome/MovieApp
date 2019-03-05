@@ -19,9 +19,9 @@ class MasterViewController: UIViewController {
   private var popularMovies = [Movie]()
 
   @IBOutlet weak var movieCollectionView: UICollectionView!
+  @IBOutlet weak var movieSegmentControl: UISegmentedControl!
 
   // MARK: - Init
-
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -38,12 +38,25 @@ class MasterViewController: UIViewController {
   }
 
   // MARK: - Handlers
-
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
     guard let collectionViewLayout = self.movieCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
     collectionViewLayout.prepare()
     collectionViewLayout.invalidateLayout()
+  }
+
+
+  @IBAction func categorySegmentTapped(_ sender: Any) {
+    guard let categorySegment = sender as? UISegmentedControl else { return }
+    let selectedSegment = MovieSegment(rawValue: categorySegment.selectedSegmentIndex)!
+    switch selectedSegment {
+    case .Popular:
+      print("Popular Movies")
+    case .MostRated:
+      print("Most Rated Movies")
+    case .MyFav:
+      print("Fav Movies")
+    }
   }
 }
 

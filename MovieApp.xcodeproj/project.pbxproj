@@ -15,6 +15,7 @@
 		E20944E2222307E700FD7B08 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20944E1222307E700FD7B08 /* SignInViewController.swift */; };
 		E20944E4222316DA00FD7B08 /* SignInTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20944E3222316DA00FD7B08 /* SignInTests.swift */; };
 		E22A498D2223AE4700B91EFA /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A498C2223AE4700B91EFA /* ForgotPasswordViewController.swift */; };
+		E23D000E22297DB90077CEB7 /* MovieSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23D000D22297DB90077CEB7 /* MovieSegment.swift */; };
 		E23D02EE22169DCD004D0D9F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23D02ED22169DCD004D0D9F /* SignUpViewController.swift */; };
 		E2590174222784E700F575AA /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = E2590173222784E700F575AA /* keys.plist */; };
 		E259017622278B3B00F575AA /* Credential.swift in Sources */ = {isa = PBXBuildFile; fileRef = E259017522278B3B00F575AA /* Credential.swift */; };
@@ -102,6 +103,7 @@
 		E20944E1222307E700FD7B08 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		E20944E3222316DA00FD7B08 /* SignInTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInTests.swift; sourceTree = "<group>"; };
 		E22A498C2223AE4700B91EFA /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		E23D000D22297DB90077CEB7 /* MovieSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSegment.swift; sourceTree = "<group>"; };
 		E23D02ED22169DCD004D0D9F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		E2590173222784E700F575AA /* keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = keys.plist; sourceTree = "<group>"; };
 		E259017522278B3B00F575AA /* Credential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credential.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 			children = (
 				E25F9847221E485B00A01AC4 /* Constants.swift */,
 				E259017522278B3B00F575AA /* Credential.swift */,
+				E23D000D22297DB90077CEB7 /* MovieSegment.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -963,6 +966,7 @@
 				E2B9D6432227B6040034FD5E /* SpitViewController.swift in Sources */,
 				E29EAF5622253E0200737CEF /* HamburgerMenuVC.swift in Sources */,
 				E23D02EE22169DCD004D0D9F /* SignUpViewController.swift in Sources */,
+				E23D000E22297DB90077CEB7 /* MovieSegment.swift in Sources */,
 				E2B9D64C22283BFD0034FD5E /* MovieCollectionView.swift in Sources */,
 				E2F2E34B22165E8B00C235E2 /* LandingViewController.swift in Sources */,
 				E2B9D6482227C9490034FD5E /* Movie.swift in Sources */,
