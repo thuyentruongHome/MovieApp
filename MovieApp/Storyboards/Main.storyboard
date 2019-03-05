@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iFI-r7-OPq">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Container MainVC-->
+        <scene sceneID="BES-qQ-z9H">
+            <objects>
+                <viewController id="iFI-r7-OPq" customClass="ContainerMainVC" customModule="MovieApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Zae-1o-Pbm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HY1-cW-yYJ" userLabel="Menu Container View">
+                                <rect key="frame" x="-270" y="44" width="270" height="818"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="270" id="XZK-6y-r5O"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="enP-K4-rOT" kind="embed" id="9n1-y3-k4T"/>
+                                </connections>
+                            </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0fc-d9-xaj" userLabel="Main View">
+                                <rect key="frame" x="0.0" y="44" width="414" height="896"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uLc-zq-cc0">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gCJ-FS-Dmg">
+                                                <rect key="frame" x="10" y="0.0" width="45" height="60"/>
+                                                <accessibility key="accessibilityConfiguration" label="Hamburger Menu Icon"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="gCJ-FS-Dmg" secondAttribute="height" multiplier="15:20" id="3VE-ae-lvF"/>
+                                                </constraints>
+                                                <state key="normal" image="white-hamburger"/>
+                                                <state key="selected" image="orange-hamburger"/>
+                                                <connections>
+                                                    <action selector="toggleHamburgerMenu:" destination="iFI-r7-OPq" eventType="touchUpInside" id="a8r-mW-2H5"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.18823529411764706" green="0.23137254901960785" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="gCJ-FS-Dmg" secondAttribute="bottom" id="Od0-Xb-fOb"/>
+                                            <constraint firstItem="gCJ-FS-Dmg" firstAttribute="leading" secondItem="uLc-zq-cc0" secondAttribute="leading" constant="10" id="OxU-7l-JT1"/>
+                                            <constraint firstAttribute="height" constant="60" id="Y9m-ai-SDk"/>
+                                            <constraint firstItem="gCJ-FS-Dmg" firstAttribute="top" secondItem="uLc-zq-cc0" secondAttribute="top" id="ofp-pU-ihf"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.94901960780000005" green="0.39607843139999999" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="uLc-zq-cc0" secondAttribute="trailing" id="J2F-gf-n4a"/>
+                                    <constraint firstItem="uLc-zq-cc0" firstAttribute="leading" secondItem="0fc-d9-xaj" secondAttribute="leading" id="Zyw-4S-2AQ"/>
+                                    <constraint firstItem="uLc-zq-cc0" firstAttribute="top" secondItem="0fc-d9-xaj" secondAttribute="top" id="lOV-j7-RfB"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="0fc-d9-xaj" firstAttribute="width" secondItem="AKV-2x-auF" secondAttribute="width" id="9ZP-xE-arX"/>
+                            <constraint firstItem="0fc-d9-xaj" firstAttribute="height" secondItem="Zae-1o-Pbm" secondAttribute="height" id="EqL-qk-VuR"/>
+                            <constraint firstItem="AKV-2x-auF" firstAttribute="bottom" secondItem="HY1-cW-yYJ" secondAttribute="bottom" id="Jjv-8p-k1Y"/>
+                            <constraint firstItem="0fc-d9-xaj" firstAttribute="leading" secondItem="HY1-cW-yYJ" secondAttribute="trailing" id="WBF-Fy-I1Q"/>
+                            <constraint firstItem="HY1-cW-yYJ" firstAttribute="leading" secondItem="Zae-1o-Pbm" secondAttribute="leading" constant="-270" id="eNm-Av-0nT"/>
+                            <constraint firstItem="0fc-d9-xaj" firstAttribute="top" secondItem="AKV-2x-auF" secondAttribute="top" id="otG-PZ-slj"/>
+                            <constraint firstItem="HY1-cW-yYJ" firstAttribute="top" secondItem="AKV-2x-auF" secondAttribute="top" id="wxT-Xb-oB1"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="AKV-2x-auF"/>
+                    </view>
+                    <connections>
+                        <outlet property="leadingAnchorMenu" destination="eNm-Av-0nT" id="A3M-wz-eIf"/>
+                        <outlet property="menuContainerView" destination="HY1-cW-yYJ" id="K0u-xB-DwX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Om-Vl-6yu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="569.56521739130437" y="49.553571428571423"/>
+        </scene>
+        <!--Hamburger MenuVC-->
+        <scene sceneID="LO8-Jz-u8e">
+            <objects>
+                <viewController id="enP-K4-rOT" customClass="HamburgerMenuVC" customModule="MovieApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gb5-uO-jnW">
+                        <rect key="frame" x="0.0" y="0.0" width="270" height="818"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zY4-RW-7cP">
+                                <rect key="frame" x="16" y="124" width="238" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="eQw-s4-uOh"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f7r-aV-sID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="570" y="810"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="orange-hamburger" width="51" height="27"/>
+        <image name="white-hamburger" width="51" height="27"/>
+    </resources>
+</document>

@@ -83,6 +83,9 @@
                                         <state key="normal" title="Or Skip" image="skip">
                                             <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="ols-Uo-xTr" kind="show" id="flv-vp-8CF"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -569,13 +572,21 @@
             </objects>
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
+        <!--Main-->
+        <scene sceneID="qj7-L7-sam">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="ols-Uo-xTr" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V8U-md-oLm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1333" y="904"/>
+        </scene>
     </scenes>
     <resources>
         <image name="logo" width="512" height="305"/>
         <image name="skip" width="15" height="15"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="i5H-gZ-xQD"/>
-        <segue reference="OUf-Qt-6di"/>
+        <segue reference="NJl-SB-D8h"/>
+        <segue reference="5Pj-5R-tGw"/>
     </inferredMetricsTieBreakers>
 </document>

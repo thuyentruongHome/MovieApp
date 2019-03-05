@@ -1,15 +1,14 @@
 //
-//  SignInViewController.swift
+//  SignUpViewController.swift
 //  MovieApp
 //
-//  Created by Macintosh on 2/25/19.
+//  Created by Macintosh on 2/15/19.
 //  Copyright © 2019 thuyentruong. All rights reserved.
 //
 
 import UIKit
-import Firebase
 
-class SignInViewController: UIViewController {
+class SignUpViewController: UIViewController {
 
   // MARK: - Properties
   @IBOutlet weak var emailTextField: UITextField!
@@ -22,28 +21,20 @@ class SignInViewController: UIViewController {
   }
 
   // MARK: - Handlers
-  @IBAction func signUserIn(_ sender: Any) {
+  @IBAction func signUserUp(_ sender: Any) {
     activityIndicator.startAnimating()
     let email = emailTextField.text!
     let password = passwordTextField.text!
 
     do {
-      try API.UserService.signIn(withEmail: email, password: password) { [weak self] (error) in
+      try API.UserService.signUp(withEmail: email, password: password) { [weak self] (error) in
         guard let self = self else { return }
         self.activityIndicator.stopAnimating()
 
         if let error = error {
-          guard let authErrorCode = AuthErrorCode(rawValue: error._code) else { return }
-          switch authErrorCode {
-          case .userNotFound:
-            self.showInformedAlert(withTitle: Constants.TitleAlert.incorrectEmail, message: Constants.ErrorMessage.incorrectEmail)
-          case .wrongPassword:
-            self.showInformedAlert(withTitle: Constants.TitleAlert.incorrectPassword, message: Constants.ErrorMessage.incorrectPassword)
-          default:
-            self.showInformedAlert(withTitle: Constants.TitleAlert.error, message: error.localizedDescription)
-          }
+          self.showInformedAlert(withTitle: Constants.TitleAlert.error, message: error.localizedDescription)
         } else {
-          // TODO: Move to Main Screen
+          self.gotoMainScreen()
         }
       }
     } catch let error {
@@ -61,7 +52,8 @@ class SignInViewController: UIViewController {
   }
 }
 
-extension SignInViewController: UITextFieldDelegate {
+extension SignUpViewController: UITextFieldDelegate {
+
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     view.endEditing(true)
     return true

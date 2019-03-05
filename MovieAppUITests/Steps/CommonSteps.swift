@@ -28,10 +28,9 @@ extension KIFTestCase {
   }
 
   // MARK: - Navigation
-  func backToRoot() {
-    if let rootViewController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController {
-      rootViewController.popToRootViewController(animated: false)
-      tester().waitForAnimationsToFinish()
-    }
+  func gotoLandingScreen() {
+    let storyboard = UIStoryboard(name: "Authentication", bundle: nil)
+    UIApplication.shared.keyWindow?.rootViewController = storyboard.instantiateInitialViewController()
+    tester().waitForAnimationsToFinish()
   }
 }

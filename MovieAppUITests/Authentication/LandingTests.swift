@@ -11,7 +11,7 @@ import KIF
 class LandingTests: KIFTestCase {
 
   override func beforeEach() {
-    backToRoot()
+    gotoLandingScreen()
   }
 
   // MARK: - Tests
@@ -23,5 +23,10 @@ class LandingTests: KIFTestCase {
   func testSignInButton() {
     tapButton("Sign In")
     expectToSeeSignInScreen()
+  }
+
+  func testSkipButton() {
+    tapButton("Or Skip")
+    expectToSeeMainScreen()
   }
 }

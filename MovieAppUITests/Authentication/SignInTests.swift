@@ -18,7 +18,7 @@ class SignInTests: BaseUITests {
   private let userPassword = Faker().lorem.characters(amount: 6)
 
   override func beforeEach() {
-    backToRoot()
+    gotoLandingScreen()
     tapButton("Sign In")
   }
 
@@ -65,8 +65,7 @@ class SignInTests: BaseUITests {
     fillIn("Email TextField", with: email)
     fillIn("Password TextField", with: userPassword)
     tapButton("Sign In")
-    // MARK: ToDo: Expect go to Home Page
-
+    expectToSeeMainScreen()
     deleteUser(withEmail: email, password: userPassword)
   }
 
