@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window = UIWindow(frame: UIScreen.main.bounds)
     window?.makeKeyAndVisible()
 
-    let storyboardName = Auth.auth().currentUser == nil ? "Authentication" : "Main"
+    let storyboardName = API.UserService.isLoggedIn() ? "Main" : "Authentication"
     let initialVC = UIStoryboard(name: storyboardName, bundle: nil).instantiateInitialViewController()
 
     window?.rootViewController = initialVC

@@ -24,4 +24,17 @@ extension UIViewController {
       present(initialMainVC, animated: true, completion: nil)
     }
   }
+
+  func gotoLandingScreen() {
+    let storyboard = UIStoryboard(name: "Authentication", bundle: nil)
+    if let initialMainVC = storyboard.instantiateInitialViewController() {
+      present(initialMainVC, animated: true, completion: nil)
+    }
+  }
+
+  func gotoSignInScreen() {
+    let storyboard = UIStoryboard(name: "Authentication", bundle: nil)
+    guard let signInVC = storyboard.instantiateViewController(withIdentifier: "SignInVC") as? SignInViewController else { return }
+    present(signInVC, animated: true, completion: nil)
+  }
 }

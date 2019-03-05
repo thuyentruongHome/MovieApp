@@ -33,4 +33,10 @@ extension KIFTestCase {
     UIApplication.shared.keyWindow?.rootViewController = storyboard.instantiateInitialViewController()
     tester().waitForAnimationsToFinish()
   }
+
+  func gotoMainScreen() {
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    UIApplication.shared.keyWindow?.rootViewController = storyboard.instantiateInitialViewController()
+    tester().waitForAnimationsToFinish()
+  }
 }

@@ -6,11 +6,7 @@
 //  Copyright © 2019 thuyentruong. All rights reserved.
 //
 
-import Foundation
-import KIF
 import Fakery
-import Firebase
-import Nimble
 
 class SignUpTests: BaseUITests {
 
@@ -60,7 +56,7 @@ class SignUpTests: BaseUITests {
     expectToSee("The email address is already in use by another account.")
     tapButton("OK")
 
-    deleteUser(withEmail: email, password: self.userPassword)
+    deleteUser(withEmail: email, password: userPassword)
   }
 
   func testSignUserUpSuccessfully() {
@@ -70,7 +66,7 @@ class SignUpTests: BaseUITests {
     fillIn("Password TextField", with: userPassword)
     tapButton("Sign Up")
     expectToSeeMainScreen()
-    deleteUser(withEmail: email, password: userPassword)
+    logOutAndDeleteUser(withEmail: email, password: userPassword)
   }
 
   func testCancelButton() {

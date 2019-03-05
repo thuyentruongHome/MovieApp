@@ -118,7 +118,7 @@
         <!--Sign In View Controller-->
         <scene sceneID="R4t-xm-9cl">
             <objects>
-                <viewController id="yVg-hm-3qq" customClass="SignInViewController" customModule="MovieApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignInVC" id="yVg-hm-3qq" customClass="SignInViewController" customModule="MovieApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="isD-z2-eXk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -586,7 +586,7 @@
         <image name="skip" width="15" height="15"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NJl-SB-D8h"/>
+        <segue reference="i5H-gZ-xQD"/>
         <segue reference="5Pj-5R-tGw"/>
     </inferredMetricsTieBreakers>
 </document>

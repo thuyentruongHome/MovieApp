@@ -6,11 +6,7 @@
 //  Copyright © 2019 thuyentruong. All rights reserved.
 //
 
-import Foundation
-import KIF
 import Fakery
-import Firebase
-import Nimble
 
 class SignInTests: BaseUITests {
 

@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import Fakery
 
 struct TestConstants {
   public static let registeredEmail = "registered-movieapp@mail.com"
   public static let unRegisteredEmail = "unregistered-movieapp@mail.com"
+  public static let userPassword = Faker().lorem.characters(amount: 6)
 }

@@ -12,6 +12,14 @@ import Firebase
 extension API {
   class UserService {
 
+    class func currentUser() -> User? {
+      return Auth.auth().currentUser
+    }
+
+    class func isLoggedIn() -> Bool {
+      return Auth.auth().currentUser != nil
+    }
+
     class func signUp(withEmail email: String, password: String, completionHandler: @escaping ErrorHandler) throws {
       // Validation
       try validateEmail(email)
@@ -40,6 +48,10 @@ extension API {
           completionHandler(nil)
         }
       }
+    }
+
+    class func signOut() throws {
+      try Auth.auth().signOut()
     }
 
     class func submitForgotPassword(withEmail email: String, completionHandler: @escaping ErrorHandler) throws {

@@ -92,15 +92,101 @@
                         <rect key="frame" x="0.0" y="0.0" width="270" height="818"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zY4-RW-7cP">
-                                <rect key="frame" x="16" y="124" width="238" height="62"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zY4-RW-7cP">
+                                <rect key="frame" x="16" y="164" width="238" height="62"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S1w-9B-SxX">
+                                        <rect key="frame" x="0.0" y="0.0" width="238" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="0.94901960780000005" green="0.39607843139999999" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IlM-DZ-4fb">
+                                        <rect key="frame" x="54" y="30" width="130" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="130" id="BZo-TJ-F9F"/>
+                                            <constraint firstAttribute="height" constant="32" id="UDv-4t-F4I"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <inset key="imageEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Sign out" image="sign-out">
+                                            <color key="titleColor" red="0.33333333329999998" green="0.334269973" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="signUserOut:" destination="enP-K4-rOT" eventType="touchUpInside" id="0pu-ss-TuF"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="S1w-9B-SxX" firstAttribute="leading" secondItem="zY4-RW-7cP" secondAttribute="leading" id="JsS-My-lXY"/>
+                                    <constraint firstAttribute="trailing" secondItem="S1w-9B-SxX" secondAttribute="trailing" id="OeO-2p-Uc1"/>
+                                    <constraint firstItem="S1w-9B-SxX" firstAttribute="top" secondItem="zY4-RW-7cP" secondAttribute="top" id="PPR-JO-FOf"/>
+                                    <constraint firstItem="IlM-DZ-4fb" firstAttribute="centerX" secondItem="zY4-RW-7cP" secondAttribute="centerX" id="QjP-jr-V9D"/>
+                                    <constraint firstItem="IlM-DZ-4fb" firstAttribute="top" secondItem="S1w-9B-SxX" secondAttribute="bottom" constant="12" id="dbG-Pq-8uN"/>
+                                    <constraint firstAttribute="bottom" secondItem="IlM-DZ-4fb" secondAttribute="bottom" id="pwP-YN-ypf"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XVh-jl-lUF">
+                                <rect key="frame" x="0.0" y="164" width="270" height="62"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nz8-ro-O6z">
+                                        <rect key="frame" x="70" y="30" width="130" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="RXn-zm-N0f"/>
+                                            <constraint firstAttribute="width" constant="130" id="nuV-Vs-v0p"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <inset key="imageEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Sign in" image="sign_in">
+                                            <color key="titleColor" red="0.33333333329999998" green="0.334269973" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="moveToSignIn:" destination="enP-K4-rOT" eventType="touchUpInside" id="k96-RL-BAk"/>
+                                            <action selector="signUserOut:" destination="enP-K4-rOT" eventType="touchUpInside" id="e4s-yH-063"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Nz8-ro-O6z" firstAttribute="centerX" secondItem="XVh-jl-lUF" secondAttribute="centerX" id="BQd-uH-Z9l"/>
+                                    <constraint firstAttribute="bottom" secondItem="Nz8-ro-O6z" secondAttribute="bottom" id="HVi-BA-YgZ"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="XVh-jl-lUF" firstAttribute="top" secondItem="zY4-RW-7cP" secondAttribute="top" id="DUc-1i-LjF"/>
+                            <constraint firstItem="Nz8-ro-O6z" firstAttribute="top" secondItem="IlM-DZ-4fb" secondAttribute="top" id="JB0-Rd-rAj"/>
+                            <constraint firstItem="XVh-jl-lUF" firstAttribute="leading" secondItem="eQw-s4-uOh" secondAttribute="leading" id="OIX-R6-ZBd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="zY4-RW-7cP" secondAttribute="trailing" id="ORh-2W-Bj0"/>
+                            <constraint firstItem="eQw-s4-uOh" firstAttribute="trailing" secondItem="XVh-jl-lUF" secondAttribute="trailing" id="UXg-AK-WKo"/>
+                            <constraint firstItem="zY4-RW-7cP" firstAttribute="top" secondItem="gb5-uO-jnW" secondAttribute="topMargin" constant="120" id="dgw-s7-CHu"/>
+                            <constraint firstItem="zY4-RW-7cP" firstAttribute="leading" secondItem="gb5-uO-jnW" secondAttribute="leadingMargin" id="laH-bu-Hay"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="eQw-s4-uOh"/>
                     </view>
+                    <connections>
+                        <outlet property="currentUserEmail" destination="S1w-9B-SxX" id="AV7-uZ-tfO"/>
+                        <outlet property="signInBox" destination="XVh-jl-lUF" id="n17-0c-hZK"/>
+                        <outlet property="signOutBox" destination="zY4-RW-7cP" id="Guc-L3-N4b"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f7r-aV-sID" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -109,6 +195,8 @@
     </scenes>
     <resources>
         <image name="orange-hamburger" width="51" height="27"/>
+        <image name="sign-out" width="15" height="13"/>
+        <image name="sign_in" width="15" height="13"/>
         <image name="white-hamburger" width="51" height="27"/>
     </resources>
 </document>
