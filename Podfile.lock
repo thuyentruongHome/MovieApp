@@ -2,6 +2,7 @@ PODS:
   - Alamofire (4.8.1)
   - AlamofireImage (3.5.0):
     - Alamofire (~> 4.8)
+  - Cosmos (18.0.1)
   - Fakery (3.4.0)
   - Firebase/Auth (5.15.0):
     - Firebase/CoreOnly
@@ -92,6 +93,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - AlamofireImage
+  - Cosmos (~> 18.0)
   - Fakery
   - Firebase/Auth
   - Firebase/Core
@@ -105,6 +107,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - AlamofireImage
+    - Cosmos
     - Fakery
     - Firebase
     - FirebaseAnalytics
@@ -126,6 +129,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
   AlamofireImage: 1aea346f4dda2f6c67622fa5a89fcbb80d79cc16
+  Cosmos: 7dfaa3f52584ca5f94ab74b5c2e264019cc9f7f5
   Fakery: 885e894a3e7c392e1da96c6e46a1abe5a0b28686
   Firebase: 8bb9268bff82374f2cbaaabb143e725743c316ae
   FirebaseAnalytics: c06f9d70577d79074214700a71fd5d39de5550fb
@@ -144,6 +148,6 @@ SPEC CHECKSUMS:
   OHHTTPStubs: 1e21c7d2c084b8153fc53d48400d8919d2d432d0
   Quick: 2623cb30d7a7f41ca62f684f679586558f483d46
 
-PODFILE CHECKSUM: 8638337cee26ffc7e11518ba6eeeed9e6dfc16d7
+PODFILE CHECKSUM: bb7180922ae7c2bbb7f737d95d20459f1d0f25c8
 
 COCOAPODS: 1.5.3

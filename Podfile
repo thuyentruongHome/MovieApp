@@ -11,6 +11,7 @@ target 'MovieApp' do
   pod 'Firebase/Auth'
   pod 'Alamofire'
   pod 'AlamofireImage'
+  pod 'Cosmos', '~> 18.0'
 
   abstract_target 'Tests' do
     pod 'OHHTTPStubs'

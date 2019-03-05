@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Cosmos
 
 class MovieDetailViewController: UIViewController {
 
@@ -14,6 +15,7 @@ class MovieDetailViewController: UIViewController {
   @IBOutlet weak var moviePoster: UIImageView!
   @IBOutlet weak var movieTitle: UILabel!
   @IBOutlet weak var movieReleaseDate: UILabel!
+  @IBOutlet weak var movieStar: CosmosView!
 
   var movie: Movie? {
     didSet {
@@ -29,6 +31,8 @@ class MovieDetailViewController: UIViewController {
     })
     movieTitle.text = movie.title
     movieReleaseDate.text = movie.formattedReleaseDate()
+    movieStar.rating = movie.voteAverage
+    movieStar.isHidden = false
   }
 }
 
