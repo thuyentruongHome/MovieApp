@@ -13,6 +13,10 @@ public let hostErrorCode = 1
 
 public struct Constants {
 
+  public struct theMovie {
+    public static let dateFormat = "yyyy-MM-dd"
+  }
+
   public struct Policy {
     public static let minimumPasswordLength = 6
   }

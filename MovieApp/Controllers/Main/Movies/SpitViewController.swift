@@ -9,6 +9,18 @@
 import UIKit
 
 class SplitViewController: UISplitViewController {
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    guard let leftNavController = viewControllers.first as? UINavigationController,
+      let masterViewController = leftNavController.topViewController as? MasterViewController,
+      let detailViewController = viewControllers.last as? MovieDetailViewController
+      else { fatalError() }
+
+    masterViewController.delegate = detailViewController
+  }
+
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
 

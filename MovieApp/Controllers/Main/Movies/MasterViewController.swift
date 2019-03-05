@@ -18,6 +18,8 @@ class MasterViewController: UIViewController {
 
   private var popularMovies = [Movie]()
 
+  public var delegate: MovieSelectionDelegate?
+
   @IBOutlet weak var movieCollectionView: UICollectionView!
   @IBOutlet weak var movieSegmentControl: UISegmentedControl!
 
@@ -44,7 +46,6 @@ class MasterViewController: UIViewController {
     collectionViewLayout.prepare()
     collectionViewLayout.invalidateLayout()
   }
-
 
   @IBAction func categorySegmentTapped(_ sender: Any) {
     guard let categorySegment = sender as? UISegmentedControl else { return }
@@ -91,5 +92,16 @@ extension MasterViewController: UICollectionViewDelegateFlowLayout {
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
     return lineSpacing
+  }
+}
+
+extension MasterViewController: UICollectionViewDelegate {
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    let movie = popularMovies[indexPath.row]
+    delegate?.movieSelected(movie)
+
+    if let detailViewController = delegate as? MovieDetailViewController {
+      splitViewController?.showDetailViewController(detailViewController, sender: nil)
+    }
   }
 }

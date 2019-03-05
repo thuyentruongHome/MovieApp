@@ -26,7 +26,11 @@ extension API {
         switch response.result {
         case .success(let data):
           do {
-            let movies = try JSONDecoder().decode(MoviesResult.self, from: data)
+            let decoder = JSONDecoder()
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = Constants.theMovie.dateFormat
+            decoder.dateDecodingStrategy = .formatted(dateFormatter)
+            let movies = try decoder.decode(MoviesResult.self, from: data)
             completionHandler(movies, nil)
           } catch let error {
             completionHandler(nil, error)
