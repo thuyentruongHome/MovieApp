@@ -10,6 +10,10 @@ import KIF
 
 class LandingTests: KIFTestCase {
 
+  override func beforeEach() {
+    backToRoot()
+  }
+
   // MARK: - Tests
   func testSignUpButton() {
     tapButton("Sign Up")

@@ -218,6 +218,9 @@
                                         <state key="normal" title="forgot your password?">
                                             <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="4gk-b2-3jr" kind="show" id="oKs-A6-j79"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <accessibility key="accessibilityConfiguration" label="SignUp - View"/>
@@ -272,6 +275,132 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IHl-rP-rGb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2463" y="-8"/>
+        </scene>
+        <!--Forgot Password View Controller-->
+        <scene sceneID="dXC-fp-hwF">
+            <objects>
+                <viewController id="4gk-b2-3jr" customClass="ForgotPasswordViewController" customModule="MovieApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oAf-9I-MhS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="9SN-KI-S9T">
+                                <rect key="frame" x="97.5" y="143.5" width="180" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="NeS-qT-YuK"/>
+                                    <constraint firstAttribute="width" secondItem="9SN-KI-S9T" secondAttribute="height" multiplier="60:30" id="RVi-G8-NGO"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PrP-ee-9JW">
+                                <rect key="frame" x="37.5" y="283.5" width="300" height="181"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your email so we can send you link to reset password" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a29-UM-HF1" userLabel="Description Label">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="41"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bMh-gd-Ls9" userLabel="Email Text Field">
+                                        <rect key="frame" x="0.0" y="76" width="300" height="50"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <accessibility key="accessibilityConfiguration" label="Email TextField"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="c3u-cm-uUi"/>
+                                        </constraints>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits" textContentType="email"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="4gk-b2-3jr" id="Jyd-JP-4ra"/>
+                                        </connections>
+                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Toq-7V-q4r" userLabel="Submit Buttons">
+                                        <rect key="frame" x="0.0" y="141" width="300" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Onj-yu-1J2">
+                                                <rect key="frame" x="0.0" y="0.0" width="145" height="40"/>
+                                                <color key="backgroundColor" red="0.2666666667" green="0.30588235289999999" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="LEf-RB-WJl"/>
+                                                </constraints>
+                                                <state key="normal" title="Cancel">
+                                                    <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="cancel:" destination="4gk-b2-3jr" eventType="touchUpInside" id="37y-g9-VI8"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A9k-ef-sMb">
+                                                <rect key="frame" x="155" y="0.0" width="145" height="40"/>
+                                                <color key="backgroundColor" red="0.94901960780000005" green="0.39607843139999999" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="Submit">
+                                                    <color key="titleColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="submitForgotPassword:" destination="4gk-b2-3jr" eventType="touchUpInside" id="Xbh-iv-p72"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="bMh-gd-Ls9" firstAttribute="leading" secondItem="PrP-ee-9JW" secondAttribute="leading" id="4uo-03-pjf"/>
+                                    <constraint firstAttribute="trailing" secondItem="a29-UM-HF1" secondAttribute="trailing" id="ADl-4j-eBv"/>
+                                    <constraint firstAttribute="bottom" secondItem="Toq-7V-q4r" secondAttribute="bottom" id="Dcn-OG-hc0"/>
+                                    <constraint firstItem="a29-UM-HF1" firstAttribute="centerX" secondItem="PrP-ee-9JW" secondAttribute="centerX" id="ENI-yC-2wk"/>
+                                    <constraint firstItem="Toq-7V-q4r" firstAttribute="leading" secondItem="PrP-ee-9JW" secondAttribute="leading" id="QZ3-d3-Nh6"/>
+                                    <constraint firstAttribute="width" constant="300" id="S6o-0U-RvY"/>
+                                    <constraint firstItem="a29-UM-HF1" firstAttribute="top" secondItem="PrP-ee-9JW" secondAttribute="top" id="Uhc-mA-IN2"/>
+                                    <constraint firstAttribute="trailing" secondItem="Toq-7V-q4r" secondAttribute="trailing" id="jb5-zf-GJT"/>
+                                    <constraint firstItem="bMh-gd-Ls9" firstAttribute="top" secondItem="a29-UM-HF1" secondAttribute="bottom" constant="35" id="rom-Qq-sM9">
+                                        <variation key="heightClass=compact" constant="25"/>
+                                    </constraint>
+                                    <constraint firstItem="Toq-7V-q4r" firstAttribute="top" secondItem="bMh-gd-Ls9" secondAttribute="bottom" constant="15" id="tmG-Xz-K5S"/>
+                                    <constraint firstAttribute="trailing" secondItem="bMh-gd-Ls9" secondAttribute="trailing" id="ykd-Sz-maF"/>
+                                </constraints>
+                            </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="qfZ-mT-ncH">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.18823529411764706" green="0.23137254901960785" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="qfZ-mT-ncH" firstAttribute="centerX" secondItem="oAf-9I-MhS" secondAttribute="centerX" id="36n-TD-b43"/>
+                            <constraint firstItem="PrP-ee-9JW" firstAttribute="top" secondItem="3OU-iS-3Ay" secondAttribute="bottom" multiplier="0.35" constant="50" id="P78-vI-ass">
+                                <variation key="heightClass=compact" constant="30"/>
+                            </constraint>
+                            <constraint firstItem="qfZ-mT-ncH" firstAttribute="centerY" secondItem="oAf-9I-MhS" secondAttribute="centerY" id="XyX-Rc-Jzo"/>
+                            <constraint firstItem="9SN-KI-S9T" firstAttribute="bottom" secondItem="3OU-iS-3Ay" secondAttribute="bottom" multiplier="0.35" id="co3-6j-Eil"/>
+                            <constraint firstItem="9SN-KI-S9T" firstAttribute="centerX" secondItem="oAf-9I-MhS" secondAttribute="centerX" id="hbT-iA-hQ5"/>
+                            <constraint firstItem="PrP-ee-9JW" firstAttribute="centerX" secondItem="oAf-9I-MhS" secondAttribute="centerX" id="m52-GB-qa3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="3OU-iS-3Ay"/>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="qfZ-mT-ncH" id="3u7-zQ-c1d"/>
+                        <outlet property="emailTextField" destination="bMh-gd-Ls9" id="OML-1k-4OA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s42-W8-zco" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3416.8000000000002" y="-9.4452773613193415"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="YTV-tz-klZ">

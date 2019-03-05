@@ -21,12 +21,12 @@ class UserServiceSpec: BaseTests {
     var email: String!
     var password: String!
 
-    describe(".signUp") {
-      beforeEach {
-        email = Faker().internet.email()
-        password = Faker().lorem.characters(amount: 6)
-      }
+    beforeEach {
+      email = Faker().internet.email()
+      password = Faker().lorem.characters(amount: 6)
+    }
 
+    describe(".signUp") {
       context("with invalid credential") {
         var errorMessage: String!
 
@@ -97,11 +97,6 @@ class UserServiceSpec: BaseTests {
     }
 
     describe(".signIn") {
-      beforeEach {
-        email = Faker().internet.email()
-        password = Faker().lorem.characters(amount: 6)
-      }
-
       context("with invalid credential") {
         var errorMessage: String!
 
@@ -182,6 +177,74 @@ class UserServiceSpec: BaseTests {
         it("returns successfully") {
           let expectation = XCTestExpectation(description: "Sign Firebase user in")
           try! API.UserService.signIn(withEmail: email, password: password, completionHandler: { (error) in
+            expect(error).to(beNil())
+            expectation.fulfill()
+          })
+          self.wait(for: [expectation], timeout: 50.0)
+        }
+      }
+    }
+
+    describe(".submitForgotPassword") {
+      context("with invalid credential") {
+        context("email is empty") {
+          beforeEach { email = "" }
+
+          it("throws required email error") {
+            expect {
+              try API.UserService.submitForgotPassword(withEmail: email, completionHandler: { (_) in })
+            }.to(throwError { (error: NSError) in
+              expect(error.localizedDescription) == "An email address must be provided."
+            })
+          }
+        }
+
+        context("email is badly formatted") {
+          beforeEach { email = Faker().lorem.word() }
+
+          it("throws badly formatted email error") {
+            let expectation = XCTestExpectation(description: "Send Firebase password reset")
+            try! API.UserService.submitForgotPassword(withEmail: email, completionHandler: { (error) in
+              expect(error).toNot(beNil())
+              expect(error?._code).to(equal(AuthErrorCode.invalidEmail.rawValue))
+              expect(error?.localizedDescription).to(equal("The email address is badly formatted."))
+              expectation.fulfill()
+            })
+            self.wait(for: [expectation], timeout: 10.0)
+          }
+        }
+      }
+
+      context("incorrect email") {
+        beforeEach {
+          email = TestConstants.unRegisteredEmail
+        }
+
+        it("returns user_not_found error") {
+          let expectation = XCTestExpectation(description: "Send Firebase password reset")
+          try! API.UserService.submitForgotPassword(withEmail: email, completionHandler: { (error) in
+            expect(error).toNot(beNil())
+            expect(error?._code).to(equal(AuthErrorCode.userNotFound.rawValue))
+            expect(error?.localizedDescription).to(equal("There is no user record corresponding to this identifier. The user may have been deleted."))
+            expectation.fulfill()
+          })
+          self.wait(for: [expectation], timeout: 10.0)
+        }
+      }
+
+      context("sends password reset successfully") {
+        beforeEach {
+          email = TestConstants.registeredEmail
+          self.createUser(withEmail: email, password: password)
+        }
+
+        afterEach {
+          self.deleteUser(withEmail: email, password: password)
+        }
+
+        it("returns successfully") {
+          let expectation = XCTestExpectation(description: "Send Firebase password reset")
+          try! API.UserService.submitForgotPassword(withEmail: email, completionHandler: { (error) in
             expect(error).to(beNil())
             expectation.fulfill()
           })

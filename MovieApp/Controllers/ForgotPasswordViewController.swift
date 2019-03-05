@@ -1,5 +1,5 @@
 //
-//  SignInViewController.swift
+//  ForgotPasswordViewController.swift
 //  MovieApp
 //
 //  Created by Macintosh on 2/25/19.
@@ -9,41 +9,32 @@
 import UIKit
 import Firebase
 
-class SignInViewController: UIViewController {
+class ForgotPasswordViewController: UIViewController {
 
   // MARK: - Properties
   @IBOutlet weak var emailTextField: UITextField!
-  @IBOutlet weak var passwordTextField: UITextField!
   @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
-  // MARK: - Init
-  override func viewDidLoad() {
-    super.viewDidLoad()
-  }
-
   // MARK: - Handlers
-  @IBAction func signUserIn(_ sender: Any) {
+  @IBAction func submitForgotPassword(_ sender: Any) {
     activityIndicator.startAnimating()
     let email = emailTextField.text!
-    let password = passwordTextField.text!
 
     do {
-      try API.UserService.signIn(withEmail: email, password: password) { [weak self] (error) in
+      try API.UserService.submitForgotPassword(withEmail: email) { [weak self] (error) in
         guard let self = self else { return }
         self.activityIndicator.stopAnimating()
-
         if let error = error {
           guard let authErrorCode = AuthErrorCode(rawValue: error._code) else { return }
           switch authErrorCode {
           case .userNotFound:
             self.showInformedAlert(withTitle: Constants.TitleAlert.incorrectEmail, message: Constants.ErrorMessage.incorrectEmail)
-          case .wrongPassword:
-            self.showInformedAlert(withTitle: Constants.TitleAlert.incorrectPassword, message: Constants.ErrorMessage.incorrectPassword)
           default:
             self.showInformedAlert(withTitle: Constants.TitleAlert.error, message: error.localizedDescription)
           }
         } else {
-          // TODO: Move to Main Screen
+          self.showInformedAlert(withTitle: Constants.TitleAlert.forgotPassword, message: Constants.Message.sentForgotPasswordMail)
+          self.navigationController?.popViewController(animated: true)
         }
       }
     } catch let error {
@@ -53,7 +44,7 @@ class SignInViewController: UIViewController {
   }
 
   @IBAction func cancel(_ sender: Any) {
-    navigationController?.popToRootViewController(animated: true)
+    navigationController?.popViewController(animated: true)
   }
 
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -61,7 +52,7 @@ class SignInViewController: UIViewController {
   }
 }
 
-extension SignInViewController: UITextFieldDelegate {
+extension ForgotPasswordViewController: UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     view.endEditing(true)
     return true
