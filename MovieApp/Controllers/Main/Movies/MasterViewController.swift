@@ -13,7 +13,7 @@ class MasterViewController: UIViewController {
   // MARK: - Properties
   private let reuseIdentifier = "MovieCell"
   private let itemsPerRow: CGFloat = 3
-  private let movieThumbnailRadio: CGFloat = 125 / 185
+  private let movieThumbnailRatio: CGFloat = 125 / 185
   private let (interItemSpacing, lineSpacing): (CGFloat, CGFloat) = (4, 4)
 
   private var popularMovies = [Movie]()
@@ -82,7 +82,7 @@ extension MasterViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     let paddingSpace = interItemSpacing * (itemsPerRow - 1)
     let widthPerItem = (movieCollectionView.frame.width - paddingSpace) / itemsPerRow
-    let heightPerItem = widthPerItem / movieThumbnailRadio
+    let heightPerItem = widthPerItem / movieThumbnailRatio
     return CGSize(width: widthPerItem, height: heightPerItem)
   }
 

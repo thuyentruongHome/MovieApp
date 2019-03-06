@@ -12,6 +12,7 @@ target 'MovieApp' do
   pod 'Alamofire'
   pod 'AlamofireImage'
   pod 'Cosmos', '~> 18.0'
+  pod 'youtube-ios-player-helper-swift'
 
   abstract_target 'Tests' do
     pod 'OHHTTPStubs'

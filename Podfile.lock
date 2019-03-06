@@ -89,6 +89,7 @@ PODS:
     - OHHTTPStubs/Core
   - OHHTTPStubs/OHPathHelpers (6.1.0)
   - Quick (1.3.2)
+  - youtube-ios-player-helper-swift (1.1)
 
 DEPENDENCIES:
   - Alamofire
@@ -102,6 +103,7 @@ DEPENDENCIES:
   - Nimble
   - OHHTTPStubs
   - Quick
+  - youtube-ios-player-helper-swift
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -125,6 +127,7 @@ SPEC REPOS:
     - Nimble
     - OHHTTPStubs
     - Quick
+    - youtube-ios-player-helper-swift
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
@@ -147,7 +150,8 @@ SPEC CHECKSUMS:
   Nimble: 5e94a8cacb355943c6c87198035dc4adbb0f10e4
   OHHTTPStubs: 1e21c7d2c084b8153fc53d48400d8919d2d432d0
   Quick: 2623cb30d7a7f41ca62f684f679586558f483d46
+  youtube-ios-player-helper-swift: 51a3c5325317c8271d0c7985c1bbe5a252ffb2fd
 
-PODFILE CHECKSUM: bb7180922ae7c2bbb7f737d95d20459f1d0f25c8
+PODFILE CHECKSUM: c4dcdba129fb02edc00207697f93c2717eb48b7d
 
 COCOAPODS: 1.5.3

@@ -15,6 +15,7 @@ public struct Constants {
 
   public struct theMovie {
     public static let dateFormat = "yyyy-MM-dd"
+    public static let trailerType = "Trailer"
   }
 
   public struct Policy {

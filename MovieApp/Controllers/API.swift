@@ -11,6 +11,7 @@ import UIKit
 class API {
 
   typealias ErrorHandler = (Error?) -> Void
-  typealias MoviesResponseHanlder = (MoviesResult?, Error?) -> Void
-  typealias ImageResponseHanlder = (UIImage?) -> Void
+  typealias MoviesResponseHandler = (MoviesResult?, Error?) -> Void
+  typealias VideosResponseHandler = (VideosResult?, Error?) -> Void
+  typealias ImageResponseHandler = (UIImage?) -> Void
 }
