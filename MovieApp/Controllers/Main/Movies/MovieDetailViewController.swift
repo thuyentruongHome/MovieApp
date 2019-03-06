@@ -16,11 +16,23 @@ class MovieDetailViewController: UIViewController {
   @IBOutlet weak var movieTitle: UILabel!
   @IBOutlet weak var movieReleaseDate: UILabel!
   @IBOutlet weak var movieStar: CosmosView!
+  @IBOutlet weak var movieOverview: UILabel!
+  @IBOutlet weak var scrollDetailsView: UIScrollView!
+
 
   var movie: Movie? {
     didSet {
       refreshView()
     }
+  }
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    configScrollView()
+  }
+
+  private func configScrollView() {
+    scrollDetailsView.contentLayoutGuide.bottomAnchor.constraint(equalTo: movieOverview.bottomAnchor).isActive = true
   }
 
   func refreshView() {
@@ -33,6 +45,8 @@ class MovieDetailViewController: UIViewController {
     movieReleaseDate.text = movie.formattedReleaseDate()
     movieStar.rating = movie.voteAverage
     movieStar.isHidden = false
+
+    movieOverview.text = movie.overview
   }
 }
 

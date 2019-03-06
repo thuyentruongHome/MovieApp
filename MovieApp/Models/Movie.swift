@@ -16,6 +16,7 @@ struct Movie: Decodable {
   let posterPath: String
   let releaseDate: Date
   let voteAverage: Double
+  let overview: String
 
   private enum CodingKeys: String, CodingKey {
     case id
@@ -23,6 +24,7 @@ struct Movie: Decodable {
     case posterPath = "poster_path"
     case releaseDate = "release_date"
     case voteAverage = "vote_average"
+    case overview
   }
 
   func formattedReleaseDate() -> String {
