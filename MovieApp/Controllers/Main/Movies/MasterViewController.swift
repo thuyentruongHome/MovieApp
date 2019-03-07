@@ -15,6 +15,7 @@ class MasterViewController: UIViewController {
   private let itemsPerRow: CGFloat = 3
   private let movieThumbnailRatio: CGFloat = 125 / 185
   private let (interItemSpacing, lineSpacing): (CGFloat, CGFloat) = (4, 4)
+  public var isMovieSelected = false
 
   private var popularMovies = [Movie]()
 
@@ -95,10 +96,12 @@ extension MasterViewController: UICollectionViewDelegateFlowLayout {
   }
 }
 
+// MARK: - UICollectionViewDelegate
 extension MasterViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     let movie = popularMovies[indexPath.row]
     delegate?.movieSelected(movie)
+    isMovieSelected = true
 
     if let detailViewController = delegate as? MovieDetailViewController {
       splitViewController?.showDetailViewController(detailViewController, sender: nil)

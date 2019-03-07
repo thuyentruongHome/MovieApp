@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SplitViewController: UISplitViewController {
+class SplitViewController: UISplitViewController, UISplitViewControllerDelegate {
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -19,6 +19,8 @@ class SplitViewController: UISplitViewController {
       else { fatalError() }
 
     masterViewController.delegate = detailViewController
+    delegate = self
+    preferredDisplayMode = .allVisible
   }
 
   override func viewDidLayoutSubviews() {
@@ -26,5 +28,11 @@ class SplitViewController: UISplitViewController {
 
     maximumPrimaryColumnWidth = UIScreen.main.bounds.width / 2
     minimumPrimaryColumnWidth = UIScreen.main.bounds.width / 2
+  }
+
+  func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
+    guard let leftNavController = viewControllers.first as? UINavigationController,
+      let masterViewController = leftNavController.topViewController as? MasterViewController else { return true }
+    return !masterViewController.isMovieSelected
   }
 }
