@@ -20,12 +20,18 @@ class MovieDetailViewController: UIViewController {
   @IBOutlet weak var movieOverview: UILabel!
   @IBOutlet weak var scrollDetailsView: UIScrollView!
   @IBOutlet weak var trailerCollectionView: UICollectionView!
+  @IBOutlet weak var heightTrailerCollectionConstraint: NSLayoutConstraint!
 
-  private var movieTrailers = [Video]()
+  private var movieTrailers = [Video]() {
+    didSet {
+      reloadTrailerCollectionHeight()
+    }
+  }
 
   private let videoRatio: CGFloat = 16 / 9
   private let itemsPerRow: CGFloat = 2
   private let (interItemSpacing, lineSpacing): (CGFloat, CGFloat) = (10, 10)
+  private let estimatedVideoHeight: CGFloat = 105
 
   var movie: Movie? {
     didSet {
@@ -42,9 +48,9 @@ class MovieDetailViewController: UIViewController {
   override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
     super.viewWillTransition(to: size, with: coordinator)
     coordinator.animateAlongsideTransition(in: nil, animation: nil) { (_) in
-        guard let collectionViewLayout = self.trailerCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
-        collectionViewLayout.prepare()
-        collectionViewLayout.invalidateLayout()
+      guard let collectionViewLayout = self.trailerCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+      collectionViewLayout.prepare()
+      collectionViewLayout.invalidateLayout()
     }
   }
 
@@ -52,8 +58,15 @@ class MovieDetailViewController: UIViewController {
     scrollDetailsView.contentLayoutGuide.bottomAnchor.constraint(equalTo: trailerCollectionView.bottomAnchor).isActive = true
   }
 
+  private func reloadTrailerCollectionHeight() {
+    let numberOfVideoRows = ceil(CGFloat(movieTrailers.count) / itemsPerRow)
+    heightTrailerCollectionConstraint.constant = numberOfVideoRows * estimatedVideoHeight
+    scrollDetailsView.layoutIfNeeded()
+  }
+
   func refreshView() {
     guard let movie = movie else { return }
+    scrollDetailsView.contentOffset = CGPoint(x: 0, y: 0)
     API.MovieService.fetchMovieImage(posterPath: movie.posterPath, completionHandler: { [weak self] (image) in
       guard let self = self else { return }
       self.moviePoster.image = image
