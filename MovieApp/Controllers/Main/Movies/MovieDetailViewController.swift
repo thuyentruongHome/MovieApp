@@ -91,6 +91,12 @@ class MovieDetailViewController: UIViewController {
       }
     }
   }
+
+
+  @IBAction func likeBtnTapped(_ sender: Any) {
+    let button = sender as! UIButton
+    button.isSelected = !button.isSelected
+  }
 }
 
 extension MovieDetailViewController: MovieSelectionDelegate {

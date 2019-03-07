@@ -207,8 +207,8 @@
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wul-uM-eVK" customClass="CosmosView" customModule="Cosmos">
-                                                <rect key="frame" x="0.0" y="119" width="177" height="15"/>
+                                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wul-uM-eVK" customClass="CosmosView" customModule="Cosmos">
+                                                <rect key="frame" x="0.0" y="119" width="148" height="15"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
@@ -224,17 +224,41 @@
                                                         <integer key="value" value="2"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="starMargin">
-                                                        <real key="value" value="3"/>
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="filledColor">
+                                                        <color key="value" red="0.94117647058823528" green="0.23921568627450979" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="emptyColor">
+                                                        <color key="value" white="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="emptyBorderColor">
+                                                        <color key="value" red="0.84313725490196079" green="0.87450980392156863" blue="0.9137254901960784" alpha="0.0" colorSpace="calibratedRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PLF-8j-pvC">
+                                                <rect key="frame" x="188" y="94" width="80" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="80" id="aMy-cD-puz"/>
+                                                    <constraint firstAttribute="width" secondItem="PLF-8j-pvC" secondAttribute="height" multiplier="2:1" id="tDM-Yq-9Ka"/>
+                                                </constraints>
+                                                <state key="normal" title="Button" image="not_like"/>
+                                                <state key="selected" image="liked"/>
+                                                <connections>
+                                                    <action selector="likeBtnTapped:" destination="FEc-5h-fh6" eventType="touchUpInside" id="9Sm-us-nyL"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="wul-uM-eVK" firstAttribute="top" secondItem="HrS-id-Wxf" secondAttribute="top" constant="119" id="7eV-XG-Q3O"/>
                                             <constraint firstItem="GPz-Xy-QH9" firstAttribute="leading" secondItem="96z-wS-Xz3" secondAttribute="leading" id="8so-SL-8ww"/>
+                                            <constraint firstAttribute="trailing" secondItem="PLF-8j-pvC" secondAttribute="trailing" id="A6i-eF-Ix8"/>
+                                            <constraint firstItem="PLF-8j-pvC" firstAttribute="bottom" secondItem="wul-uM-eVK" secondAttribute="bottom" id="A98-VB-GjP"/>
                                             <constraint firstAttribute="bottom" secondItem="wul-uM-eVK" secondAttribute="bottom" constant="8" id="Mh2-Vi-JSP"/>
                                             <constraint firstItem="96z-wS-Xz3" firstAttribute="width" secondItem="HrS-id-Wxf" secondAttribute="width" id="Pv1-gg-j8d"/>
+                                            <constraint firstItem="PLF-8j-pvC" firstAttribute="leading" secondItem="wul-uM-eVK" secondAttribute="trailing" constant="40" id="c9m-dF-lFi"/>
                                             <constraint firstItem="GPz-Xy-QH9" firstAttribute="top" secondItem="96z-wS-Xz3" secondAttribute="bottom" constant="3" id="f7u-mb-Att"/>
                                             <constraint firstItem="96z-wS-Xz3" firstAttribute="leading" secondItem="HrS-id-Wxf" secondAttribute="leading" id="gr2-93-QCg"/>
                                             <constraint firstItem="wul-uM-eVK" firstAttribute="leading" secondItem="HrS-id-Wxf" secondAttribute="leading" id="xMz-dV-1Xt"/>
@@ -534,6 +558,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="liked" width="512" height="233"/>
+        <image name="not_like" width="512" height="233"/>
         <image name="orange-hamburger" width="51" height="27"/>
         <image name="sign-out" width="15" height="13"/>
         <image name="sign_in" width="15" height="13"/>
