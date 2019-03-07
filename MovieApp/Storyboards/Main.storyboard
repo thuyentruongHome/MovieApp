@@ -483,7 +483,6 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="moveToSignIn:" destination="enP-K4-rOT" eventType="touchUpInside" id="k96-RL-BAk"/>
-                                            <action selector="signUserOut:" destination="enP-K4-rOT" eventType="touchUpInside" id="e4s-yH-063"/>
                                         </connections>
                                     </button>
                                 </subviews>

@@ -34,7 +34,9 @@ extension UIViewController {
 
   func gotoSignInScreen() {
     let storyboard = UIStoryboard(name: "Authentication", bundle: nil)
-    guard let signInVC = storyboard.instantiateViewController(withIdentifier: "SignInVC") as? SignInViewController else { return }
-    present(signInVC, animated: true, completion: nil)
+    guard let navigationVC = storyboard.instantiateInitialViewController() as? UINavigationController,
+      let signInVC = storyboard.instantiateViewController(withIdentifier: "SignInVC") as? SignInViewController else { return }
+    navigationVC.pushViewController(signInVC, animated: true)
+    present(navigationVC, animated: true, completion: nil)
   }
 }
