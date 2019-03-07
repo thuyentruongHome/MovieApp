@@ -13,6 +13,7 @@ import youtube_ios_player_helper_swift
 class MovieDetailViewController: UIViewController {
 
   // MARK: - Properties
+  @IBOutlet weak var mainView: UIView!
   @IBOutlet weak var moviePoster: UIImageView!
   @IBOutlet weak var movieTitle: UILabel!
   @IBOutlet weak var movieReleaseDate: UILabel!
@@ -66,6 +67,7 @@ class MovieDetailViewController: UIViewController {
 
   func refreshView() {
     guard let movie = movie else { return }
+    mainView.isHidden = false
     scrollDetailsView.contentOffset = CGPoint(x: 0, y: 0)
     API.MovieService.fetchMovieImage(posterPath: movie.posterPath, completionHandler: { [weak self] (image) in
       guard let self = self else { return }
