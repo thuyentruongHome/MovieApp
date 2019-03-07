@@ -47,6 +47,7 @@
 		E29EAF542225385E00737CEF /* ContainerMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29EAF532225385E00737CEF /* ContainerMainVC.swift */; };
 		E29EAF5622253E0200737CEF /* HamburgerMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29EAF5522253E0200737CEF /* HamburgerMenuVC.swift */; };
 		E29EAF5A22256C5900737CEF /* MainScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29EAF5922256C5900737CEF /* MainScreens.swift */; };
+		E2ABB5D5223216FE00F11FE9 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ABB5D4223216FE00F11FE9 /* KeyboardObserver.swift */; };
 		E2B9D6432227B6040034FD5E /* SpitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B9D6422227B6040034FD5E /* SpitViewController.swift */; };
 		E2B9D6452227BEA40034FD5E /* MovieService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B9D6442227BEA40034FD5E /* MovieService.swift */; };
 		E2B9D6482227C9490034FD5E /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B9D6472227C9490034FD5E /* Movie.swift */; };
@@ -142,6 +143,7 @@
 		E29EAF532225385E00737CEF /* ContainerMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerMainVC.swift; sourceTree = "<group>"; };
 		E29EAF5522253E0200737CEF /* HamburgerMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerMenuVC.swift; sourceTree = "<group>"; };
 		E29EAF5922256C5900737CEF /* MainScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreens.swift; sourceTree = "<group>"; };
+		E2ABB5D4223216FE00F11FE9 /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
 		E2B9D6422227B6040034FD5E /* SpitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpitViewController.swift; sourceTree = "<group>"; };
 		E2B9D6442227BEA40034FD5E /* MovieService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MovieService.swift; path = MovieApp/Controllers/Main/Movies/MovieService.swift; sourceTree = SOURCE_ROOT; };
 		E2B9D6472227C9490034FD5E /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				E23D0012222980F40077CEB7 /* MovieSelectionDelegate.swift */,
+				E2ABB5D4223216FE00F11FE9 /* KeyboardObserver.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -989,6 +992,7 @@
 				E2F2E34B22165E8B00C235E2 /* LandingViewController.swift in Sources */,
 				E2DC9190222FBB3000D42E60 /* VideosResult.swift in Sources */,
 				E2B9D6482227C9490034FD5E /* Movie.swift in Sources */,
+				E2ABB5D5223216FE00F11FE9 /* KeyboardObserver.swift in Sources */,
 				E20944E2222307E700FD7B08 /* SignInViewController.swift in Sources */,
 				E2B9D64A2227DC650034FD5E /* MoviesResult.swift in Sources */,
 				E22A498D2223AE4700B91EFA /* ForgotPasswordViewController.swift in Sources */,

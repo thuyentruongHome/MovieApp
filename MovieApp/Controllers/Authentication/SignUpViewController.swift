@@ -8,16 +8,22 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, KeyboardObserver {
+  var container: UIScrollView {
+    return self.scrollView
+  }
+
 
   // MARK: - Properties
   @IBOutlet weak var emailTextField: UITextField!
   @IBOutlet weak var passwordTextField: UITextField!
   @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+  @IBOutlet weak var scrollView: UIScrollView!
 
   // MARK: - Init
   override func viewDidLoad() {
     super.viewDidLoad()
+    registerForKeyboardNotifications()
   }
 
   // MARK: - Handlers
@@ -47,11 +53,15 @@ class SignUpViewController: UIViewController {
     navigationController?.popToRootViewController(animated: true)
   }
 
-  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    view.endEditing(true)
+  @IBAction func tapPiece(_ gestureRecognizer: UITapGestureRecognizer) {
+    guard gestureRecognizer.view != nil else { return }
+    if gestureRecognizer.state == .ended {
+      view.endEditing(true)
+    }
   }
 }
 
+// MARK: - UITextFieldDelegate
 extension SignUpViewController: UITextFieldDelegate {
 
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
