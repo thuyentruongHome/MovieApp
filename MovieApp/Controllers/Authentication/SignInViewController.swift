@@ -9,16 +9,21 @@
 import UIKit
 import Firebase
 
-class SignInViewController: UIViewController {
+class SignInViewController: UIViewController, KeyboardObserver {
+  var container: UIScrollView {
+    return scrollView
+  }
 
   // MARK: - Properties
   @IBOutlet weak var emailTextField: UITextField!
   @IBOutlet weak var passwordTextField: UITextField!
   @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+  @IBOutlet weak var scrollView: UIScrollView!
 
   // MARK: - Init
   override func viewDidLoad() {
     super.viewDidLoad()
+    registerForKeyboardNotifications()
   }
 
   // MARK: - Handlers
@@ -56,8 +61,11 @@ class SignInViewController: UIViewController {
     navigationController?.popToRootViewController(animated: true)
   }
 
-  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    view.endEditing(true)
+  @IBAction func tapPiece(_ gestureRecognizer: UITapGestureRecognizer) {
+    guard gestureRecognizer.view != nil else { return }
+    if gestureRecognizer.state == .ended {
+      view.endEditing(true)
+    }
   }
 }
 

@@ -10,9 +10,8 @@ import UIKit
 
 class SignUpViewController: UIViewController, KeyboardObserver {
   var container: UIScrollView {
-    return self.scrollView
+    return scrollView
   }
-
 
   // MARK: - Properties
   @IBOutlet weak var emailTextField: UITextField!
