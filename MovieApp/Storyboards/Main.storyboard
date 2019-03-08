@@ -287,6 +287,9 @@
                                             <segment title="Details"/>
                                             <segment title="Reviews"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="infoSegmentTapped:" destination="FEc-5h-fh6" eventType="valueChanged" id="w7t-zg-ghj"/>
+                                        </connections>
                                     </segmentedControl>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UOb-mL-H7Z" userLabel="Separate View">
                                         <rect key="frame" x="0.0" y="233" width="414" height="1"/>
@@ -388,20 +391,68 @@
                                             <constraint firstItem="z1w-3L-Gwp" firstAttribute="top" secondItem="b6r-af-1Yv" secondAttribute="bottom" constant="10" id="syb-DL-o64"/>
                                         </constraints>
                                     </scrollView>
+                                    <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YvA-bt-YR0">
+                                        <rect key="frame" x="13" y="239" width="388" height="455"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="reviewCell" rowHeight="80" id="iKh-Ei-rb2" customClass="ReviewTableCell" customModule="MovieApp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="388" height="80"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iKh-Ei-rb2" id="NE2-HB-FJf">
+                                                    <rect key="frame" x="0.0" y="0.0" width="388" height="79.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6za-v9-DtQ">
+                                                            <rect key="frame" x="20" y="26" width="348" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQv-Tx-5kI">
+                                                            <rect key="frame" x="20" y="63" width="368" height="1.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="EQv-Tx-5kI" secondAttribute="bottom" constant="15" id="2dW-94-mqT"/>
+                                                        <constraint firstAttribute="trailing" secondItem="EQv-Tx-5kI" secondAttribute="trailing" id="42V-2z-z5B"/>
+                                                        <constraint firstItem="EQv-Tx-5kI" firstAttribute="leading" secondItem="6za-v9-DtQ" secondAttribute="leading" id="6Hc-sI-QIH"/>
+                                                        <constraint firstItem="6za-v9-DtQ" firstAttribute="top" secondItem="NE2-HB-FJf" secondAttribute="topMargin" constant="15" id="AXX-0O-gsU"/>
+                                                        <constraint firstItem="EQv-Tx-5kI" firstAttribute="top" secondItem="6za-v9-DtQ" secondAttribute="bottomMargin" constant="15" id="O7Y-ug-hbG"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="6za-v9-DtQ" secondAttribute="trailing" id="Smb-Fv-afh"/>
+                                                        <constraint firstItem="6za-v9-DtQ" firstAttribute="leading" secondItem="NE2-HB-FJf" secondAttribute="leadingMargin" id="UF9-Fc-lFB"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="reviewText" destination="EQv-Tx-5kI" id="Du4-XZ-UZT"/>
+                                                    <outlet property="reviewerLabel" destination="6za-v9-DtQ" id="0dU-VQ-dwK"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="FEc-5h-fh6" id="cKc-2j-j4P"/>
+                                        </connections>
+                                    </tableView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="YvA-bt-YR0" firstAttribute="leading" secondItem="VvD-Vo-1dn" secondAttribute="leading" constant="13" id="9Yb-Z9-4Qj"/>
                                     <constraint firstItem="1jx-WE-XPb" firstAttribute="leading" secondItem="zKM-oS-N2s" secondAttribute="leading" id="G4p-UU-Cf5"/>
                                     <constraint firstItem="UOb-mL-H7Z" firstAttribute="leading" secondItem="VvD-Vo-1dn" secondAttribute="leading" id="Hql-VZ-RZQ"/>
                                     <constraint firstItem="zKM-oS-N2s" firstAttribute="leading" secondItem="VvD-Vo-1dn" secondAttribute="leading" constant="13" id="JxI-xh-g07"/>
                                     <constraint firstAttribute="trailing" secondItem="UOb-mL-H7Z" secondAttribute="trailing" id="Ltu-j5-6k9"/>
                                     <constraint firstAttribute="trailing" secondItem="c29-bT-eWm" secondAttribute="trailing" constant="13" id="Msq-os-cXD"/>
+                                    <constraint firstAttribute="bottom" secondItem="YvA-bt-YR0" secondAttribute="bottom" constant="20" id="Oni-mF-Mcc"/>
                                     <constraint firstItem="1jx-WE-XPb" firstAttribute="trailing" secondItem="zKM-oS-N2s" secondAttribute="trailing" id="WOC-2n-nLq"/>
                                     <constraint firstAttribute="trailing" secondItem="zKM-oS-N2s" secondAttribute="trailing" constant="13" id="Wfe-Da-emO"/>
                                     <constraint firstAttribute="bottom" secondItem="c29-bT-eWm" secondAttribute="bottom" constant="20" id="Zah-fV-hDU"/>
                                     <constraint firstItem="c29-bT-eWm" firstAttribute="top" secondItem="UOb-mL-H7Z" secondAttribute="bottom" constant="5" id="b48-NJ-r78"/>
+                                    <constraint firstItem="YvA-bt-YR0" firstAttribute="top" secondItem="UOb-mL-H7Z" secondAttribute="bottom" constant="5" id="hLM-eB-rfn"/>
                                     <constraint firstItem="zKM-oS-N2s" firstAttribute="top" secondItem="VvD-Vo-1dn" secondAttribute="top" constant="20" id="iyb-Sw-mev"/>
                                     <constraint firstItem="c29-bT-eWm" firstAttribute="leading" secondItem="VvD-Vo-1dn" secondAttribute="leading" constant="13" id="kwQ-5v-cDy"/>
+                                    <constraint firstAttribute="trailing" secondItem="YvA-bt-YR0" secondAttribute="trailing" constant="13" id="nPa-M3-MCJ"/>
                                     <constraint firstItem="1jx-WE-XPb" firstAttribute="top" secondItem="zKM-oS-N2s" secondAttribute="bottom" constant="20" id="pda-Sb-1gD"/>
                                     <constraint firstItem="UOb-mL-H7Z" firstAttribute="top" secondItem="1jx-WE-XPb" secondAttribute="bottom" constant="15" id="rYp-Jc-rnp"/>
                                 </constraints>
@@ -424,6 +475,7 @@
                         <outlet property="movieReleaseDate" destination="GPz-Xy-QH9" id="qZz-pl-JY3"/>
                         <outlet property="movieStar" destination="wul-uM-eVK" id="vZb-zj-txX"/>
                         <outlet property="movieTitle" destination="96z-wS-Xz3" id="Qca-4G-x3e"/>
+                        <outlet property="reviewTableView" destination="YvA-bt-YR0" id="apR-MV-yhx"/>
                         <outlet property="scrollDetailsView" destination="c29-bT-eWm" id="iby-1z-lGR"/>
                         <outlet property="trailerCollectionView" destination="z1w-3L-Gwp" id="enz-Uc-9gy"/>
                     </connections>

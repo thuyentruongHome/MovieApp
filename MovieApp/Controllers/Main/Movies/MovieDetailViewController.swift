@@ -21,6 +21,8 @@ class MovieDetailViewController: UIViewController {
   @IBOutlet weak var movieOverview: UILabel!
   @IBOutlet weak var scrollDetailsView: UIScrollView!
   @IBOutlet weak var trailerCollectionView: UICollectionView!
+  @IBOutlet weak var reviewTableView: UITableView!
+
   @IBOutlet weak var heightTrailerCollectionConstraint: NSLayoutConstraint!
 
   private var movieTrailers = [Video]() {
@@ -33,6 +35,7 @@ class MovieDetailViewController: UIViewController {
   private let itemsPerRow: CGFloat = 2
   private let (interItemSpacing, lineSpacing): (CGFloat, CGFloat) = (10, 10)
   private let estimatedVideoHeight: CGFloat = 105
+  private let reviewReuseIdentifier = "reviewCell"
 
   var movie: Movie? {
     didSet {
@@ -43,6 +46,7 @@ class MovieDetailViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     configScrollView()
+    configDynamicHeightTableView()
   }
 
   // MARK: - Handlers
@@ -59,6 +63,27 @@ class MovieDetailViewController: UIViewController {
     scrollDetailsView.contentLayoutGuide.bottomAnchor.constraint(equalTo: trailerCollectionView.bottomAnchor).isActive = true
   }
 
+  private func configDynamicHeightTableView() {
+    reviewTableView.rowHeight = UITableView.automaticDimension
+    reviewTableView.estimatedRowHeight = 300
+  }
+
+  @IBAction func infoSegmentTapped(_ segment: UISegmentedControl) {
+    switch segment.selectedSegmentIndex {
+    case 0: // Details
+      scrollDetailsView.scrollToTop()
+      scrollDetailsView.isHidden = false
+      reviewTableView.isHidden = true
+
+    case 1: // Reviews
+      reviewTableView.scrollToTop()
+      reviewTableView.isHidden = false
+      scrollDetailsView.isHidden = true
+    default:
+      break
+    }
+  }
+
   private func reloadTrailerCollectionHeight() {
     let numberOfVideoRows = ceil(CGFloat(movieTrailers.count) / itemsPerRow)
     heightTrailerCollectionConstraint.constant = numberOfVideoRows * estimatedVideoHeight
@@ -68,7 +93,7 @@ class MovieDetailViewController: UIViewController {
   func refreshView() {
     guard let movie = movie else { return }
     mainView.isHidden = false
-    scrollDetailsView.contentOffset = CGPoint(x: 0, y: 0)
+    scrollDetailsView.scrollToTop()
     API.MovieService.fetchMovieImage(posterPath: movie.posterPath, completionHandler: { [weak self] (image) in
       guard let self = self else { return }
       self.moviePoster.image = image
@@ -93,7 +118,6 @@ class MovieDetailViewController: UIViewController {
       }
     }
   }
-
 
   @IBAction func likeBtnTapped(_ sender: Any) {
     let button = sender as! UIButton
@@ -136,5 +160,22 @@ extension MovieDetailViewController: UICollectionViewDelegateFlowLayout {
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
     return lineSpacing
+  }
+}
+
+// MARK: - UITableView for Review
+extension MovieDetailViewController: UITableViewDataSource {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return 2
+  }
+
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: reviewReuseIdentifier, for: indexPath) as! ReviewTableCell
+    cell.reviewerLabel.text = "Tinh Nguyen"
+    cell.reviewText.text = "I think so I am! Apply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more "
+    cell.separatorInset = UIEdgeInsets.zero
+    cell.preservesSuperviewLayoutMargins = false
+    cell.layoutMargins = UIEdgeInsets.zero
+    return cell
   }
 }
