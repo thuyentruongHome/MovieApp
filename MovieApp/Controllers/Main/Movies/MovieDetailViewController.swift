@@ -18,13 +18,19 @@ class MovieDetailViewController: UIViewController {
   @IBOutlet weak var movieTitle: UILabel!
   @IBOutlet weak var movieReleaseDate: UILabel!
   @IBOutlet weak var movieStar: CosmosView!
+  @IBOutlet weak var mainIndicator: UIActivityIndicatorView!
+  @IBOutlet weak var infoMovieSegment: UISegmentedControl!
+
   @IBOutlet weak var movieOverview: UILabel!
-  @IBOutlet weak var scrollDetailsView: UIScrollView!
+  @IBOutlet weak var scrollDetailsSection: UIScrollView!
   @IBOutlet weak var trailerCollectionView: UICollectionView!
-  @IBOutlet weak var reviewTableView: UITableView!
-  @IBOutlet weak var reviewsIndicator: UIActivityIndicatorView!
   @IBOutlet weak var trailerPlayer: WKYTPlayerView!
   @IBOutlet weak var heightTrailerCollectionConstraint: NSLayoutConstraint!
+
+  @IBOutlet weak var reviewsSection: UIView!
+  @IBOutlet weak var reviewTableView: UITableView!
+  @IBOutlet weak var reviewsIndicator: UIActivityIndicatorView!
+  @IBOutlet weak var emptyReviewsLabel: UILabel!
 
   // MARK: - Properties - Trailer Collection View
   private var movieTrailers = [Video]() {
@@ -80,11 +86,12 @@ class MovieDetailViewController: UIViewController {
       guard let collectionViewLayout = self.trailerCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
       collectionViewLayout.prepare()
       collectionViewLayout.invalidateLayout()
+      self.reloadTrailerCollectionHeight()
     }
   }
 
   private func configScrollView() {
-    scrollDetailsView.contentLayoutGuide.bottomAnchor.constraint(equalTo: trailerCollectionView.bottomAnchor).isActive = true
+    scrollDetailsSection.contentLayoutGuide.bottomAnchor.constraint(equalTo: trailerCollectionView.bottomAnchor).isActive = true
   }
 
   private func configDynamicHeightTableView() {
@@ -95,15 +102,15 @@ class MovieDetailViewController: UIViewController {
   @IBAction func infoSegmentTapped(_ segment: UISegmentedControl) {
     switch segment.selectedSegmentIndex {
     case 0: // Details
-      scrollDetailsView.scrollToTop()
-      scrollDetailsView.isHidden = false
-      reviewTableView.isHidden = true
-
+      scrollDetailsSection.scrollToTop()
+      scrollDetailsSection.isHidden = false
+      reviewsSection.isHidden = true
+      loadDetailsSection()
     case 1: // Reviews
       reviewTableView.scrollToTop()
-      reviewTableView.isHidden = false
-      scrollDetailsView.isHidden = true
-      loadReviews()
+      reviewsSection.isHidden = false
+      scrollDetailsSection.isHidden = true
+      loadReviewsSection()
     default:
       break
     }
@@ -111,14 +118,33 @@ class MovieDetailViewController: UIViewController {
 
   private func reloadTrailerCollectionHeight() {
     let numberOfVideoRows = ceil(CGFloat(movieTrailers.count) / itemsPerRow)
-    heightTrailerCollectionConstraint.constant = numberOfVideoRows * heightPerTrailerCell()
-    scrollDetailsView.layoutIfNeeded()
+    heightTrailerCollectionConstraint.constant = numberOfVideoRows * (heightPerTrailerCell() + lineSpacing)
+    scrollDetailsSection.layoutIfNeeded()
   }
 
   func refreshView() {
-    guard let movie = movie else { return }
     mainView.isHidden = false
-    scrollDetailsView.scrollToTop()
+    mainIndicator.startAnimating()
+    resetUIView()
+    loadMovieBaseInfo()
+    mainIndicator.stopAnimating()
+  }
+
+  private func resetUIView() {
+    movieTrailers = [Video]()
+    movieReviews = [Review]()
+    trailerCollectionView.reloadData()
+    reviewTableView.reloadData()
+
+    reviewTableView.isHidden = false
+    emptyReviewsLabel.isHidden = true
+
+    infoMovieSegment.selectedSegmentIndex = 0
+    infoMovieSegment.sendActions(for: .valueChanged)
+  }
+
+  private func loadMovieBaseInfo() {
+    guard let movie = movie else { return }
     API.MovieService.fetchMovieImage(posterPath: movie.posterPath, completionHandler: { [weak self] (image) in
       guard let self = self else { return }
       self.moviePoster.image = image
@@ -126,10 +152,11 @@ class MovieDetailViewController: UIViewController {
     movieTitle.text = movie.title
     movieReleaseDate.text = movie.formattedReleaseDate()
     movieStar.rating = movie.voteAverage
-    movieStar.isHidden = false
+  }
 
+  private func loadDetailsSection() {
+    guard let movie = movie else { return }
     movieOverview.text = movie.overview
-
     API.MovieService.fetchVideosOfMovie(movieId: movie.id) { [weak self] (result, error) in
       guard let self = self else { return }
       if let error = error {
@@ -229,9 +256,10 @@ extension MovieDetailViewController: UITableViewDataSource {
     return cell
   }
 
-  func loadReviews() {
+  func loadReviewsSection() {
     guard let movie = movie else { return }
     reviewsIndicator.startAnimating()
+
     API.MovieService.fetchReviewsOfMovie(movieId: movie.id) { [weak self] (reviewsResult, error) in
       guard let self = self else { return }
       self.reviewsIndicator.stopAnimating()
@@ -240,7 +268,12 @@ extension MovieDetailViewController: UITableViewDataSource {
       }
       if let reviewsResult = reviewsResult {
         self.movieReviews = reviewsResult.list
-        self.reviewTableView.reloadData()
+        if self.movieReviews.isEmpty {
+          self.emptyReviewsLabel.isHidden = false
+          self.reviewTableView.isHidden = true
+        } else {
+          self.reviewTableView.reloadData()
+        }
       }
     }
   }

@@ -13,5 +13,4 @@ class ReviewTableCell: UITableViewCell {
   // MARK: - Properties
   @IBOutlet weak var reviewerLabel: UILabel!
   @IBOutlet weak var reviewText: UILabel!
-
 }
