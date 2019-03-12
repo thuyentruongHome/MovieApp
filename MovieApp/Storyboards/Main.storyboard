@@ -184,6 +184,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="836"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CWv-BH-i6S" customClass="WKYTPlayerView">
+                                <rect key="frame" x="87" y="354" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VvD-Vo-1dn" userLabel="Main View">
                                 <rect key="frame" x="0.0" y="88" width="414" height="714"/>
                                 <subviews>
@@ -341,33 +346,60 @@
                                                     <constraint firstAttribute="height" constant="200" id="Cfz-Rh-3Vh"/>
                                                 </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LmE-iD-8Nf">
-                                                    <size key="itemSize" width="50" height="50"/>
+                                                    <size key="itemSize" width="50" height="120"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="ppw-pb-kz9" customClass="TrailerCollectionView" customModule="MovieApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="ppw-pb-kz9" customClass="TrailerCollectionCell" customModule="MovieApp" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="120"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="120"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YOT-nz-g51" customClass="YTPlayerView" customModule="youtube_ios_player_helper_swift">
-                                                                    <rect key="frame" x="-95" y="-31" width="240" height="112"/>
-                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C6X-GX-eud">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="40"/>
+                                                                </imageView>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oRg-xc-uet">
+                                                                    <rect key="frame" x="0.0" y="50" width="50" height="70"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dpq-sv-CR6" userLabel="Trailer Name">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="21.5"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="70" id="FjX-sL-E97"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="dpq-sv-CR6" secondAttribute="trailing" id="LNp-fe-bKX"/>
+                                                                        <constraint firstItem="dpq-sv-CR6" firstAttribute="leading" secondItem="oRg-xc-uet" secondAttribute="leading" id="RpA-h6-TKc"/>
+                                                                        <constraint firstItem="dpq-sv-CR6" firstAttribute="top" secondItem="oRg-xc-uet" secondAttribute="top" id="ecF-et-Ffh"/>
+                                                                    </constraints>
                                                                 </view>
+                                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="9U8-f0-8XF">
+                                                                    <rect key="frame" x="6.5" y="1.5" width="37" height="37"/>
+                                                                </activityIndicatorView>
                                                             </subviews>
                                                         </view>
                                                         <constraints>
-                                                            <constraint firstItem="YOT-nz-g51" firstAttribute="centerY" secondItem="ppw-pb-kz9" secondAttribute="centerY" id="22U-Dn-XBu"/>
-                                                            <constraint firstItem="YOT-nz-g51" firstAttribute="top" secondItem="ppw-pb-kz9" secondAttribute="topMargin" constant="-83" id="jc0-wo-UV3"/>
-                                                            <constraint firstItem="YOT-nz-g51" firstAttribute="centerX" secondItem="ppw-pb-kz9" secondAttribute="centerX" id="lRY-Iv-jwY"/>
-                                                            <constraint firstItem="YOT-nz-g51" firstAttribute="leading" secondItem="ppw-pb-kz9" secondAttribute="leading" constant="-95" id="s8T-IL-wBl"/>
+                                                            <constraint firstItem="9U8-f0-8XF" firstAttribute="centerY" secondItem="C6X-GX-eud" secondAttribute="centerY" id="96Z-3u-VF2"/>
+                                                            <constraint firstItem="9U8-f0-8XF" firstAttribute="centerX" secondItem="C6X-GX-eud" secondAttribute="centerX" id="AnL-07-InN"/>
+                                                            <constraint firstItem="C6X-GX-eud" firstAttribute="leading" secondItem="ppw-pb-kz9" secondAttribute="leading" id="CGM-pp-l4m"/>
+                                                            <constraint firstItem="oRg-xc-uet" firstAttribute="top" secondItem="C6X-GX-eud" secondAttribute="bottom" constant="10" id="KY4-jb-A8l"/>
+                                                            <constraint firstAttribute="trailing" secondItem="oRg-xc-uet" secondAttribute="trailing" id="RrE-5E-RSm"/>
+                                                            <constraint firstAttribute="trailing" secondItem="C6X-GX-eud" secondAttribute="trailing" id="Tu3-C9-olg"/>
+                                                            <constraint firstItem="oRg-xc-uet" firstAttribute="leading" secondItem="ppw-pb-kz9" secondAttribute="leading" id="ipm-nl-n05"/>
+                                                            <constraint firstAttribute="bottom" secondItem="oRg-xc-uet" secondAttribute="bottom" id="saj-yS-8Ck"/>
+                                                            <constraint firstItem="C6X-GX-eud" firstAttribute="top" secondItem="ppw-pb-kz9" secondAttribute="top" id="wVt-y3-TRb"/>
                                                         </constraints>
                                                         <connections>
-                                                            <outlet property="trailerPlayer" destination="YOT-nz-g51" id="ipF-4U-IFb"/>
+                                                            <outlet property="activityIndicator" destination="9U8-f0-8XF" id="TfP-6B-g2V"/>
+                                                            <outlet property="trailerName" destination="dpq-sv-CR6" id="k3z-5C-HjT"/>
+                                                            <outlet property="trailerThumbnail" destination="C6X-GX-eud" id="cIO-f7-iXr"/>
                                                         </connections>
                                                     </collectionViewCell>
                                                 </cells>
@@ -435,6 +467,9 @@
                                             <outlet property="dataSource" destination="FEc-5h-fh6" id="cKc-2j-j4P"/>
                                         </connections>
                                     </tableView>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="coB-Ul-Tc1">
+                                        <rect key="frame" x="197" y="456.5" width="20" height="20"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -444,11 +479,13 @@
                                     <constraint firstItem="zKM-oS-N2s" firstAttribute="leading" secondItem="VvD-Vo-1dn" secondAttribute="leading" constant="13" id="JxI-xh-g07"/>
                                     <constraint firstAttribute="trailing" secondItem="UOb-mL-H7Z" secondAttribute="trailing" id="Ltu-j5-6k9"/>
                                     <constraint firstAttribute="trailing" secondItem="c29-bT-eWm" secondAttribute="trailing" constant="13" id="Msq-os-cXD"/>
+                                    <constraint firstItem="coB-Ul-Tc1" firstAttribute="centerY" secondItem="YvA-bt-YR0" secondAttribute="centerY" id="NUQ-He-2vf"/>
                                     <constraint firstAttribute="bottom" secondItem="YvA-bt-YR0" secondAttribute="bottom" constant="20" id="Oni-mF-Mcc"/>
                                     <constraint firstItem="1jx-WE-XPb" firstAttribute="trailing" secondItem="zKM-oS-N2s" secondAttribute="trailing" id="WOC-2n-nLq"/>
                                     <constraint firstAttribute="trailing" secondItem="zKM-oS-N2s" secondAttribute="trailing" constant="13" id="Wfe-Da-emO"/>
                                     <constraint firstAttribute="bottom" secondItem="c29-bT-eWm" secondAttribute="bottom" constant="20" id="Zah-fV-hDU"/>
                                     <constraint firstItem="c29-bT-eWm" firstAttribute="top" secondItem="UOb-mL-H7Z" secondAttribute="bottom" constant="5" id="b48-NJ-r78"/>
+                                    <constraint firstItem="coB-Ul-Tc1" firstAttribute="centerX" secondItem="YvA-bt-YR0" secondAttribute="centerX" id="evy-LQ-Mtb"/>
                                     <constraint firstItem="YvA-bt-YR0" firstAttribute="top" secondItem="UOb-mL-H7Z" secondAttribute="bottom" constant="5" id="hLM-eB-rfn"/>
                                     <constraint firstItem="zKM-oS-N2s" firstAttribute="top" secondItem="VvD-Vo-1dn" secondAttribute="top" constant="20" id="iyb-Sw-mev"/>
                                     <constraint firstItem="c29-bT-eWm" firstAttribute="leading" secondItem="VvD-Vo-1dn" secondAttribute="leading" constant="13" id="kwQ-5v-cDy"/>
@@ -468,7 +505,7 @@
                         <viewLayoutGuide key="safeArea" id="t04-6c-ebB"/>
                     </view>
                     <connections>
-                        <outlet property="heightTrailerCollectionConstraint" destination="Cfz-Rh-3Vh" id="Syj-D6-hoM"/>
+                        <outlet property="heightTrailerCollectionConstraint" destination="Cfz-Rh-3Vh" id="MYS-0z-PBJ"/>
                         <outlet property="mainView" destination="VvD-Vo-1dn" id="PSE-QZ-mMW"/>
                         <outlet property="movieOverview" destination="SKV-l1-WiW" id="6eF-K5-dxP"/>
                         <outlet property="moviePoster" destination="qk4-W7-8np" id="4vd-vj-j5f"/>
@@ -478,6 +515,7 @@
                         <outlet property="reviewTableView" destination="YvA-bt-YR0" id="apR-MV-yhx"/>
                         <outlet property="scrollDetailsView" destination="c29-bT-eWm" id="iby-1z-lGR"/>
                         <outlet property="trailerCollectionView" destination="z1w-3L-Gwp" id="enz-Uc-9gy"/>
+                        <outlet property="trailerPlayer" destination="CWv-BH-i6S" id="33h-jy-E37"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bnJ-Oa-QIn" userLabel="First Responder" sceneMemberID="firstResponder"/>

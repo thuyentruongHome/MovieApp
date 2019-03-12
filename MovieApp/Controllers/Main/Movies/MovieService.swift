@@ -17,6 +17,7 @@ extension API {
     private static let popularMoviesPath = "/movie/popular"
     private static let videosMoviePath = "/movie/:movieId/videos"
     private static let imageBaseURL = "https://image.tmdb.org/t/p/w342/"
+    private static let youtubeThumbnailURL = "https://img.youtube.com/vi/:videoId/hqdefault.jpg"
     private static let apiKey = Credential.valueForKey(keyName: "THEMOVIEDB_API_KEY")
 
     class func fetchPopularMovies(completionHandler: @escaping MoviesResponseHandler) {
@@ -45,6 +46,13 @@ extension API {
     public class func fetchMovieImage(posterPath: String, completionHandler: @escaping ImageResponseHandler) {
       let imageUrl = URL(string: (imageBaseURL + posterPath))!
       Alamofire.request(imageUrl, method: .get).responseImage { (response) in
+        completionHandler(response.result.value)
+      }
+    }
+
+    public class func fetchYoutubeThumbnailImage(videoId: String, completionHandler: @escaping ImageResponseHandler) {
+      let imageURL = URL(string: youtubeThumbnailURL.replacingOccurrences(of: ":videoId", with: videoId))!
+      Alamofire.request(imageURL, method: .get).responseImage { (response) in
         completionHandler(response.result.value)
       }
     }

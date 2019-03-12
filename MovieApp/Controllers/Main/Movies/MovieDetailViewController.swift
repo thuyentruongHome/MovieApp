@@ -8,7 +8,7 @@
 
 import UIKit
 import Cosmos
-import youtube_ios_player_helper_swift
+import YoutubePlayer_in_WKWebView
 
 class MovieDetailViewController: UIViewController {
 
@@ -22,19 +22,39 @@ class MovieDetailViewController: UIViewController {
   @IBOutlet weak var scrollDetailsView: UIScrollView!
   @IBOutlet weak var trailerCollectionView: UICollectionView!
   @IBOutlet weak var reviewTableView: UITableView!
-
+  @IBOutlet weak var trailerPlayer: WKYTPlayerView!
   @IBOutlet weak var heightTrailerCollectionConstraint: NSLayoutConstraint!
 
+  // MARK: - Properties - Trailer Collection View
   private var movieTrailers = [Video]() {
     didSet {
       reloadTrailerCollectionHeight()
     }
   }
-
+  private let trailerReuseIdentifier = "trailerCell"
   private let videoRatio: CGFloat = 16 / 9
   private let itemsPerRow: CGFloat = 2
   private let (interItemSpacing, lineSpacing): (CGFloat, CGFloat) = (10, 10)
-  private let estimatedVideoHeight: CGFloat = 105
+  private let trailerNameLabelTopConstraint: CGFloat = 10
+  private let trailerNameLabelHeightConstraint: CGFloat = 70
+  var _widthPerTrailerCell: CGFloat?
+  var _heightPerTrailerCell: CGFloat?
+  func widthPerTrailerCell() -> CGFloat {
+    if _widthPerTrailerCell == nil {
+      let paddingSpace = interItemSpacing * (itemsPerRow - 1)
+      _widthPerTrailerCell = (trailerCollectionView.frame.width - paddingSpace) / itemsPerRow
+    }
+    return _widthPerTrailerCell!
+  }
+  func heightPerTrailerCell() -> CGFloat {
+    if _heightPerTrailerCell == nil {
+      let trailerHeight = widthPerTrailerCell() / videoRatio
+      _heightPerTrailerCell = trailerHeight + trailerNameLabelTopConstraint + trailerNameLabelHeightConstraint
+    }
+    return _heightPerTrailerCell!
+  }
+
+  // MARK: - Properties - Review Collection View
   private let reviewReuseIdentifier = "reviewCell"
 
   var movie: Movie? {
@@ -53,6 +73,8 @@ class MovieDetailViewController: UIViewController {
   override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
     super.viewWillTransition(to: size, with: coordinator)
     coordinator.animateAlongsideTransition(in: nil, animation: nil) { (_) in
+      self._widthPerTrailerCell = nil
+      self._heightPerTrailerCell = nil
       guard let collectionViewLayout = self.trailerCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
       collectionViewLayout.prepare()
       collectionViewLayout.invalidateLayout()
@@ -86,7 +108,7 @@ class MovieDetailViewController: UIViewController {
 
   private func reloadTrailerCollectionHeight() {
     let numberOfVideoRows = ceil(CGFloat(movieTrailers.count) / itemsPerRow)
-    heightTrailerCollectionConstraint.constant = numberOfVideoRows * estimatedVideoHeight
+    heightTrailerCollectionConstraint.constant = numberOfVideoRows * heightPerTrailerCell()
     scrollDetailsView.layoutIfNeeded()
   }
 
@@ -138,9 +160,12 @@ extension MovieDetailViewController: UICollectionViewDataSource {
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! TrailerCollectionView
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: trailerReuseIdentifier, for: indexPath) as! TrailerCollectionCell
     let trailer = movieTrailers[indexPath.row]
-    cell.trailerPlayer.load(videoId: trailer.key)
+    API.MovieService.fetchYoutubeThumbnailImage(videoId: trailer.key) { (image) in
+      cell.trailerThumbnail.image = image
+    }
+    cell.trailerName.text = trailer.name
     return cell
   }
 }
@@ -148,10 +173,7 @@ extension MovieDetailViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegateFlowLayout
 extension MovieDetailViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    let paddingSpace = interItemSpacing * (itemsPerRow - 1)
-    let widthPerItem = (trailerCollectionView.frame.width - paddingSpace) / itemsPerRow
-    let heightPerItem = widthPerItem / videoRatio
-    return CGSize(width: widthPerItem, height: heightPerItem)
+    return CGSize(width: widthPerTrailerCell(), height: heightPerTrailerCell())
   }
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -160,6 +182,30 @@ extension MovieDetailViewController: UICollectionViewDelegateFlowLayout {
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
     return lineSpacing
+  }
+}
+
+// MARK: - UICollectionViewDelegate, WKYTPlayerViewDelegate
+extension MovieDetailViewController: UICollectionViewDelegate, WKYTPlayerViewDelegate {
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    let trailer = movieTrailers[indexPath.row]
+    let cell = collectionView.cellForItem(at: indexPath) as! TrailerCollectionCell
+    cell.activityIndicator.startAnimating()
+    trailerPlayer.delegate = self
+    trailerPlayer.load(withVideoId: trailer.key)
+  }
+
+  func playerViewDidBecomeReady(_ playerView: WKYTPlayerView) {
+    playerView.webView?.configuration.allowsInlineMediaPlayback = false
+    playerView.playVideo()
+  }
+
+  func playerView(_ playerView: WKYTPlayerView, didChangeTo state: WKYTPlayerState) {
+    if state == .playing,
+      let selectedIndexPath = trailerCollectionView.indexPathsForSelectedItems?.first,
+      let selectedCell = trailerCollectionView.cellForItem(at: selectedIndexPath) as? TrailerCollectionCell {
+        selectedCell.activityIndicator.stopAnimating()
+      }
   }
 }
 
