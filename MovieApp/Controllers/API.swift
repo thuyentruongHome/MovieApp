@@ -13,5 +13,6 @@ class API {
   typealias ErrorHandler = (Error?) -> Void
   typealias MoviesResponseHandler = (MoviesResult?, Error?) -> Void
   typealias VideosResponseHandler = (VideosResult?, Error?) -> Void
+  typealias ReviewsResponseHandler = (ReviewsResult?, Error?) -> Void
   typealias ImageResponseHandler = (UIImage?) -> Void
 }

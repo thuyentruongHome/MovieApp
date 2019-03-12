@@ -352,7 +352,7 @@
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="ppw-pb-kz9" customClass="TrailerCollectionCell" customModule="MovieApp" customModuleProvider="target">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="trailerCell" id="ppw-pb-kz9" customClass="TrailerCollectionCell" customModule="MovieApp" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="120"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -513,6 +513,7 @@
                         <outlet property="movieStar" destination="wul-uM-eVK" id="vZb-zj-txX"/>
                         <outlet property="movieTitle" destination="96z-wS-Xz3" id="Qca-4G-x3e"/>
                         <outlet property="reviewTableView" destination="YvA-bt-YR0" id="apR-MV-yhx"/>
+                        <outlet property="reviewsIndicator" destination="coB-Ul-Tc1" id="UI1-zV-EAO"/>
                         <outlet property="scrollDetailsView" destination="c29-bT-eWm" id="iby-1z-lGR"/>
                         <outlet property="trailerCollectionView" destination="z1w-3L-Gwp" id="enz-Uc-9gy"/>
                         <outlet property="trailerPlayer" destination="CWv-BH-i6S" id="33h-jy-E37"/>

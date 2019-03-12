@@ -16,6 +16,7 @@ extension API {
     private static let theMovieAPI = "https://api.themoviedb.org/3"
     private static let popularMoviesPath = "/movie/popular"
     private static let videosMoviePath = "/movie/:movieId/videos"
+    private static let reviewsMoviePath = "/movie/:movieId/reviews"
     private static let imageBaseURL = "https://image.tmdb.org/t/p/w342/"
     private static let youtubeThumbnailURL = "https://img.youtube.com/vi/:videoId/hqdefault.jpg"
     private static let apiKey = Credential.valueForKey(keyName: "THEMOVIEDB_API_KEY")
@@ -65,6 +66,23 @@ extension API {
           do {
             let videos = try JSONDecoder().decode(VideosResult.self, from: data)
             completionHandler(videos, nil)
+          } catch let error {
+            completionHandler(nil, error)
+          }
+        case .failure(let error):
+          completionHandler(nil, error)
+        }
+      }
+    }
+
+    public class func fetchReviewsOfMovie(movieId: Int, completionHandler: @escaping ReviewsResponseHandler) {
+      let reviewsURL = URL(string: (theMovieAPI + reviewsMoviePath.replacingOccurrences(of: ":movieId", with: String(movieId))))!
+      Alamofire.request(reviewsURL, method: .get, parameters: ["api_key": apiKey]).validate().responseData { (response) in
+        switch response.result {
+        case .success(let data):
+          do {
+            let reviewResult = try JSONDecoder().decode(ReviewsResult.self, from: data)
+            completionHandler(reviewResult, nil)
           } catch let error {
             completionHandler(nil, error)
           }

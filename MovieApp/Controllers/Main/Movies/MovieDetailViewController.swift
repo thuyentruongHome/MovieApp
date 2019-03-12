@@ -22,6 +22,7 @@ class MovieDetailViewController: UIViewController {
   @IBOutlet weak var scrollDetailsView: UIScrollView!
   @IBOutlet weak var trailerCollectionView: UICollectionView!
   @IBOutlet weak var reviewTableView: UITableView!
+  @IBOutlet weak var reviewsIndicator: UIActivityIndicatorView!
   @IBOutlet weak var trailerPlayer: WKYTPlayerView!
   @IBOutlet weak var heightTrailerCollectionConstraint: NSLayoutConstraint!
 
@@ -55,6 +56,7 @@ class MovieDetailViewController: UIViewController {
   }
 
   // MARK: - Properties - Review Collection View
+  private var movieReviews = [Review]()
   private let reviewReuseIdentifier = "reviewCell"
 
   var movie: Movie? {
@@ -101,6 +103,7 @@ class MovieDetailViewController: UIViewController {
       reviewTableView.scrollToTop()
       reviewTableView.isHidden = false
       scrollDetailsView.isHidden = true
+      loadReviews()
     default:
       break
     }
@@ -212,16 +215,33 @@ extension MovieDetailViewController: UICollectionViewDelegate, WKYTPlayerViewDel
 // MARK: - UITableView for Review
 extension MovieDetailViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 2
+    return movieReviews.count
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: reviewReuseIdentifier, for: indexPath) as! ReviewTableCell
-    cell.reviewerLabel.text = "Tinh Nguyen"
-    cell.reviewText.text = "I think so I am! Apply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more "
+    let review = movieReviews[indexPath.row]
+    cell.reviewerLabel.text = review.author
+    cell.reviewText.text = review.content
     cell.separatorInset = UIEdgeInsets.zero
     cell.preservesSuperviewLayoutMargins = false
     cell.layoutMargins = UIEdgeInsets.zero
     return cell
+  }
+
+  func loadReviews() {
+    guard let movie = movie else { return }
+    reviewsIndicator.startAnimating()
+    API.MovieService.fetchReviewsOfMovie(movieId: movie.id) { [weak self] (reviewsResult, error) in
+      guard let self = self else { return }
+      self.reviewsIndicator.stopAnimating()
+      if let error = error {
+        self.showInformedAlert(withTitle: Constants.TitleAlert.error, message: error.localizedDescription)
+      }
+      if let reviewsResult = reviewsResult {
+        self.movieReviews = reviewsResult.list
+        self.reviewTableView.reloadData()
+      }
+    }
   }
 }

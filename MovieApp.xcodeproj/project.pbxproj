@@ -50,6 +50,8 @@
 		E2ABB5D5223216FE00F11FE9 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ABB5D4223216FE00F11FE9 /* KeyboardObserver.swift */; };
 		E2ABB5D7223251E800F11FE9 /* ReviewTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ABB5D6223251E800F11FE9 /* ReviewTableCell.swift */; };
 		E2ABB5D92232612D00F11FE9 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ABB5D82232612D00F11FE9 /* UIView+Extension.swift */; };
+		E2ABB5DB2232676900F11FE9 /* ReviewsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ABB5DA2232676900F11FE9 /* ReviewsResult.swift */; };
+		E2ABB5DD2232679000F11FE9 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ABB5DC2232679000F11FE9 /* Review.swift */; };
 		E2B9D6432227B6040034FD5E /* SpitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B9D6422227B6040034FD5E /* SpitViewController.swift */; };
 		E2B9D6452227BEA40034FD5E /* MovieService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B9D6442227BEA40034FD5E /* MovieService.swift */; };
 		E2B9D6482227C9490034FD5E /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B9D6472227C9490034FD5E /* Movie.swift */; };
@@ -148,6 +150,8 @@
 		E2ABB5D4223216FE00F11FE9 /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
 		E2ABB5D6223251E800F11FE9 /* ReviewTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableCell.swift; sourceTree = "<group>"; };
 		E2ABB5D82232612D00F11FE9 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIView+Extension.swift"; path = "MovieApp/Storyboards/UIView+Extension.swift"; sourceTree = SOURCE_ROOT; };
+		E2ABB5DA2232676900F11FE9 /* ReviewsResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsResult.swift; sourceTree = "<group>"; };
+		E2ABB5DC2232679000F11FE9 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		E2B9D6422227B6040034FD5E /* SpitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpitViewController.swift; sourceTree = "<group>"; };
 		E2B9D6442227BEA40034FD5E /* MovieService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MovieService.swift; path = MovieApp/Controllers/Main/Movies/MovieService.swift; sourceTree = SOURCE_ROOT; };
 		E2B9D6472227C9490034FD5E /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
@@ -413,6 +417,8 @@
 				E2B9D6492227DC650034FD5E /* MoviesResult.swift */,
 				E2DC918D222FBAE900D42E60 /* Video.swift */,
 				E2DC918F222FBB3000D42E60 /* VideosResult.swift */,
+				E2ABB5DA2232676900F11FE9 /* ReviewsResult.swift */,
+				E2ABB5DC2232679000F11FE9 /* Review.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1003,10 +1009,12 @@
 				E2ABB5D5223216FE00F11FE9 /* KeyboardObserver.swift in Sources */,
 				E20944E2222307E700FD7B08 /* SignInViewController.swift in Sources */,
 				E2B9D64A2227DC650034FD5E /* MoviesResult.swift in Sources */,
+				E2ABB5DB2232676900F11FE9 /* ReviewsResult.swift in Sources */,
 				E22A498D2223AE4700B91EFA /* ForgotPasswordViewController.swift in Sources */,
 				E25F9848221E485B00A01AC4 /* Constants.swift in Sources */,
 				E2B9D6452227BEA40034FD5E /* MovieService.swift in Sources */,
 				E29EAF542225385E00737CEF /* ContainerMainVC.swift in Sources */,
+				E2ABB5DD2232679000F11FE9 /* Review.swift in Sources */,
 				E2F2E34922165E8B00C235E2 /* AppDelegate.swift in Sources */,
 				E23D00102229800D0077CEB7 /* MovieDetailViewController.swift in Sources */,
 				E259017622278B3B00F575AA /* Credential.swift in Sources */,
