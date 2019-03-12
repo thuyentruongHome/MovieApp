@@ -427,6 +427,11 @@
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YvA-bt-YR0">
                                                 <rect key="frame" x="0.0" y="0.0" width="388" height="441"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <view key="tableFooterView" clipsSubviews="YES" contentMode="scaleToFill" id="fSs-T0-7WJ" userLabel="footer">
+                                                    <rect key="frame" x="0.0" y="108" width="388" height="1"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="reviewCell" rowHeight="80" id="iKh-Ei-rb2" customClass="ReviewTableCell" customModule="MovieApp" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="28" width="388" height="80"/>
@@ -486,9 +491,9 @@
                                             <constraint firstItem="coB-Ul-Tc1" firstAttribute="centerX" secondItem="YvA-bt-YR0" secondAttribute="centerX" id="99d-ET-1Dt"/>
                                             <constraint firstAttribute="trailing" secondItem="YvA-bt-YR0" secondAttribute="trailing" id="AI8-pe-IOs"/>
                                             <constraint firstItem="coB-Ul-Tc1" firstAttribute="centerY" secondItem="YvA-bt-YR0" secondAttribute="centerY" id="duk-Sn-a8N"/>
+                                            <constraint firstAttribute="bottom" secondItem="YvA-bt-YR0" secondAttribute="bottom" id="gmd-jL-bhI"/>
                                             <constraint firstItem="BS2-oF-tSw" firstAttribute="centerX" secondItem="31x-jp-CbZ" secondAttribute="centerX" id="mXe-S3-lXG"/>
                                             <constraint firstItem="YvA-bt-YR0" firstAttribute="leading" secondItem="31x-jp-CbZ" secondAttribute="leading" id="wNH-HP-pvk"/>
-                                            <constraint firstAttribute="bottom" secondItem="YvA-bt-YR0" secondAttribute="bottom" id="yeO-F3-BIU"/>
                                         </constraints>
                                     </view>
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="44J-s6-cds">

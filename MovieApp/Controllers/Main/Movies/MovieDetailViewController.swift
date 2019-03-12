@@ -221,6 +221,7 @@ extension MovieDetailViewController: UICollectionViewDelegate, WKYTPlayerViewDel
     let trailer = movieTrailers[indexPath.row]
     let cell = collectionView.cellForItem(at: indexPath) as! TrailerCollectionCell
     cell.activityIndicator.startAnimating()
+    splitViewController?.view.isUserInteractionEnabled = false
     trailerPlayer.delegate = self
     trailerPlayer.load(withVideoId: trailer.key)
   }
@@ -235,6 +236,7 @@ extension MovieDetailViewController: UICollectionViewDelegate, WKYTPlayerViewDel
       let selectedIndexPath = trailerCollectionView.indexPathsForSelectedItems?.first,
       let selectedCell = trailerCollectionView.cellForItem(at: selectedIndexPath) as? TrailerCollectionCell {
         selectedCell.activityIndicator.stopAnimating()
+        splitViewController?.view.isUserInteractionEnabled = true
       }
   }
 }
