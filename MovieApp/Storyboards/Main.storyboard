@@ -476,13 +476,21 @@
                                                     <outlet property="delegate" destination="FEc-5h-fh6" id="DNp-rc-PmE"/>
                                                 </connections>
                                             </collectionView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We have no trailers yet!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T5D-CG-YyJ">
+                                                <rect key="frame" x="104.5" y="105" width="179" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="trailingMargin" secondItem="b6r-af-1Yv" secondAttribute="trailing" id="4EG-oR-hUM"/>
                                             <constraint firstItem="b6r-af-1Yv" firstAttribute="leading" secondItem="c29-bT-eWm" secondAttribute="leadingMargin" id="4TM-vA-cTa"/>
+                                            <constraint firstItem="T5D-CG-YyJ" firstAttribute="top" secondItem="b6r-af-1Yv" secondAttribute="bottom" constant="50" id="BGv-aH-Kvg"/>
                                             <constraint firstItem="SKV-l1-WiW" firstAttribute="leading" secondItem="b6r-af-1Yv" secondAttribute="leading" id="CMh-JR-24q"/>
                                             <constraint firstItem="z1w-3L-Gwp" firstAttribute="leading" secondItem="c29-bT-eWm" secondAttribute="leadingMargin" id="EU4-aU-p7l"/>
                                             <constraint firstItem="SKV-l1-WiW" firstAttribute="width" secondItem="c29-bT-eWm" secondAttribute="width" constant="-26" id="Hx0-cR-x3c"/>
+                                            <constraint firstItem="T5D-CG-YyJ" firstAttribute="centerX" secondItem="c29-bT-eWm" secondAttribute="centerX" id="I3x-dB-vHu"/>
                                             <constraint firstItem="z1w-3L-Gwp" firstAttribute="width" secondItem="c29-bT-eWm" secondAttribute="width" constant="-26" id="Qes-Ut-iVV"/>
                                             <constraint firstItem="SKV-l1-WiW" firstAttribute="trailing" secondItem="b6r-af-1Yv" secondAttribute="trailing" id="k1Z-4A-TbR"/>
                                             <constraint firstItem="b6r-af-1Yv" firstAttribute="top" secondItem="SKV-l1-WiW" secondAttribute="bottom" constant="25" id="kKO-tc-5UJ"/>
@@ -600,6 +608,7 @@
                     </view>
                     <connections>
                         <outlet property="emptyReviewsLabel" destination="BS2-oF-tSw" id="0Ku-m0-sO6"/>
+                        <outlet property="emptyTrailersLabel" destination="T5D-CG-YyJ" id="RBx-aT-fZK"/>
                         <outlet property="heightTrailerCollectionConstraint" destination="Cfz-Rh-3Vh" id="MYS-0z-PBJ"/>
                         <outlet property="infoMovieSegment" destination="1jx-WE-XPb" id="swb-1E-jJ3"/>
                         <outlet property="mainView" destination="VvD-Vo-1dn" id="PSE-QZ-mMW"/>

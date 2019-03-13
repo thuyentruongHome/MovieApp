@@ -26,6 +26,7 @@ class MovieDetailViewController: UIViewController {
   @IBOutlet weak var trailerPlayer: WKYTPlayerView!
   @IBOutlet weak var trailersActivityIndicator: UIActivityIndicatorView!
   @IBOutlet weak var heightTrailerCollectionConstraint: NSLayoutConstraint!
+  @IBOutlet weak var emptyTrailersLabel: UILabel!
 
   @IBOutlet weak var reviewsSection: UIView!
   @IBOutlet weak var reviewTableView: UITableView!
@@ -136,6 +137,8 @@ class MovieDetailViewController: UIViewController {
 
     reviewTableView.isHidden = false
     emptyReviewsLabel.isHidden = true
+    trailerCollectionView.isHidden = false
+    emptyTrailersLabel.isHidden = true
 
     infoMovieSegment.selectedSegmentIndex = 0
     infoMovieSegment.sendActions(for: .valueChanged)
@@ -166,7 +169,12 @@ class MovieDetailViewController: UIViewController {
         self.movieTrailers = result.list.filter({ (video) -> Bool in
           video.type == Constants.theMovie.trailerType
         })
-        self.trailerCollectionView.reloadData()
+        if self.movieTrailers.isEmpty {
+          self.emptyTrailersLabel.isHidden = false
+          self.trailerCollectionView.isHidden = true
+        } else {
+          self.trailerCollectionView.reloadData()
+        }
       }
     }
   }
