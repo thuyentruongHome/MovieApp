@@ -14,16 +14,15 @@ extension API {
   class MovieService {
 
     private static let theMovieAPI = "https://api.themoviedb.org/3"
-    private static let popularMoviesPath = "/movie/popular"
     private static let videosMoviePath = "/movie/:movieId/videos"
     private static let reviewsMoviePath = "/movie/:movieId/reviews"
     private static let imageBaseURL = "https://image.tmdb.org/t/p/w342/"
     private static let youtubeThumbnailURL = "https://img.youtube.com/vi/:videoId/hqdefault.jpg"
     private static let apiKey = Credential.valueForKey(keyName: "THEMOVIEDB_API_KEY")
 
-    class func fetchPopularMovies(page: Int = 1, completionHandler: @escaping MoviesResponseHandler) {
+    class func fetchMovies(page: Int = 1, movieSegment: MovieSegment, completionHandler: @escaping MoviesResponseHandler) {
 
-      let url = URL(string: (theMovieAPI + popularMoviesPath))!
+      let url = URL(string: (theMovieAPI + movieSegment.apiPath()))!
 
       Alamofire.request(url, method: .get, parameters: ["api_key": apiKey, "page": page]).validate().responseData { (response) in
         switch response.result {

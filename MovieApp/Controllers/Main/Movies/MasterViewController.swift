@@ -11,44 +11,58 @@ import UIKit
 class MasterViewController: UIViewController {
 
   // MARK: - Properties
-  private let reuseIdentifier = "MovieCell"
-  private let itemsPerRow: CGFloat = 3
-  private let movieThumbnailRatio: CGFloat = 125 / 185
-  private let (interItemSpacing, lineSpacing): (CGFloat, CGFloat) = (4, 4)
-  public var isMovieSelected = false
-  private var currentMoviesPage = 1
-
-  private var popularMovies = [Movie]()
+  @IBOutlet weak var movieSegmentControl: UISegmentedControl!
+  @IBOutlet weak var popularMovieCollectionView: UICollectionView!
+  @IBOutlet weak var mostRatedMovieCollectionView: UICollectionView!
 
   public var delegate: MovieSelectionDelegate?
 
-  @IBOutlet weak var movieCollectionView: UICollectionView!
-  @IBOutlet weak var movieSegmentControl: UISegmentedControl!
+  private let reuseIdentifier = "movieCell"
+  private let itemsPerRow: CGFloat = 3
+  private let movieThumbnailRatio: CGFloat = 125 / 185
+  private let (interItemSpacing, lineSpacing): (CGFloat, CGFloat) = (4, 4)
+
+  public var isMovieSelected = false
+  private var currentMoviesPage = [
+    MovieSegment.Popular: 0,
+    MovieSegment.MostRated: 0,
+    MovieSegment.MyFav: 0
+  ]
+  private var popularMovies = [Movie]()
+  private var mostRatedMovies = [Movie]()
 
   // MARK: - Init
   override func viewDidLoad() {
     super.viewDidLoad()
-    loadMovies()
+    movieSegmentControl.sendActions(for: .valueChanged)
   }
 
   // MARK: - Handlers
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
-    guard let collectionViewLayout = self.movieCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
-    collectionViewLayout.prepare()
-    collectionViewLayout.invalidateLayout()
+    for collectionView in [popularMovieCollectionView, mostRatedMovieCollectionView] {
+      guard let collectionViewLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+      collectionViewLayout.prepare()
+      collectionViewLayout.invalidateLayout()
+    }
   }
 
   @IBAction func categorySegmentTapped(_ sender: Any) {
     guard let categorySegment = sender as? UISegmentedControl else { return }
-    let selectedSegment = MovieSegment(rawValue: categorySegment.selectedSegmentIndex)!
-    switch selectedSegment {
+    let selectedMovieSegment = MovieSegment(rawValue: categorySegment.selectedSegmentIndex)!
+    switch selectedMovieSegment {
     case .Popular:
-      print("Popular Movies")
+      mostRatedMovieCollectionView.isHidden = true
+      popularMovieCollectionView.isHidden = false
     case .MostRated:
-      print("Most Rated Movies")
+      mostRatedMovieCollectionView.isHidden = false
+      popularMovieCollectionView.isHidden = true
     case .MyFav:
       print("Fav Movies")
+    }
+
+    if currentMoviesPage[selectedMovieSegment] == 0 {
+      loadMoviesIn(selectedMovieSegment)
     }
   }
 }
@@ -56,11 +70,11 @@ class MasterViewController: UIViewController {
 // MARK: - UICollectionViewDataSource
 extension MasterViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return popularMovies.count
+    return fetchMatchingMovieListOf(collectionView).count
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let movie = popularMovies[indexPath.row]
+    let movie = fetchMatchingMovieListOf(collectionView)[indexPath.row]
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MovieCollectionCell
     cell.activtyIndicator.startAnimating()
     API.MovieService.fetchMovieImage(posterPath: movie.posterPath, completionHandler: { (image) in
@@ -75,7 +89,7 @@ extension MasterViewController: UICollectionViewDataSource {
 extension MasterViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     let paddingSpace = interItemSpacing * (itemsPerRow - 1)
-    let widthPerItem = (movieCollectionView.frame.width - paddingSpace) / itemsPerRow
+    let widthPerItem = (collectionView.frame.width - paddingSpace) / itemsPerRow
     let heightPerItem = widthPerItem / movieThumbnailRatio
     return CGSize(width: widthPerItem, height: heightPerItem)
   }
@@ -92,7 +106,7 @@ extension MasterViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - UICollectionViewDelegate
 extension MasterViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    let movie = popularMovies[indexPath.row]
+    let movie = fetchMatchingMovieListOf(collectionView)[indexPath.row]
     delegate?.movieSelected(movie)
     isMovieSelected = true
 
@@ -102,24 +116,58 @@ extension MasterViewController: UICollectionViewDelegate {
   }
 
   func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-    if indexPath.row == popularMovies.count - 1 {
-      loadMovies()
+    let movieList = fetchMatchingMovieListOf(collectionView)
+    let movieSegment = fetchMatchingMovieSegmentOf(collectionView)
+    if indexPath.row == movieList.count - 1 {
+      loadMoviesIn(movieSegment)
     }
   }
 }
 
 extension MasterViewController {
-  private func loadMovies() {
-    API.MovieService.fetchPopularMovies(page: currentMoviesPage) { [weak self] (result, error) in
+  private func loadMoviesIn(_ movieSegment: MovieSegment) {
+    currentMoviesPage[movieSegment]! += 1
+    let page = currentMoviesPage[movieSegment]!
+    API.MovieService.fetchMovies(page: page, movieSegment: movieSegment) { [weak self] (result, error) in
       guard let self = self else { return }
       if let error = error {
+        self.currentMoviesPage[movieSegment]! -= 1
         self.showInformedAlert(withTitle: Constants.TitleAlert.error, message: error.localizedDescription)
       }
       if let result = result {
-        self.popularMovies += result.list
-        self.currentMoviesPage += 1
-        self.movieCollectionView.reloadData()
+        switch movieSegment {
+        case .Popular:
+          self.popularMovies += result.list
+          self.popularMovieCollectionView.reloadData()
+        case .MostRated:
+          self.mostRatedMovies += result.list
+          self.mostRatedMovieCollectionView.reloadData()
+        case .MyFav:
+          break
+        }
       }
+    }
+  }
+
+  private func fetchMatchingMovieListOf(_ collectionView: UICollectionView) -> [Movie] {
+    switch collectionView {
+    case popularMovieCollectionView:
+      return popularMovies
+    case mostRatedMovieCollectionView:
+      return mostRatedMovies
+    default:
+      fatalError()
+    }
+  }
+
+  private func fetchMatchingMovieSegmentOf(_ collectionView: UICollectionView) -> MovieSegment {
+    switch collectionView {
+    case popularMovieCollectionView:
+      return .Popular
+    case mostRatedMovieCollectionView:
+      return .MostRated
+    default:
+      fatalError()
     }
   }
 }
