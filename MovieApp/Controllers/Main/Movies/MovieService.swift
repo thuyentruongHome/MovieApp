@@ -21,11 +21,11 @@ extension API {
     private static let youtubeThumbnailURL = "https://img.youtube.com/vi/:videoId/hqdefault.jpg"
     private static let apiKey = Credential.valueForKey(keyName: "THEMOVIEDB_API_KEY")
 
-    class func fetchPopularMovies(completionHandler: @escaping MoviesResponseHandler) {
+    class func fetchPopularMovies(page: Int = 1, completionHandler: @escaping MoviesResponseHandler) {
 
       let url = URL(string: (theMovieAPI + popularMoviesPath))!
 
-      Alamofire.request(url, method: .get, parameters: ["api_key": apiKey]).validate().responseData { (response) in
+      Alamofire.request(url, method: .get, parameters: ["api_key": apiKey, "page": page]).validate().responseData { (response) in
         switch response.result {
         case .success(let data):
           do {

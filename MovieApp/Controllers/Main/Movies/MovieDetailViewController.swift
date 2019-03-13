@@ -18,13 +18,13 @@ class MovieDetailViewController: UIViewController {
   @IBOutlet weak var movieTitle: UILabel!
   @IBOutlet weak var movieReleaseDate: UILabel!
   @IBOutlet weak var movieStar: CosmosView!
-  @IBOutlet weak var mainIndicator: UIActivityIndicatorView!
   @IBOutlet weak var infoMovieSegment: UISegmentedControl!
 
   @IBOutlet weak var movieOverview: UILabel!
   @IBOutlet weak var scrollDetailsSection: UIScrollView!
   @IBOutlet weak var trailerCollectionView: UICollectionView!
   @IBOutlet weak var trailerPlayer: WKYTPlayerView!
+  @IBOutlet weak var trailersActivityIndicator: UIActivityIndicatorView!
   @IBOutlet weak var heightTrailerCollectionConstraint: NSLayoutConstraint!
 
   @IBOutlet weak var reviewsSection: UIView!
@@ -124,10 +124,8 @@ class MovieDetailViewController: UIViewController {
 
   func refreshView() {
     mainView.isHidden = false
-    mainIndicator.startAnimating()
     resetUIView()
     loadMovieBaseInfo()
-    mainIndicator.stopAnimating()
   }
 
   private func resetUIView() {
@@ -157,8 +155,10 @@ class MovieDetailViewController: UIViewController {
   private func loadDetailsSection() {
     guard let movie = movie else { return }
     movieOverview.text = movie.overview
+    trailersActivityIndicator.startAnimating()
     API.MovieService.fetchVideosOfMovie(movieId: movie.id) { [weak self] (result, error) in
       guard let self = self else { return }
+      self.trailersActivityIndicator.stopAnimating()
       if let error = error {
         self.showInformedAlert(withTitle: Constants.TitleAlert.error, message: error.localizedDescription)
       }
