@@ -89,6 +89,11 @@ PODS:
     - OHHTTPStubs/Core
   - OHHTTPStubs/OHPathHelpers (6.1.0)
   - Quick (1.3.2)
+  - Realm (3.13.1):
+    - Realm/Headers (= 3.13.1)
+  - Realm/Headers (3.13.1)
+  - RealmSwift (3.13.1):
+    - Realm (= 3.13.1)
   - YoutubePlayer-in-WKWebView (0.2.5)
 
 DEPENDENCIES:
@@ -103,6 +108,7 @@ DEPENDENCIES:
   - Nimble
   - OHHTTPStubs
   - Quick
+  - RealmSwift
   - YoutubePlayer-in-WKWebView
 
 SPEC REPOS:
@@ -127,6 +133,8 @@ SPEC REPOS:
     - Nimble
     - OHHTTPStubs
     - Quick
+    - Realm
+    - RealmSwift
     - YoutubePlayer-in-WKWebView
 
 SPEC CHECKSUMS:
@@ -150,8 +158,10 @@ SPEC CHECKSUMS:
   Nimble: 5e94a8cacb355943c6c87198035dc4adbb0f10e4
   OHHTTPStubs: 1e21c7d2c084b8153fc53d48400d8919d2d432d0
   Quick: 2623cb30d7a7f41ca62f684f679586558f483d46
+  Realm: 50071da38fe079e0735e47c9f2eae738c68c5996
+  RealmSwift: 8a1e6a02b7a08cd17a31e3115143fb69fe5f3fb9
   YoutubePlayer-in-WKWebView: 4dad12b3ece938a6456fa4374df78942f88b485a
 
-PODFILE CHECKSUM: 1eb0c72051aa0d006b7a40f85dd5c591323f1986
+PODFILE CHECKSUM: 2f578603ee814dda82e4fbb4b9677b85b6520c96
 
 COCOAPODS: 1.5.3

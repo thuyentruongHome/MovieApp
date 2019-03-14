@@ -18,6 +18,7 @@ class MovieDetailViewController: UIViewController {
   @IBOutlet weak var movieTitle: UILabel!
   @IBOutlet weak var movieReleaseDate: UILabel!
   @IBOutlet weak var movieStar: CosmosView!
+  @IBOutlet weak var likeBtn: UIButton!
   @IBOutlet weak var infoMovieSegment: UISegmentedControl!
 
   @IBOutlet weak var movieOverview: UILabel!
@@ -153,6 +154,8 @@ class MovieDetailViewController: UIViewController {
     movieTitle.text = movie.title
     movieReleaseDate.text = movie.formattedReleaseDate()
     movieStar.rating = movie.voteAverage
+
+    likeBtn.isSelected = Movie.exists(movie.id)
   }
 
   private func loadDetailsSection() {
@@ -182,6 +185,9 @@ class MovieDetailViewController: UIViewController {
   @IBAction func likeBtnTapped(_ sender: Any) {
     let button = sender as! UIButton
     button.isSelected = !button.isSelected
+    if let movie = movie {
+      button.isSelected ? Movie.like(movie) : Movie.removeLike(movie.id)
+    }
   }
 }
 

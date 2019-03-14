@@ -13,6 +13,7 @@ target 'MovieApp' do
   pod 'AlamofireImage'
   pod 'Cosmos', '~> 18.0'
   pod 'YoutubePlayer-in-WKWebView'
+  pod 'RealmSwift'
 
   abstract_target 'Tests' do
     pod 'OHHTTPStubs'

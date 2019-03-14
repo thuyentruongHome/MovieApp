@@ -611,6 +611,7 @@
                         <outlet property="emptyTrailersLabel" destination="T5D-CG-YyJ" id="RBx-aT-fZK"/>
                         <outlet property="heightTrailerCollectionConstraint" destination="Cfz-Rh-3Vh" id="MYS-0z-PBJ"/>
                         <outlet property="infoMovieSegment" destination="1jx-WE-XPb" id="swb-1E-jJ3"/>
+                        <outlet property="likeBtn" destination="PLF-8j-pvC" id="Las-uf-eKx"/>
                         <outlet property="mainView" destination="VvD-Vo-1dn" id="PSE-QZ-mMW"/>
                         <outlet property="movieOverview" destination="SKV-l1-WiW" id="6eF-K5-dxP"/>
                         <outlet property="moviePoster" destination="qk4-W7-8np" id="4vd-vj-j5f"/>
