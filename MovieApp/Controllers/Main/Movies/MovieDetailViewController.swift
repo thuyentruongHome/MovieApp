@@ -70,7 +70,7 @@ class MovieDetailViewController: UIViewController {
 
   var movie: Movie? {
     didSet {
-      movie!.overview.isEmpty ? loadMovieAndRefreshView() : refreshView()
+      movie!.title.isEmpty ? loadMovieAndRefreshView() : refreshView()
     }
   }
 
@@ -306,7 +306,6 @@ extension MovieDetailViewController {
       self.mainActivityIndicator.stopAnimating()
       if let updatedMovie = updatedMovie {
         self.movie = updatedMovie
-        self.refreshView()
       }
       if let error = error {
         self.showInformedAlert(withTitle: Constants.TitleAlert.error, message: error.localizedDescription)

@@ -17,7 +17,7 @@ class Movie: Object, Decodable {
   private let dateFormat = "MMMM yyyy"
 
   @objc dynamic var id: Int = 0
-  @objc dynamic var title: String?
+  @objc dynamic var title = ""
   @objc dynamic var posterPath = ""
   @objc dynamic var releaseDate = Date()
   @objc dynamic var voteAverage: Double = 0.0
