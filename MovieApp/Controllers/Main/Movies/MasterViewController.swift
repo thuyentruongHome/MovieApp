@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MasterViewController: UIViewController {
 
@@ -14,8 +15,10 @@ class MasterViewController: UIViewController {
   @IBOutlet weak var movieSegmentControl: UISegmentedControl!
   @IBOutlet weak var popularMovieCollectionView: UICollectionView!
   @IBOutlet weak var mostRatedMovieCollectionView: UICollectionView!
+  @IBOutlet weak var myFavMovieCollectionView: UICollectionView!
 
   public var delegate: MovieSelectionDelegate?
+  var notificationToken: NotificationToken?
 
   private let reuseIdentifier = "movieCell"
   private let itemsPerRow: CGFloat = 3
@@ -30,11 +33,19 @@ class MasterViewController: UIViewController {
   ]
   private var popularMovies = [Movie]()
   private var mostRatedMovies = [Movie]()
+  private var myFavMovies = [Movie]()
+  private lazy var favoriteMovies = {
+    Movie.getAllLiked()
+  }()
 
   // MARK: - Init
   override func viewDidLoad() {
     super.viewDidLoad()
     movieSegmentControl.sendActions(for: .valueChanged)
+  }
+
+  deinit {
+    notificationToken?.invalidate()
   }
 
   // MARK: - Handlers
@@ -52,13 +63,17 @@ class MasterViewController: UIViewController {
     let selectedMovieSegment = MovieSegment(rawValue: categorySegment.selectedSegmentIndex)!
     switch selectedMovieSegment {
     case .Popular:
-      mostRatedMovieCollectionView.isHidden = true
       popularMovieCollectionView.isHidden = false
+      mostRatedMovieCollectionView.isHidden = true
+      myFavMovieCollectionView.isHidden = true
     case .MostRated:
+      popularMovieCollectionView.isHidden  = true
       mostRatedMovieCollectionView.isHidden = false
-      popularMovieCollectionView.isHidden = true
+      myFavMovieCollectionView.isHidden = true
     case .MyFav:
-      print("Fav Movies")
+      popularMovieCollectionView.isHidden  = true
+      mostRatedMovieCollectionView.isHidden = true
+      myFavMovieCollectionView.isHidden = false
     }
 
     if currentMoviesPage[selectedMovieSegment] == 0 {
@@ -118,7 +133,7 @@ extension MasterViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
     let movieList = fetchMatchingMovieListOf(collectionView)
     let movieSegment = fetchMatchingMovieSegmentOf(collectionView)
-    if indexPath.row == movieList.count - 1 {
+    if collectionView != myFavMovieCollectionView && indexPath.row == movieList.count - 1 {
       loadMoviesIn(movieSegment)
     }
   }
@@ -128,25 +143,54 @@ extension MasterViewController {
   private func loadMoviesIn(_ movieSegment: MovieSegment) {
     currentMoviesPage[movieSegment]! += 1
     let page = currentMoviesPage[movieSegment]!
-    API.MovieService.fetchMovies(page: page, movieSegment: movieSegment) { [weak self] (result, error) in
-      guard let self = self else { return }
-      if let error = error {
-        self.currentMoviesPage[movieSegment]! -= 1
-        self.showInformedAlert(withTitle: Constants.TitleAlert.error, message: error.localizedDescription)
-      }
-      if let result = result {
-        switch movieSegment {
-        case .Popular:
-          self.popularMovies += result.list
-          self.popularMovieCollectionView.reloadData()
-        case .MostRated:
-          self.mostRatedMovies += result.list
-          self.mostRatedMovieCollectionView.reloadData()
-        case .MyFav:
-          break
+    if movieSegment != .MyFav {
+      API.MovieService.fetchMovies(page: page, movieSegment: movieSegment) { [weak self] (result, error) in
+        guard let self = self else { return }
+        if let error = error {
+          self.currentMoviesPage[movieSegment]! -= 1
+          self.showInformedAlert(withTitle: Constants.TitleAlert.error, message: error.localizedDescription)
+        }
+        if let result = result {
+          if movieSegment == .Popular {
+            self.popularMovies += result.list
+            self.popularMovieCollectionView.reloadData()
+          } else if movieSegment == .MostRated {
+            self.mostRatedMovies += result.list
+            self.mostRatedMovieCollectionView.reloadData()
+          }
         }
       }
+    } else {
+      myFavMovies = Array(favoriteMovies)
+      setUpRealmNotificationFor(favoriteMovies)
     }
+  }
+
+  // Observe Results Notifications
+  private func setUpRealmNotificationFor(_ member: Results<Movie>) {
+    notificationToken = member.observe( { [weak self] (change) in
+      guard let self = self else { return }
+      switch change {
+      case .initial:
+        self.myFavMovieCollectionView.reloadData()
+      case .update(_, let deletions, let insertions, _):
+        deletions.forEach({ (deletedIndex) in
+          self.myFavMovies.remove(at: deletedIndex)
+          self.myFavMovieCollectionView.performBatchUpdates({
+            self.myFavMovieCollectionView.deleteItems(at: [IndexPath(row: deletedIndex, section: 0)])
+          }, completion: nil)
+        })
+
+        insertions.forEach({ (insertedIndex) in
+          self.myFavMovies.insert(self.favoriteMovies[insertedIndex], at: insertedIndex)
+          self.myFavMovieCollectionView.performBatchUpdates({
+            self.myFavMovieCollectionView.insertItems(at: [IndexPath(row: insertedIndex, section: 0)])
+          }, completion: nil)
+        })
+      case .error(let error):
+        fatalError("\(error)")
+      }
+    })
   }
 
   private func fetchMatchingMovieListOf(_ collectionView: UICollectionView) -> [Movie] {
@@ -155,6 +199,8 @@ extension MasterViewController {
       return popularMovies
     case mostRatedMovieCollectionView:
       return mostRatedMovies
+    case myFavMovieCollectionView:
+      return myFavMovies
     default:
       fatalError()
     }
@@ -166,6 +212,8 @@ extension MasterViewController {
       return .Popular
     case mostRatedMovieCollectionView:
       return .MostRated
+    case myFavMovieCollectionView:
+      return .MyFav
     default:
       fatalError()
     }

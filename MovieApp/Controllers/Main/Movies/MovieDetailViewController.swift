@@ -20,6 +20,7 @@ class MovieDetailViewController: UIViewController {
   @IBOutlet weak var movieStar: CosmosView!
   @IBOutlet weak var likeBtn: UIButton!
   @IBOutlet weak var infoMovieSegment: UISegmentedControl!
+  @IBOutlet weak var mainActivityIndicator: UIActivityIndicatorView!
 
   @IBOutlet weak var movieOverview: UILabel!
   @IBOutlet weak var scrollDetailsSection: UIScrollView!
@@ -69,7 +70,7 @@ class MovieDetailViewController: UIViewController {
 
   var movie: Movie? {
     didSet {
-      refreshView()
+      movie!.overview.isEmpty ? loadMovieAndRefreshView() : refreshView()
     }
   }
 
@@ -290,6 +291,25 @@ extension MovieDetailViewController: UITableViewDataSource {
         } else {
           self.reviewTableView.reloadData()
         }
+      }
+    }
+  }
+}
+
+// MARK: - Data Handlers
+extension MovieDetailViewController {
+  private func loadMovieAndRefreshView() {
+    guard let movie = movie else { return }
+    mainActivityIndicator.startAnimating()
+    API.MovieService.fetchMovie(id: movie.id) { [weak self] (updatedMovie, error) in
+      guard let self = self else { return }
+      self.mainActivityIndicator.stopAnimating()
+      if let updatedMovie = updatedMovie {
+        self.movie = updatedMovie
+        self.refreshView()
+      }
+      if let error = error {
+        self.showInformedAlert(withTitle: Constants.TitleAlert.error, message: error.localizedDescription)
       }
     }
   }

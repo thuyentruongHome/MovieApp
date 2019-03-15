@@ -14,6 +14,7 @@ extension API {
   class MovieService {
 
     private static let theMovieAPI = "https://api.themoviedb.org/3"
+    private static let detailsMovieAPI = theMovieAPI + "/movie/:movieId"
     private static let videosMoviePath = "/movie/:movieId/videos"
     private static let reviewsMoviePath = "/movie/:movieId/reviews"
     private static let imageBaseURL = "https://image.tmdb.org/t/p/w342/"
@@ -33,6 +34,27 @@ extension API {
             dateFormatter.dateFormat = Constants.theMovie.dateFormat
             decoder.dateDecodingStrategy = .formatted(dateFormatter)
             let movies = try decoder.decode(MoviesResult.self, from: data)
+            completionHandler(movies, nil)
+          } catch let error {
+            completionHandler(nil, error)
+          }
+        case .failure(let error):
+          completionHandler(nil, error)
+        }
+      }
+    }
+
+    class func fetchMovie(id: Int, completionHandler: @escaping MovieResponseHandler) {
+      let url = URL(string: detailsMovieAPI.replacingOccurrences(of: ":movieId", with: String(id)))!
+      Alamofire.request(url, method: .get, parameters: ["api_key": apiKey]).validate().responseData { (response) in
+        switch response.result {
+        case .success(let data):
+          do {
+            let decoder = JSONDecoder()
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = Constants.theMovie.dateFormat
+            decoder.dateDecodingStrategy = .formatted(dateFormatter)
+            let movies = try decoder.decode(Movie.self, from: data)
             completionHandler(movies, nil)
           } catch let error {
             completionHandler(nil, error)
