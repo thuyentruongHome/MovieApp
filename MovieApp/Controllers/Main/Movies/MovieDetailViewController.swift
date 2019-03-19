@@ -49,6 +49,7 @@ class MovieDetailViewController: UIViewController {
   private let (interItemSpacing, lineSpacing): (CGFloat, CGFloat) = (10, 10)
   private let trailerNameLabelTopConstraint: CGFloat = 10
   private let trailerNameLabelHeightConstraint: CGFloat = 70
+  private let emptyTrailersViewHeight: CGFloat = 80
   var _widthPerTrailerCell: CGFloat?
   var _heightPerTrailerCell: CGFloat?
   func widthPerTrailerCell() -> CGFloat {
@@ -82,6 +83,7 @@ class MovieDetailViewController: UIViewController {
     super.viewDidLoad()
     configScrollView()
     configDynamicHeightTableView()
+    configCosmosStarSize()
   }
 
   // MARK: - Handlers
@@ -95,6 +97,7 @@ class MovieDetailViewController: UIViewController {
       collectionViewLayout.invalidateLayout()
       self.reloadTrailerCollectionHeight()
       self.setUpMovieDetailNavigation()
+      self.configCosmosStarSize()
     }
   }
 
@@ -102,6 +105,11 @@ class MovieDetailViewController: UIViewController {
     scrollDetailsSection.contentLayoutGuide.bottomAnchor.constraint(equalTo: trailerCollectionView.bottomAnchor).isActive = true
   }
 
+  private func configCosmosStarSize() {
+    if UIScreen.main.traitCollection.horizontalSizeClass == .regular && UIScreen.main.traitCollection.verticalSizeClass == .regular {
+      movieStar.settings.starSize = 22
+    }
+  }
   private func configDynamicHeightTableView() {
     reviewTableView.rowHeight = UITableView.automaticDimension
     reviewTableView.estimatedRowHeight = 300
@@ -125,8 +133,12 @@ class MovieDetailViewController: UIViewController {
   }
 
   private func reloadTrailerCollectionHeight() {
-    let numberOfVideoRows = ceil(CGFloat(movieTrailers.count) / itemsPerRow)
-    heightTrailerCollectionConstraint.constant = numberOfVideoRows * (heightPerTrailerCell() + lineSpacing)
+    if movieTrailers.count == 0 {
+      heightTrailerCollectionConstraint.constant = emptyTrailersViewHeight
+    } else {
+      let numberOfVideoRows = ceil(CGFloat(movieTrailers.count) / itemsPerRow)
+      heightTrailerCollectionConstraint.constant = numberOfVideoRows * (heightPerTrailerCell() + lineSpacing)
+    }
     scrollDetailsSection.layoutIfNeeded()
   }
 
@@ -183,7 +195,7 @@ class MovieDetailViewController: UIViewController {
 
   private func loadDetailsSection() {
     guard let movie = movie else { return }
-    movieOverview.text = movie.overview
+    movieOverview.text = movie.overview ?? Constants.defaultOverview
     trailersActivityIndicator.startAnimating()
     API.MovieService.fetchVideosOfMovie(movieId: movie.id) { [weak self] (result, error) in
       guard let self = self else { return }

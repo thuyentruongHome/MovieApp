@@ -14,6 +14,7 @@ public let hostErrorCode = 1
 public struct Constants {
   
   public static let defaultPoster = UIImage(named: "default_poster")
+  public static let defaultOverview = "No overview!"
 
   public struct theMovie {
     public static let dateFormat = "yyyy-MM-dd"

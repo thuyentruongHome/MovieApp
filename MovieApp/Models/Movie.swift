@@ -51,7 +51,7 @@ class Movie: Object, Decodable {
     let dateString = try container.decode(String?.self, forKey: .releaseDate)
     releaseDate    = self.parseInDate(dateString)
     voteAverage    = try container.decode(Double.self, forKey: .voteAverage)
-    overview       = try container.decode(String?.self, forKey: .overview)
+    overview       = parseInString(try container.decode(String?.self, forKey: .overview))
   }
 
   // MARK: - Instance Methods
@@ -110,6 +110,14 @@ extension Movie {
     dateFormatter.dateFormat = Constants.theMovie.dateFormat
     if let date = dateFormatter.date(from: dateString) {
       return date
+    } else {
+      return nil
+    }
+  }
+
+  func parseInString(_ string: String?) -> String? {
+    if let string = string, !string.isEmpty {
+      return string
     } else {
       return nil
     }
