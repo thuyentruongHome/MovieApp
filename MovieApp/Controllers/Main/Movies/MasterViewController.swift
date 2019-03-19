@@ -16,8 +16,17 @@ class MasterViewController: UIViewController {
   @IBOutlet weak var popularMovieCollectionView: UICollectionView!
   @IBOutlet weak var mostRatedMovieCollectionView: UICollectionView!
   @IBOutlet weak var myFavMovieCollectionView: UICollectionView!
-
-  public var delegate: MovieSelectionDelegate?
+  @IBOutlet weak var mainActivityIndicator: UIActivityIndicatorView!
+  
+  // MARK: - Search Properties
+  @IBOutlet weak var searchBar: UISearchBar!
+  @IBOutlet weak var searchResultView: UIView!
+  @IBOutlet weak var blurSupportView: BlurSupportView!
+  @IBOutlet weak var searchResultLabel: UILabel!
+  @IBOutlet weak var searchResultCollectionView: UICollectionView!
+  private var currentTotalPagesInSearch = 0
+  
+  weak var delegate: MovieSelectionDelegate?
   var notificationToken: NotificationToken?
 
   private let reuseIdentifier = "movieCell"
@@ -29,11 +38,13 @@ class MasterViewController: UIViewController {
   private var currentMoviesPage = [
     MovieSegment.Popular: 0,
     MovieSegment.MostRated: 0,
-    MovieSegment.MyFav: 0
+    MovieSegment.MyFav: 0,
+    MovieSegment.Search: 0
   ]
   private var popularMovies = [Movie]()
   private var mostRatedMovies = [Movie]()
   private var myFavMovies = [Movie]()
+  private var searchMovies = [Movie]()
   private lazy var favoriteMovies = {
     Movie.getAllLiked()
   }()
@@ -51,7 +62,7 @@ class MasterViewController: UIViewController {
   // MARK: - Handlers
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
-    for collectionView in [popularMovieCollectionView, mostRatedMovieCollectionView] {
+    for collectionView in [popularMovieCollectionView, mostRatedMovieCollectionView, myFavMovieCollectionView, searchResultCollectionView] {
       guard let collectionViewLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout else { return }
       collectionViewLayout.prepare()
       collectionViewLayout.invalidateLayout()
@@ -60,6 +71,7 @@ class MasterViewController: UIViewController {
 
   @IBAction func categorySegmentTapped(_ sender: Any) {
     guard let categorySegment = sender as? UISegmentedControl else { return }
+    searchResultView.isHidden = true
     let selectedMovieSegment = MovieSegment(rawValue: categorySegment.selectedSegmentIndex)!
     switch selectedMovieSegment {
     case .Popular:
@@ -74,6 +86,8 @@ class MasterViewController: UIViewController {
       popularMovieCollectionView.isHidden  = true
       mostRatedMovieCollectionView.isHidden = true
       myFavMovieCollectionView.isHidden = false
+    default:
+      break
     }
 
     if currentMoviesPage[selectedMovieSegment] == 0 {
@@ -138,8 +152,48 @@ extension MasterViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
     let movieList = fetchMatchingMovieListOf(collectionView)
     let movieSegment = fetchMatchingMovieSegmentOf(collectionView)
-    if collectionView != myFavMovieCollectionView && indexPath.row == movieList.count - 1 {
-      loadMoviesIn(movieSegment)
+    switch collectionView {
+    case popularMovieCollectionView, mostRatedMovieCollectionView:
+      if indexPath.row == movieList.count - 1 {
+        loadMoviesIn(movieSegment)
+      }
+    case searchResultCollectionView:
+      if currentTotalPagesInSearch != 0 && indexPath.row == movieList.count - 1 && currentMoviesPage[.Search]! < currentTotalPagesInSearch {
+        loadMoviesIn(.Search)
+      }
+    default:
+      break
+    }
+  }
+}
+
+// MARK: - UISearchBarDelegate
+extension MasterViewController: UISearchBarDelegate {
+  func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+    searchResultView.isHidden ? blurSupportView.visible() : blurSupportView.invisible()
+    return true
+  }
+  
+  func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+    blurSupportView.hidden()
+  }
+  
+  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    view.endEditing(true)
+  }
+  
+  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    searchResultCollectionView.scrollToTop()
+    if searchBar.text?.isEmpty ?? true {
+      blurSupportView.visible()
+      searchResultView.isHidden = true
+    } else {
+      blurSupportView.invisible()
+      mainActivityIndicator.startAnimating()
+      currentMoviesPage[.Search] = 0
+      searchMovies = [Movie]()
+      searchResultCollectionView.reloadData()
+      loadMoviesIn(.Search)
     }
   }
 }
@@ -148,11 +202,31 @@ extension MasterViewController {
   private func loadMoviesIn(_ movieSegment: MovieSegment) {
     currentMoviesPage[movieSegment]! += 1
     let page = currentMoviesPage[movieSegment]!
-    if movieSegment != .MyFav {
+    switch movieSegment {
+    case .MyFav:
+      myFavMovies = Array(favoriteMovies)
+      setUpRealmNotificationFor(favoriteMovies)
+    case .Search:
+      if let query = searchBar.text {
+        API.MovieService.searchMovies(query: query, page: page) { [weak self] (result, error) in
+          guard let self = self else { return }
+          self.mainActivityIndicator.stopAnimating()
+          self.searchResultView.isHidden = false
+          if let error = error {
+            self.showInformedAlert(withTitle: Constants.TitleAlert.error, message: error.localizedDescription)
+          }
+          if let result = result {
+            self.currentTotalPagesInSearch = result.totalPages
+            self.searchResultLabel.attributedText = self.buildSearchTextLabelWith(numberOfResults: result.totalResults, query: query)
+            self.searchMovies += result.list
+            self.searchResultCollectionView.reloadData()
+          }
+        }
+      }
+    default:
       API.MovieService.fetchMovies(page: page, movieSegment: movieSegment) { [weak self] (result, error) in
         guard let self = self else { return }
         if let error = error {
-          self.currentMoviesPage[movieSegment]! -= 1
           self.showInformedAlert(withTitle: Constants.TitleAlert.error, message: error.localizedDescription)
         }
         if let result = result {
@@ -165,10 +239,13 @@ extension MasterViewController {
           }
         }
       }
-    } else {
-      myFavMovies = Array(favoriteMovies)
-      setUpRealmNotificationFor(favoriteMovies)
     }
+  }
+  
+  private func buildSearchTextLabelWith(numberOfResults: Int, query: String) -> NSMutableAttributedString {
+    let attributedText = NSMutableAttributedString(attributedString: NSAttributedString(string: "\(numberOfResults) results for ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17)]))
+    attributedText.append(NSAttributedString(string: query, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17), NSAttributedString.Key.foregroundColor: UIColor.orange]))
+    return attributedText
   }
 
   // Observe Results Notifications
@@ -206,6 +283,8 @@ extension MasterViewController {
       return mostRatedMovies
     case myFavMovieCollectionView:
       return myFavMovies
+    case searchResultCollectionView:
+      return searchMovies
     default:
       fatalError()
     }
@@ -219,6 +298,8 @@ extension MasterViewController {
       return .MostRated
     case myFavMovieCollectionView:
       return .MyFav
+    case searchResultCollectionView:
+      return .Search
     default:
       fatalError()
     }

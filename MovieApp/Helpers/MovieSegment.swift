@@ -12,6 +12,7 @@ enum MovieSegment: Int {
   case Popular
   case MostRated
   case MyFav
+  case Search
 
   func apiPath() -> String {
     switch self {
@@ -19,7 +20,7 @@ enum MovieSegment: Int {
       return Constants.theMovie.popularMoviesPath
     case .MostRated:
       return Constants.theMovie.mostRatedMoviesPath
-    case .MyFav:
+    default:
       return ""
     }
   }

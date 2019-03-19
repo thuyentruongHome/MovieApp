@@ -16,6 +16,7 @@ extension API {
     private static let theMovieAPI = "https://api.themoviedb.org/3"
     private static let detailsMovieAPI = theMovieAPI + "/movie/:movieId"
     private static let videosMoviePath = "/movie/:movieId/videos"
+    private static let searchMoviesPath = theMovieAPI + "/search/movie"
     private static let reviewsMoviePath = "/movie/:movieId/reviews"
     private static let imageBaseURL = "https://image.tmdb.org/t/p/w342/"
     private static let youtubeThumbnailURL = "https://img.youtube.com/vi/:videoId/hqdefault.jpg"
@@ -94,6 +95,22 @@ extension API {
           do {
             let reviewResult = try JSONDecoder().decode(ReviewsResult.self, from: data)
             completionHandler(reviewResult, nil)
+          } catch let error {
+            completionHandler(nil, error)
+          }
+        case .failure(let error):
+          completionHandler(nil, error)
+        }
+      }
+    }
+    
+    class func searchMovies(query: String, page: Int = 1, completionHandler: @escaping MoviesResponseHandler) {
+      Alamofire.request(searchMoviesPath, method: .get, parameters: ["api_key": apiKey, "query": query, "page": page]).validate().responseData { (response) in
+        switch response.result {
+        case .success(let data):
+          do {
+            let movies = try JSONDecoder().decode(MoviesResult.self, from: data)
+            completionHandler(movies, nil)
           } catch let error {
             completionHandler(nil, error)
           }

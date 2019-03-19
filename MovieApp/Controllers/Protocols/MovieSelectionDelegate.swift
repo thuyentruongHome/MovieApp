@@ -8,6 +8,6 @@
 
 import UIKit
 
-protocol MovieSelectionDelegate {
+protocol MovieSelectionDelegate: AnyObject {
   func movieSelected(_ selectedMovie: Movie)
 }
