@@ -6,12 +6,14 @@
 //  Copyright © 2019 thuyentruong. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 public let hostDomain = "movieapp.com"
 public let hostErrorCode = 1
 
 public struct Constants {
+  
+  public static let defaultPoster = UIImage(named: "default_poster")
 
   public struct theMovie {
     public static let dateFormat = "yyyy-MM-dd"

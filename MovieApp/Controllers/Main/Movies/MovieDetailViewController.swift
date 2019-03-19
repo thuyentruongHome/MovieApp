@@ -148,10 +148,15 @@ class MovieDetailViewController: UIViewController {
 
   private func loadMovieBaseInfo() {
     guard let movie = movie else { return }
-    API.MovieService.fetchMovieImage(posterPath: movie.posterPath, completionHandler: { [weak self] (image) in
-      guard let self = self else { return }
-      self.moviePoster.image = image
-    })
+    if let posterPath = movie.posterPath {
+      API.MovieService.fetchMovieImage(posterPath: posterPath, completionHandler: { [weak self] (image) in
+        guard let self = self else { return }
+        self.moviePoster.image = image
+      })
+    } else {
+      moviePoster.image = Constants.defaultPoster
+    }
+    
     movieTitle.text = movie.title
     movieReleaseDate.text = movie.formattedReleaseDate()
     movieStar.rating = movie.voteAverage

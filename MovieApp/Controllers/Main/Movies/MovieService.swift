@@ -22,18 +22,12 @@ extension API {
     private static let apiKey = Credential.valueForKey(keyName: "THEMOVIEDB_API_KEY")
 
     class func fetchMovies(page: Int = 1, movieSegment: MovieSegment, completionHandler: @escaping MoviesResponseHandler) {
-
       let url = URL(string: (theMovieAPI + movieSegment.apiPath()))!
-
       Alamofire.request(url, method: .get, parameters: ["api_key": apiKey, "page": page]).validate().responseData { (response) in
         switch response.result {
         case .success(let data):
           do {
-            let decoder = JSONDecoder()
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = Constants.theMovie.dateFormat
-            decoder.dateDecodingStrategy = .formatted(dateFormatter)
-            let movies = try decoder.decode(MoviesResult.self, from: data)
+            let movies = try JSONDecoder().decode(MoviesResult.self, from: data)
             completionHandler(movies, nil)
           } catch let error {
             completionHandler(nil, error)
@@ -50,11 +44,7 @@ extension API {
         switch response.result {
         case .success(let data):
           do {
-            let decoder = JSONDecoder()
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = Constants.theMovie.dateFormat
-            decoder.dateDecodingStrategy = .formatted(dateFormatter)
-            let movies = try decoder.decode(Movie.self, from: data)
+            let movies = try JSONDecoder().decode(Movie.self, from: data)
             completionHandler(movies, nil)
           } catch let error {
             completionHandler(nil, error)

@@ -18,10 +18,10 @@ class Movie: Object, Decodable {
 
   @objc dynamic var id: Int = 0
   @objc dynamic var title = ""
-  @objc dynamic var posterPath = ""
-  @objc dynamic var releaseDate = Date()
+  @objc dynamic var posterPath: String?
+  @objc dynamic var releaseDate: Date?
   @objc dynamic var voteAverage: Double = 0.0
-  @objc dynamic var overview = ""
+  @objc dynamic var overview: String?
   @objc dynamic var liked = false
   @objc dynamic var likedAt = Date()
   
@@ -41,15 +41,27 @@ class Movie: Object, Decodable {
     case voteAverage = "vote_average"
     case overview
   }
+  
+  required init(from decoder: Decoder) throws {
+    super.init()
+    let container  = try decoder.container(keyedBy: CodingKeys.self)
+    id             = try container.decode(Int.self, forKey: .id)
+    title          = try container.decode(String.self, forKey: .title)
+    posterPath     = try container.decode(String?.self, forKey: .posterPath)
+    let dateString = try container.decode(String?.self, forKey: .releaseDate)
+    releaseDate    = self.parseInDate(dateString)
+    voteAverage    = try container.decode(Double.self, forKey: .voteAverage)
+    overview       = try container.decode(String?.self, forKey: .overview)
+  }
 
   // MARK: - Instance Methods
   func formattedReleaseDate() -> String {
+    guard let releaseDate = releaseDate else { return "" }
     let dateFormatterPrint = DateFormatter()
     dateFormatterPrint.dateFormat = dateFormat
-
     return dateFormatterPrint.string(from: releaseDate)
   }
-
+  
   // MARK: - Realm Handlers
   required init() {
     super.init()
@@ -72,7 +84,8 @@ class Movie: Object, Decodable {
   }
 
   static func like(_ movie: Movie) {
-    let favoriteMovie = Movie(value: ["id": movie.id, "liked": true, "posterPath": movie.posterPath])
+    let favoriteMovie = Movie(value: ["id": movie.id, "liked": true])
+    if let posterPath = movie.posterPath { favoriteMovie.posterPath = posterPath }
     try! realm.write {
       realm.add(favoriteMovie, update: true)
     }
@@ -87,5 +100,18 @@ class Movie: Object, Decodable {
 
   static func exists(_ movieId: Int) -> Bool {
     return realm.objects(Movie.self).filter("id = \(movieId) AND liked == TRUE").first != nil
+  }
+}
+
+extension Movie {
+  func parseInDate(_ dateString: String?) -> Date? {
+    guard let dateString = dateString else { return nil }
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = Constants.theMovie.dateFormat
+    if let date = dateFormatter.date(from: dateString) {
+      return date
+    } else {
+      return nil
+    }
   }
 }
