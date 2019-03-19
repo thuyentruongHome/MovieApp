@@ -24,4 +24,13 @@ enum MovieSegment: Int {
       return ""
     }
   }
+
+  func text() -> String {
+    switch self {
+    case .Popular: return "Popular"
+    case .MostRated: return "Most Rated"
+    case .MyFav: return "Favorite"
+    case .Search: return "Search"
+    }
+  }
 }

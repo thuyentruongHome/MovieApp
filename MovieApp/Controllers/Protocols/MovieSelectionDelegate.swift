@@ -9,5 +9,5 @@
 import UIKit
 
 protocol MovieSelectionDelegate: AnyObject {
-  func movieSelected(_ selectedMovie: Movie)
+  func movieSelected(_ selectedMovie: Movie, in selectedSegment: MovieSegment)
 }

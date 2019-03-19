@@ -35,6 +35,8 @@ class MasterViewController: UIViewController {
   private let (interItemSpacing, lineSpacing): (CGFloat, CGFloat) = (4, 4)
 
   public var isMovieSelected = false
+  private var selectedCollectionView: UICollectionView?
+  private var selectedIndexPath: IndexPath?
   private var currentMoviesPage = [
     MovieSegment.Popular: 0,
     MovieSegment.MostRated: 0,
@@ -53,6 +55,10 @@ class MasterViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     movieSegmentControl.sendActions(for: .valueChanged)
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    removeOldSelectedHighlight()
   }
 
   deinit {
@@ -140,8 +146,12 @@ extension MasterViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - UICollectionViewDelegate
 extension MasterViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    // Returns when Detail page is showing and user selects same movie
+    if SplitViewController.isAllVisible(), selectedCollectionView == collectionView, selectedIndexPath == indexPath { return }
+    removeOldSelectedHighlight()
+    selectedCollectionView = collectionView; selectedIndexPath = indexPath
     let movie = fetchMatchingMovieListOf(collectionView)[indexPath.row]
-    delegate?.movieSelected(movie)
+    delegate?.movieSelected(movie, in: fetchMatchingMovieSegmentOf(collectionView))
     isMovieSelected = true
 
     if let detailViewController = delegate as? MovieDetailViewController {
@@ -198,6 +208,17 @@ extension MasterViewController: UISearchBarDelegate {
   }
 }
 
+// MARK: - UI Handlers
+extension MasterViewController {
+  private func removeOldSelectedHighlight() {
+    if let selectedCollectionView = selectedCollectionView, let selectedIndexPath = selectedIndexPath {
+      selectedCollectionView.deselectItem(at: selectedIndexPath, animated: false)
+    }
+    selectedCollectionView = nil; selectedIndexPath = nil
+  }
+}
+
+// MARK: - Data Handlers
 extension MasterViewController {
   private func loadMoviesIn(_ movieSegment: MovieSegment) {
     currentMoviesPage[movieSegment]! += 1

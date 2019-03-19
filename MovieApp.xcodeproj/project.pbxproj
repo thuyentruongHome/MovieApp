@@ -16,6 +16,7 @@
 		E20521582223EFD700B91306 /* ForgotPasswordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20521572223EFD700B91306 /* ForgotPasswordTests.swift */; };
 		E20944E2222307E700FD7B08 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20944E1222307E700FD7B08 /* SignInViewController.swift */; };
 		E20944E4222316DA00FD7B08 /* SignInTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20944E3222316DA00FD7B08 /* SignInTests.swift */; };
+		E20C6993224000AD00F78CF2 /* Notification.Name+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20C6992224000AD00F78CF2 /* Notification.Name+Extension.swift */; };
 		E22A498D2223AE4700B91EFA /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22A498C2223AE4700B91EFA /* ForgotPasswordViewController.swift */; };
 		E23D000E22297DB90077CEB7 /* MovieSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23D000D22297DB90077CEB7 /* MovieSegment.swift */; };
 		E23D00102229800D0077CEB7 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23D000F2229800D0077CEB7 /* MovieDetailViewController.swift */; };
@@ -115,6 +116,7 @@
 		E20521572223EFD700B91306 /* ForgotPasswordTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordTests.swift; sourceTree = "<group>"; };
 		E20944E1222307E700FD7B08 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		E20944E3222316DA00FD7B08 /* SignInTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInTests.swift; sourceTree = "<group>"; };
+		E20C6992224000AD00F78CF2 /* Notification.Name+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Notification.Name+Extension.swift"; path = "MovieApp/Models/Notification.Name+Extension.swift"; sourceTree = SOURCE_ROOT; };
 		E22A498C2223AE4700B91EFA /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		E23D000D22297DB90077CEB7 /* MovieSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSegment.swift; sourceTree = "<group>"; };
 		E23D000F2229800D0077CEB7 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
@@ -386,6 +388,7 @@
 			children = (
 				E2916482221B1AE90052997B /* UIViewController+Extension.swift */,
 				E2ABB5D82232612D00F11FE9 /* UIView+Extension.swift */,
+				E20C6992224000AD00F78CF2 /* Notification.Name+Extension.swift */,
 			);
 			name = Extensions;
 			path = "New Group";
@@ -1014,6 +1017,7 @@
 				E2916483221B1AE90052997B /* UIViewController+Extension.swift in Sources */,
 				E2ABB5D7223251E800F11FE9 /* ReviewTableCell.swift in Sources */,
 				E291647F221B1AA70052997B /* UserService.swift in Sources */,
+				97AFB42922410F23001F2A14 /* BlurSupportView.swift in Sources */,
 				E2B9D6432227B6040034FD5E /* SpitViewController.swift in Sources */,
 				E29EAF5622253E0200737CEF /* HamburgerMenuVC.swift in Sources */,
 				E23D0013222980F40077CEB7 /* MovieSelectionDelegate.swift in Sources */,
@@ -1022,6 +1026,7 @@
 				E2DC918E222FBAE900D42E60 /* Video.swift in Sources */,
 				E2B9D64C22283BFD0034FD5E /* MovieCollectionCell.swift in Sources */,
 				E2F2E34B22165E8B00C235E2 /* LandingViewController.swift in Sources */,
+				E20C6993224000AD00F78CF2 /* Notification.Name+Extension.swift in Sources */,
 				E2ABB5D92232612D00F11FE9 /* UIView+Extension.swift in Sources */,
 				E2DC9190222FBB3000D42E60 /* VideosResult.swift in Sources */,
 				E2B9D6482227C9490034FD5E /* Movie.swift in Sources */,

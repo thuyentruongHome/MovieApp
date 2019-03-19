@@ -35,4 +35,8 @@ class SplitViewController: UISplitViewController, UISplitViewControllerDelegate 
       let masterViewController = leftNavController.topViewController as? MasterViewController else { return true }
     return !masterViewController.isMovieSelected
   }
+  
+  static func isAllVisible() -> Bool {
+    return UIScreen.main.traitCollection.horizontalSizeClass == .regular
+  }
 }

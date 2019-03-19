@@ -14,6 +14,8 @@ class MovieDetailViewController: UIViewController {
 
   // MARK: - Properties
   @IBOutlet weak var mainView: UIView!
+  @IBOutlet weak var topTitleBoxHeightConstraint: NSLayoutConstraint!
+  @IBOutlet weak var topMovieTitle: UILabel!
   @IBOutlet weak var moviePoster: UIImageView!
   @IBOutlet weak var movieTitle: UILabel!
   @IBOutlet weak var movieReleaseDate: UILabel!
@@ -67,12 +69,14 @@ class MovieDetailViewController: UIViewController {
   // MARK: - Properties - Review Collection View
   private var movieReviews = [Review]()
   private let reviewReuseIdentifier = "reviewCell"
+  private let topTitleBoxHeight: CGFloat = 56
 
   var movie: Movie? {
     didSet {
       movie!.title.isEmpty ? loadMovieAndRefreshView() : refreshView()
     }
   }
+  var selectedMovieSegment: MovieSegment?
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -90,6 +94,7 @@ class MovieDetailViewController: UIViewController {
       collectionViewLayout.prepare()
       collectionViewLayout.invalidateLayout()
       self.reloadTrailerCollectionHeight()
+      self.setUpMovieDetailNavigation()
     }
   }
 
@@ -126,9 +131,21 @@ class MovieDetailViewController: UIViewController {
   }
 
   func refreshView() {
+    setUpMovieDetailNavigation()
     mainView.isHidden = false
     resetUIView()
     loadMovieBaseInfo()
+  }
+  
+  private func setUpMovieDetailNavigation() {
+    if SplitViewController.isAllVisible() {
+      NotificationCenter.default.post(name: .HiddenMovieDetailNavigation, object: nil)
+      topTitleBoxHeightConstraint.constant = topTitleBoxHeight
+      topMovieTitle.text = "\(selectedMovieSegment!.text()) • \(movie!.title)"
+    } else {
+      topTitleBoxHeightConstraint.constant = 0
+      NotificationCenter.default.post(name: .DidSelectMovie, object: movie)
+    }
   }
 
   private func resetUIView() {
@@ -197,8 +214,10 @@ class MovieDetailViewController: UIViewController {
   }
 }
 
+// MARK: - MovieSelectionDelegate
 extension MovieDetailViewController: MovieSelectionDelegate {
-  func movieSelected(_ selectedMovie: Movie) {
+  func movieSelected(_ selectedMovie: Movie, in selectedSegment: MovieSegment) {
+    selectedMovieSegment = selectedSegment
     movie = selectedMovie
   }
 }

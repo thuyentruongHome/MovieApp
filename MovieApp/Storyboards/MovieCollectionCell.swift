@@ -15,15 +15,23 @@ class MovieCollectionCell: UICollectionViewCell {
 
   override var isSelected: Bool {
     didSet {
-      if self.isSelected {
-        moviePoster.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-        moviePoster.alpha = 0.8
-        backgroundColor = UIColor(red: 280, green: 50, blue: 50, alpha: 1)
+      if SplitViewController.isAllVisible() {
+        isSelected ? styleSelectedCell() : unstyleSelectedCell()
       } else {
-        moviePoster.transform = CGAffineTransform.identity
-        moviePoster.alpha = 1.0
-        backgroundColor = .clear
+        unstyleSelectedCell()
       }
     }
+  }
+  
+  private func styleSelectedCell() {
+    moviePoster.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+    moviePoster.alpha = 0.8
+    backgroundColor = UIColor.gray
+  }
+  
+  private func unstyleSelectedCell() {
+    moviePoster.transform = CGAffineTransform.identity
+    moviePoster.alpha = 1.0
+    backgroundColor = .clear
   }
 }
