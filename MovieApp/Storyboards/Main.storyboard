@@ -45,6 +45,13 @@
                                                     <action selector="toggleHamburgerMenu:" destination="iFI-r7-OPq" eventType="touchUpInside" id="a8r-mW-2H5"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4nr-KS-K56" userLabel="Top Logo">
+                                                <rect key="frame" x="165" y="9" width="84" height="42"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="4nr-KS-K56" secondAttribute="height" multiplier="2:1" id="xjU-WO-dQF"/>
+                                                </constraints>
+                                                <state key="normal" title="Button" image="logo"/>
+                                            </button>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZmI-uj-IaA">
                                                 <rect key="frame" x="55" y="0.0" width="359" height="60"/>
                                                 <subviews>
@@ -80,10 +87,13 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.18823529411764706" green="0.23137254901960785" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
+                                            <constraint firstItem="4nr-KS-K56" firstAttribute="height" secondItem="uLc-zq-cc0" secondAttribute="height" multiplier="0.7" id="BUZ-C1-YZ5"/>
                                             <constraint firstItem="ZmI-uj-IaA" firstAttribute="top" secondItem="uLc-zq-cc0" secondAttribute="top" id="J4E-oi-fyo"/>
                                             <constraint firstItem="ZmI-uj-IaA" firstAttribute="leading" secondItem="gCJ-FS-Dmg" secondAttribute="trailing" id="NFx-zc-vf0"/>
                                             <constraint firstAttribute="bottom" secondItem="gCJ-FS-Dmg" secondAttribute="bottom" id="Od0-Xb-fOb"/>
                                             <constraint firstItem="gCJ-FS-Dmg" firstAttribute="leading" secondItem="uLc-zq-cc0" secondAttribute="leading" constant="10" id="OxU-7l-JT1"/>
+                                            <constraint firstItem="4nr-KS-K56" firstAttribute="centerX" secondItem="uLc-zq-cc0" secondAttribute="centerX" id="SJG-2R-yHG"/>
+                                            <constraint firstItem="4nr-KS-K56" firstAttribute="centerY" secondItem="uLc-zq-cc0" secondAttribute="centerY" id="XMX-kJ-PBT"/>
                                             <constraint firstAttribute="height" constant="60" id="Y9m-ai-SDk"/>
                                             <constraint firstAttribute="trailing" secondItem="ZmI-uj-IaA" secondAttribute="trailing" id="bwz-Tm-pgU"/>
                                             <constraint firstAttribute="bottom" secondItem="ZmI-uj-IaA" secondAttribute="bottom" id="gq7-VX-MtB"/>
@@ -126,6 +136,7 @@
                         <outlet property="menuContainerView" destination="HY1-cW-yYJ" id="K0u-xB-DwX"/>
                         <outlet property="movieDetailNavigation" destination="ZmI-uj-IaA" id="YO2-cG-omx"/>
                         <outlet property="selectedMovieTitle" destination="t9e-nm-4i9" id="NWc-uy-89H"/>
+                        <outlet property="topLogo" destination="4nr-KS-K56" id="mJD-5M-MMQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Om-Vl-6yu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -495,7 +506,7 @@
                                                             <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                                         </variation>
                                                     </label>
-                                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wul-uM-eVK" customClass="CosmosView" customModule="Cosmos">
+                                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wul-uM-eVK" customClass="CosmosView" customModule="Cosmos">
                                                         <rect key="frame" x="0.0" y="128.5" width="139" height="40"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <userDefinedRuntimeAttributes>
@@ -1030,6 +1041,7 @@
     <resources>
         <image name="back" width="43" height="51"/>
         <image name="liked" width="512" height="233"/>
+        <image name="logo" width="512" height="305"/>
         <image name="not_like" width="512" height="233"/>
         <image name="orange-hamburger" width="51" height="27"/>
         <image name="sign-out" width="15" height="13"/>

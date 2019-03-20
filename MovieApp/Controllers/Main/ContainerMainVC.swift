@@ -13,6 +13,7 @@ class ContainerMainVC: UIViewController {
   // MARK: - Properties
   @IBOutlet weak var leadingAnchorMenu: NSLayoutConstraint!
   @IBOutlet weak var menuContainerView: UIView!
+  @IBOutlet weak var topLogo: UIButton!
   @IBOutlet weak var movieDetailNavigation: UIView!
   @IBOutlet weak var selectedMovieTitle: UILabel!
   private var splitNavigationController: UINavigationController?
@@ -44,6 +45,7 @@ class ContainerMainVC: UIViewController {
   @IBAction func backToMasterView(_ sender: Any) {
     splitNavigationController?.popToRootViewController(animated: true)
     movieDetailNavigation.isHidden = true
+    topLogo.isHidden = false
   }
 
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -62,10 +64,12 @@ extension ContainerMainVC {
     if let movie = notification.object as? Movie {
       movieDetailNavigation.isHidden = false
       selectedMovieTitle.text = movie.title
+      topLogo.isHidden = true
     }
   }
   
   @objc private func hiddenMovieDetailNavigation() {
     movieDetailNavigation.isHidden = true
+    topLogo.isHidden = false
   }
 }
