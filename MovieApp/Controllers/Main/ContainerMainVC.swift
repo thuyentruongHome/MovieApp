@@ -11,11 +11,14 @@ import UIKit
 class ContainerMainVC: UIViewController {
 
   // MARK: - Properties
+  @IBOutlet weak var hamburgerMenuBtn: UIButton!
   @IBOutlet weak var leadingAnchorMenu: NSLayoutConstraint!
   @IBOutlet weak var menuContainerView: UIView!
   @IBOutlet weak var topLogo: UIButton!
   @IBOutlet weak var movieDetailNavigation: UIView!
   @IBOutlet weak var selectedMovieTitle: UILabel!
+  @IBOutlet weak var blurSupportView: UIView!
+  
   private var splitNavigationController: UINavigationController?
 
   override func viewDidLoad() {
@@ -34,6 +37,7 @@ class ContainerMainVC: UIViewController {
   @IBAction func toggleHamburgerMenu(_ sender: Any) {
     guard let hamburgerMenuBtn = sender as? UIButton else { return }
     hamburgerMenuBtn.isSelected = !hamburgerMenuBtn.isSelected
+    blurSupportView.isHidden = !hamburgerMenuBtn.isSelected
     let leftAnchorConstant = hamburgerMenuBtn.isSelected ? 0 : -self.menuContainerView.frame.width
 
     UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
@@ -50,6 +54,16 @@ class ContainerMainVC: UIViewController {
 
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     view.endEditing(true)
+  }
+  
+  @IBAction func closeMenuGesture(_ sender: Any) {
+    guard hamburgerMenuBtn.isSelected else { return }
+    hamburgerMenuBtn.sendActions(for: .touchUpInside)
+  }
+  
+  @IBAction func openMenuGesture(_ sender: Any) {
+    guard !hamburgerMenuBtn.isSelected else { return }
+    hamburgerMenuBtn.sendActions(for: .touchUpInside)
   }
 }
 

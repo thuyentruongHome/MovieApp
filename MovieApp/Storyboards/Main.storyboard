@@ -117,21 +117,41 @@
                                     <constraint firstItem="ClL-WL-5PL" firstAttribute="top" secondItem="uLc-zq-cc0" secondAttribute="bottom" id="xyi-T9-CbB"/>
                                     <constraint firstItem="ClL-WL-5PL" firstAttribute="leading" secondItem="0fc-d9-xaj" secondAttribute="leading" id="zfT-Pd-AWd"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="QOT-0P-3Vp" appends="YES" id="cb8-Wh-UzN"/>
+                                </connections>
+                            </view>
+                            <view hidden="YES" alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Lk-kw-J43">
+                                <rect key="frame" x="0.0" y="44" width="414" height="896"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="1bP-ie-GfV" appends="YES" id="ICD-Rb-Key"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="0fc-d9-xaj" firstAttribute="width" secondItem="Zae-1o-Pbm" secondAttribute="width" id="9ZP-xE-arX"/>
                             <constraint firstItem="0fc-d9-xaj" firstAttribute="height" secondItem="Zae-1o-Pbm" secondAttribute="height" id="EqL-qk-VuR"/>
                             <constraint firstItem="AKV-2x-auF" firstAttribute="bottom" secondItem="HY1-cW-yYJ" secondAttribute="bottom" id="Jjv-8p-k1Y"/>
+                            <constraint firstItem="2Lk-kw-J43" firstAttribute="trailing" secondItem="0fc-d9-xaj" secondAttribute="trailing" id="P7f-74-8lj"/>
+                            <constraint firstItem="2Lk-kw-J43" firstAttribute="bottom" secondItem="0fc-d9-xaj" secondAttribute="bottom" id="RLp-r7-9l0"/>
                             <constraint firstItem="0fc-d9-xaj" firstAttribute="leading" secondItem="HY1-cW-yYJ" secondAttribute="trailing" id="WBF-Fy-I1Q"/>
                             <constraint firstItem="HY1-cW-yYJ" firstAttribute="leading" secondItem="Zae-1o-Pbm" secondAttribute="leading" constant="-270" id="eNm-Av-0nT"/>
+                            <constraint firstItem="2Lk-kw-J43" firstAttribute="leading" secondItem="0fc-d9-xaj" secondAttribute="leading" id="ev0-zO-vHh"/>
+                            <constraint firstItem="2Lk-kw-J43" firstAttribute="top" secondItem="0fc-d9-xaj" secondAttribute="top" id="hmI-DX-bdO"/>
                             <constraint firstItem="0fc-d9-xaj" firstAttribute="top" secondItem="AKV-2x-auF" secondAttribute="top" id="otG-PZ-slj"/>
                             <constraint firstItem="HY1-cW-yYJ" firstAttribute="top" secondItem="AKV-2x-auF" secondAttribute="top" id="wxT-Xb-oB1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AKV-2x-auF"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="cI0-Qt-QXK" appends="YES" id="eVi-AA-fSW"/>
+                        </connections>
                     </view>
                     <connections>
+                        <outlet property="blurSupportView" destination="2Lk-kw-J43" id="0Q5-Kb-itu"/>
+                        <outlet property="hamburgerMenuBtn" destination="gCJ-FS-Dmg" id="6TR-jE-enR"/>
                         <outlet property="leadingAnchorMenu" destination="eNm-Av-0nT" id="A3M-wz-eIf"/>
                         <outlet property="menuContainerView" destination="HY1-cW-yYJ" id="K0u-xB-DwX"/>
                         <outlet property="movieDetailNavigation" destination="ZmI-uj-IaA" id="YO2-cG-omx"/>
@@ -140,6 +160,21 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Om-Vl-6yu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="1bP-ie-GfV">
+                    <connections>
+                        <action selector="closeMenuGesture:" destination="iFI-r7-OPq" id="nvQ-Hb-SGa"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="QOT-0P-3Vp">
+                    <connections>
+                        <action selector="openMenuGesture:" destination="iFI-r7-OPq" id="fBS-LZ-PP6"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="cI0-Qt-QXK">
+                    <connections>
+                        <action selector="closeMenuGesture:" destination="iFI-r7-OPq" id="LAd-rr-iF5"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="569.56521739130437" y="49.553571428571423"/>
         </scene>
