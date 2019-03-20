@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import FirebaseDatabase
 
 class MasterViewController: UIViewController {
 
@@ -47,9 +48,6 @@ class MasterViewController: UIViewController {
   private var mostRatedMovies = [Movie]()
   private var myFavMovies = [Movie]()
   private var searchMovies = [Movie]()
-  private lazy var favoriteMovies = {
-    Movie.getAllLiked()
-  }()
 
   // MARK: - Init
   override func viewDidLoad() {
@@ -225,8 +223,23 @@ extension MasterViewController {
     let page = currentMoviesPage[movieSegment]!
     switch movieSegment {
     case .MyFav:
-      myFavMovies = Array(favoriteMovies)
-      setUpRealmNotificationFor(favoriteMovies)
+      if API.UserService.isLoggedIn() {
+        FirebaseDbService.getAllLiked { [weak self] (snapshot) in
+          guard let self = self else { return }
+          self.myFavMovies = [Movie]()
+          for child in snapshot.children {
+            if let snapshot = child as? DataSnapshot,
+              let movie = Movie(from: snapshot) {
+              self.myFavMovies.append(movie)
+            }
+          }
+          self.myFavMovieCollectionView.reloadData()
+        }
+      } else {
+        let realmFavoriteMovies = LocalDbService.getAllLiked()
+        myFavMovies = Array(realmFavoriteMovies)
+        setUpRealmNotificationFor(realmFavoriteMovies)
+      }
     case .Search:
       if let query = searchBar.text {
         API.MovieService.searchMovies(query: query, page: page) { [weak self] (result, error) in
@@ -285,7 +298,7 @@ extension MasterViewController {
         })
 
         insertions.forEach({ (insertedIndex) in
-          self.myFavMovies.insert(self.favoriteMovies[insertedIndex], at: insertedIndex)
+          self.myFavMovies.insert(member[insertedIndex], at: insertedIndex)
           self.myFavMovieCollectionView.performBatchUpdates({
             self.myFavMovieCollectionView.insertItems(at: [IndexPath(row: insertedIndex, section: 0)])
           }, completion: nil)

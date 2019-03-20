@@ -9,12 +9,17 @@
 import Foundation
 import Realm
 import RealmSwift
+import FirebaseDatabase
 
 class Movie: Object, Decodable {
 
   // MARK: - Properties
-  private static let realm = try! Realm()
   private let dateFormat = "MMMM yyyy"
+  private static var dbService: BaseDatabase.Type {
+    get {
+      return API.UserService.isLoggedIn() ? FirebaseDbService.self : LocalDbService.self
+    }
+  }
 
   @objc dynamic var id: Int = 0
   @objc dynamic var title = ""
@@ -53,6 +58,17 @@ class Movie: Object, Decodable {
     voteAverage    = try container.decode(Double.self, forKey: .voteAverage)
     overview       = parseInString(try container.decode(String?.self, forKey: .overview))
   }
+  
+  init?(from snapshot: DataSnapshot) {
+    super.init()
+    guard
+      let value = snapshot.value as? [String: AnyObject],
+      let id    = Int(snapshot.key) else {
+      return nil
+    }
+    self.id = id
+    posterPath = value["poster_path"] as? String
+  }
 
   // MARK: - Instance Methods
   func formattedReleaseDate() -> String {
@@ -79,27 +95,16 @@ class Movie: Object, Decodable {
     super.init(realm: realm, schema: schema)
   }
 
-  static func getAllLiked() -> Results<Movie> {
-    return realm.objects(Movie.self).filter("liked == TRUE").sorted(byKeyPath: "likedAt", ascending: false)
-  }
-
   static func like(_ movie: Movie) {
-    let favoriteMovie = Movie(value: ["id": movie.id, "liked": true])
-    if let posterPath = movie.posterPath { favoriteMovie.posterPath = posterPath }
-    try! realm.write {
-      realm.add(favoriteMovie, update: true)
-    }
+    dbService.like(movie)
   }
 
   static func removeLike(_ movieId: Int) {
-    guard let favoriteMovie = realm.objects(Movie.self).filter("id = \(movieId)").first else { return }
-    try! realm.write {
-      favoriteMovie.liked = false
-    }
+    dbService.removeLike(movieId)
   }
 
-  static func exists(_ movieId: Int) -> Bool {
-    return realm.objects(Movie.self).filter("id = \(movieId) AND liked == TRUE").first != nil
+  static func didLike(_ movieId: Int, completionHandler: @escaping API.BooleanResponseHandler) {
+    dbService.didLike(movieId, completionHandler: completionHandler)
   }
 }
 

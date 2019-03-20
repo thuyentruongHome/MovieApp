@@ -89,6 +89,7 @@ class MovieDetailViewController: UIViewController {
   // MARK: - Handlers
   override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
     super.viewWillTransition(to: size, with: coordinator)
+    guard movie != nil else { return }
     coordinator.animateAlongsideTransition(in: nil, animation: nil) { (_) in
       self._widthPerTrailerCell = nil
       self._heightPerTrailerCell = nil
@@ -189,8 +190,8 @@ class MovieDetailViewController: UIViewController {
     movieTitle.text = movie.title
     movieReleaseDate.text = movie.formattedReleaseDate()
     movieStar.rating = movie.voteAverage
-
-    likeBtn.isSelected = Movie.exists(movie.id)
+    
+    Movie.didLike(movie.id) { [weak self] in self?.likeBtn.isSelected = $0 }
   }
 
   private func loadDetailsSection() {
