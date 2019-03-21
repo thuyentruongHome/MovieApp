@@ -17,6 +17,7 @@ class MasterViewController: UIViewController {
   @IBOutlet weak var popularMovieCollectionView: UICollectionView!
   @IBOutlet weak var mostRatedMovieCollectionView: UICollectionView!
   @IBOutlet weak var myFavMovieCollectionView: UICollectionView!
+  @IBOutlet weak var emptyFavMoviesLabel: UILabel!
   @IBOutlet weak var mainActivityIndicator: UIActivityIndicatorView!
   
   // MARK: - Search Properties
@@ -46,7 +47,11 @@ class MasterViewController: UIViewController {
   ]
   private var popularMovies = [Movie]()
   private var mostRatedMovies = [Movie]()
-  private var myFavMovies = [Movie]()
+  private var myFavMovies = [Movie]() {
+    didSet {
+      emptyFavMoviesLabel.isHidden = myFavMovies.count != 0
+    }
+  }
   private var searchMovies = [Movie]()
 
   // MARK: - Init
@@ -223,6 +228,7 @@ extension MasterViewController {
     let page = currentMoviesPage[movieSegment]!
     switch movieSegment {
     case .MyFav:
+      mainActivityIndicator.startAnimating()
       if API.UserService.isLoggedIn() {
         FirebaseDbService.getAllLiked { [weak self] (snapshot) in
           guard let self = self else { return }
@@ -234,6 +240,7 @@ extension MasterViewController {
             }
           }
           self.myFavMovieCollectionView.reloadData()
+          self.mainActivityIndicator.stopAnimating()
         }
       } else {
         let realmFavoriteMovies = LocalDbService.getAllLiked()
@@ -286,6 +293,7 @@ extension MasterViewController {
   private func setUpRealmNotificationFor(_ member: Results<Movie>) {
     notificationToken = member.observe( { [weak self] (change) in
       guard let self = self else { return }
+      self.mainActivityIndicator.stopAnimating()
       switch change {
       case .initial:
         self.myFavMovieCollectionView.reloadData()

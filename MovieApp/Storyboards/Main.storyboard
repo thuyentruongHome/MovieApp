@@ -421,9 +421,16 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="color" red="0.1334631741" green="0.1823148429" blue="0.25190103050000001" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have no favorite movies yet!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DuJ-yT-0Us">
+                                <rect key="frame" x="68" y="176" width="278" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="DuJ-yT-0Us" firstAttribute="top" secondItem="VRs-Yg-3jn" secondAttribute="bottom" constant="70" id="0ES-cE-XR8"/>
                             <constraint firstItem="SYg-ng-Yz7" firstAttribute="leading" secondItem="3hq-gC-EuY" secondAttribute="leading" constant="12" id="26f-2c-b7O"/>
                             <constraint firstItem="ttA-Lz-Gbp" firstAttribute="top" secondItem="zdf-iP-TDa" secondAttribute="bottom" id="3u5-v0-lRk"/>
                             <constraint firstItem="SW7-HJ-n6t" firstAttribute="centerY" secondItem="3hq-gC-EuY" secondAttribute="centerY" constant="-120" id="5fp-Tn-9xO"/>
@@ -436,6 +443,7 @@
                             <constraint firstItem="ISm-bn-2GY" firstAttribute="bottom" secondItem="SYg-ng-Yz7" secondAttribute="bottom" id="CUZ-zq-UxQ"/>
                             <constraint firstItem="SW7-HJ-n6t" firstAttribute="centerX" secondItem="3hq-gC-EuY" secondAttribute="centerX" id="DAA-DE-PPb"/>
                             <constraint firstItem="Ss4-C9-OMt" firstAttribute="leading" secondItem="SYg-ng-Yz7" secondAttribute="leading" id="DwZ-0i-zmw"/>
+                            <constraint firstItem="DuJ-yT-0Us" firstAttribute="centerX" secondItem="3hq-gC-EuY" secondAttribute="centerX" id="FNM-0m-2vF"/>
                             <constraint firstItem="yZ0-Ci-0qx" firstAttribute="leading" secondItem="SYg-ng-Yz7" secondAttribute="leading" id="GoR-dW-4l0"/>
                             <constraint firstItem="p4g-co-C0D" firstAttribute="top" secondItem="SYg-ng-Yz7" secondAttribute="top" id="I8Q-bY-mXz"/>
                             <constraint firstItem="Ael-fU-iBM" firstAttribute="trailing" secondItem="zdf-iP-TDa" secondAttribute="trailing" id="KkA-Hb-VdF"/>
@@ -462,6 +470,7 @@
                     <navigationItem key="navigationItem" id="XeF-6i-Dg4"/>
                     <connections>
                         <outlet property="blurSupportView" destination="ttA-Lz-Gbp" id="ZZ8-jS-dWq"/>
+                        <outlet property="emptyFavMoviesLabel" destination="DuJ-yT-0Us" id="fe1-46-rHD"/>
                         <outlet property="mainActivityIndicator" destination="SW7-HJ-n6t" id="cZe-l4-HSh"/>
                         <outlet property="mostRatedMovieCollectionView" destination="p4g-co-C0D" id="K8c-Xx-6Uc"/>
                         <outlet property="movieSegmentControl" destination="VRs-Yg-3jn" id="1Mo-eG-wbi"/>
