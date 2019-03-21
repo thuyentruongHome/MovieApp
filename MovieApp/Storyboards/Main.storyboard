@@ -529,7 +529,7 @@
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                                                         <nil key="highlightedColor"/>
                                                         <variation key="heightClass=regular-widthClass=regular">
-                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="35"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
                                                         </variation>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GPz-Xy-QH9">
@@ -538,7 +538,7 @@
                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                         <variation key="heightClass=regular-widthClass=regular">
-                                                            <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                         </variation>
                                                     </label>
                                                     <view userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wul-uM-eVK" customClass="CosmosView" customModule="Cosmos">

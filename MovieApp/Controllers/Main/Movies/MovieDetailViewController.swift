@@ -71,6 +71,7 @@ class MovieDetailViewController: UIViewController {
   private var movieReviews = [Review]()
   private let reviewReuseIdentifier = "reviewCell"
   private let topTitleBoxHeight: CGFloat = 56
+  private let numberOfStar: CGFloat = 10
 
   var movie: Movie? {
     didSet {
@@ -83,7 +84,6 @@ class MovieDetailViewController: UIViewController {
     super.viewDidLoad()
     configScrollView()
     configDynamicHeightTableView()
-    configCosmosStarSize()
   }
 
   // MARK: - Handlers
@@ -107,9 +107,9 @@ class MovieDetailViewController: UIViewController {
   }
 
   private func configCosmosStarSize() {
-    if UIScreen.main.traitCollection.horizontalSizeClass == .regular && UIScreen.main.traitCollection.verticalSizeClass == .regular {
-      movieStar.settings.starSize = 22
-    }
+    let availableCosmosStarsSize = view.frame.width * 0.3
+    let availableStarSize = availableCosmosStarsSize / numberOfStar
+    movieStar.settings.starSize = Double(availableStarSize)
   }
   private func configDynamicHeightTableView() {
     reviewTableView.rowHeight = UITableView.automaticDimension
@@ -147,6 +147,7 @@ class MovieDetailViewController: UIViewController {
     setUpMovieDetailNavigation()
     mainView.isHidden = false
     resetUIView()
+    configCosmosStarSize()
     loadMovieBaseInfo()
   }
   
