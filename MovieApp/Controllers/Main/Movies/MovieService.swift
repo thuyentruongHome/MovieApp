@@ -56,16 +56,16 @@ extension API {
       }
     }
 
-    public class func fetchMovieImage(posterPath: String, completionHandler: @escaping ImageResponseHandler) {
+    public class func fetchMovieImage(posterPath: String, completionHandler: @escaping ImageResponseHandler) -> DataRequest {
       let imageUrl = URL(string: (imageBaseURL + posterPath))!
-      Alamofire.request(imageUrl, method: .get).responseImage { (response) in
+      return Alamofire.request(imageUrl, method: .get).responseImage { (response) in
         completionHandler(response.result.value)
       }
     }
 
-    public class func fetchYoutubeThumbnailImage(videoId: String, completionHandler: @escaping ImageResponseHandler) {
+    public class func fetchYoutubeThumbnailImage(videoId: String, completionHandler: @escaping ImageResponseHandler) -> DataRequest {
       let imageURL = URL(string: youtubeThumbnailURL.replacingOccurrences(of: ":videoId", with: videoId))!
-      Alamofire.request(imageURL, method: .get).responseImage { (response) in
+      return Alamofire.request(imageURL, method: .get).responseImage { (response) in
         completionHandler(response.result.value)
       }
     }

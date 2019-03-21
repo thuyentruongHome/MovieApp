@@ -7,12 +7,22 @@
 //
 
 import UIKit
+import Alamofire
 
 class MovieCollectionCell: UICollectionViewCell {
   
+  // MARK: - Properties
   @IBOutlet weak var moviePoster: UIImageView!
   @IBOutlet weak var activtyIndicator: UIActivityIndicatorView!
 
+  var request: DataRequest?
+  
+  // MARK: - Handlers
+  override func prepareForReuse() {
+    super.prepareForReuse()
+    request?.cancel()
+  }
+  
   override var isSelected: Bool {
     didSet {
       if SplitViewController.isAllVisible() {
@@ -23,6 +33,7 @@ class MovieCollectionCell: UICollectionViewCell {
     }
   }
   
+  // MARK: - Private Support Handlers
   private func styleSelectedCell() {
     moviePoster.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
     moviePoster.alpha = 0.8

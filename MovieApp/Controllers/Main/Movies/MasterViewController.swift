@@ -115,8 +115,9 @@ extension MasterViewController: UICollectionViewDataSource {
     let movie = fetchMatchingMovieListOf(collectionView)[indexPath.row]
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MovieCollectionCell
     cell.activtyIndicator.startAnimating()
+    cell.moviePoster.image = nil
     if let posterPath = movie.posterPath {
-      API.MovieService.fetchMovieImage(posterPath: posterPath, completionHandler: { (image) in
+      cell.request = API.MovieService.fetchMovieImage(posterPath: posterPath, completionHandler: { (image) in
         cell.moviePoster.image = image
         cell.activtyIndicator.stopAnimating()
       })

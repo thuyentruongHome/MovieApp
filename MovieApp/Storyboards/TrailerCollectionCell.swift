@@ -7,10 +7,20 @@
 //
 
 import UIKit
+import Alamofire
 
 class TrailerCollectionCell: UICollectionViewCell {
 
+  // MARK: - Properties
   @IBOutlet weak var trailerThumbnail: UIImageView!
   @IBOutlet weak var trailerName: UILabel!
   @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+  
+  var request: DataRequest?
+  
+  // MARK: - Handlers
+  override func prepareForReuse() {
+    super.prepareForReuse()
+    request?.cancel()
+  }
 }

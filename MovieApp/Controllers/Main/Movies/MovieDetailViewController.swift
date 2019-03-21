@@ -180,7 +180,7 @@ class MovieDetailViewController: UIViewController {
   private func loadMovieBaseInfo() {
     guard let movie = movie else { return }
     if let posterPath = movie.posterPath {
-      API.MovieService.fetchMovieImage(posterPath: posterPath, completionHandler: { [weak self] (image) in
+      _ = API.MovieService.fetchMovieImage(posterPath: posterPath, completionHandler: { [weak self] (image) in
         guard let self = self else { return }
         self.moviePoster.image = image
       })
@@ -245,7 +245,8 @@ extension MovieDetailViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: trailerReuseIdentifier, for: indexPath) as! TrailerCollectionCell
     let trailer = movieTrailers[indexPath.row]
-    API.MovieService.fetchYoutubeThumbnailImage(videoId: trailer.key) { (image) in
+    cell.trailerThumbnail.image = nil
+    cell.request = API.MovieService.fetchYoutubeThumbnailImage(videoId: trailer.key) { (image) in
       cell.trailerThumbnail.image = image
     }
     cell.trailerName.text = trailer.name
