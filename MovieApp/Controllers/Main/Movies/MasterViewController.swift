@@ -207,7 +207,7 @@ extension MasterViewController: UISearchBarDelegate {
       blurSupportView.invisible()
       mainActivityIndicator.startAnimating()
       currentMoviesPage[.Search] = 0
-      searchMovies = [Movie]()
+      searchMovies.removeAll()
       searchResultCollectionView.reloadData()
       loadMoviesIn(.Search)
     }
@@ -235,7 +235,7 @@ extension MasterViewController {
       if API.UserService.isLoggedIn() {
         FirebaseDbService.getAllLiked { [weak self] (snapshot) in
           guard let self = self else { return }
-          self.myFavMovies = [Movie]()
+          self.myFavMovies.removeAll()
           for child in snapshot.children {
             if let snapshot = child as? DataSnapshot,
               let movie = Movie(from: snapshot) {

@@ -25,9 +25,7 @@ class SplitViewController: UISplitViewController, UISplitViewControllerDelegate 
 
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
-
-    maximumPrimaryColumnWidth = UIScreen.main.bounds.width / 2
-    minimumPrimaryColumnWidth = UIScreen.main.bounds.width / 2
+    configSplitColumnWidth()
   }
 
   func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
@@ -38,5 +36,15 @@ class SplitViewController: UISplitViewController, UISplitViewControllerDelegate 
   
   static func isAllVisible() -> Bool {
     return UIScreen.main.traitCollection.horizontalSizeClass == .regular
+  }
+  
+  private func configSplitColumnWidth() {
+    if UIScreen.main.traitCollection.verticalSizeClass == .regular {
+      maximumPrimaryColumnWidth = UIScreen.main.bounds.width / 2
+      minimumPrimaryColumnWidth = UIScreen.main.bounds.width / 2
+    } else {
+      maximumPrimaryColumnWidth = UIScreen.main.bounds.width * 2 / 5
+      minimumPrimaryColumnWidth = UIScreen.main.bounds.width * 3 / 5
+    }
   }
 }

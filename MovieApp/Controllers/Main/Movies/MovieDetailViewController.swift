@@ -163,8 +163,8 @@ class MovieDetailViewController: UIViewController {
   }
 
   private func resetUIView() {
-    movieTrailers = [Video]()
-    movieReviews = [Review]()
+    movieTrailers.removeAll()
+    movieReviews.removeAll()
     trailerCollectionView.reloadData()
     reviewTableView.reloadData()
 
