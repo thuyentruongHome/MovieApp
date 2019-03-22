@@ -75,6 +75,7 @@ class MovieDetailViewController: UIViewController {
 
   var movie: Movie? {
     didSet {
+      mainView.isHidden = true
       movie!.title.isEmpty ? loadMovieAndRefreshView() : refreshView()
     }
   }

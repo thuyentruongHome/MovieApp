@@ -17,6 +17,7 @@ class MasterViewController: UIViewController {
   @IBOutlet weak var popularMovieCollectionView: UICollectionView!
   @IBOutlet weak var mostRatedMovieCollectionView: UICollectionView!
   @IBOutlet weak var myFavMovieCollectionView: UICollectionView!
+  @IBOutlet weak var myFavBox: UIView!
   @IBOutlet weak var emptyFavMoviesLabel: UILabel!
   @IBOutlet weak var mainActivityIndicator: UIActivityIndicatorView!
   
@@ -87,15 +88,15 @@ class MasterViewController: UIViewController {
     case .Popular:
       popularMovieCollectionView.isHidden = false
       mostRatedMovieCollectionView.isHidden = true
-      myFavMovieCollectionView.isHidden = true
+      myFavBox.isHidden = true
     case .MostRated:
       popularMovieCollectionView.isHidden  = true
       mostRatedMovieCollectionView.isHidden = false
-      myFavMovieCollectionView.isHidden = true
+      myFavBox.isHidden = true
     case .MyFav:
       popularMovieCollectionView.isHidden  = true
       mostRatedMovieCollectionView.isHidden = true
-      myFavMovieCollectionView.isHidden = false
+      myFavBox.isHidden = false
     default:
       break
     }
@@ -204,7 +205,6 @@ extension MasterViewController: UISearchBarDelegate {
       searchResultView.isHidden = true
     } else {
       blurSupportView.invisible()
-      mainActivityIndicator.startAnimating()
       currentMoviesPage[.Search] = 0
       searchMovies.removeAll()
       searchResultCollectionView.reloadData()
@@ -239,6 +239,7 @@ extension MasterViewController {
         setUpRealmNotificationFor(realmFavoriteMovies)
       }
     case .Search:
+      mainActivityIndicator.startAnimating()
       if let query = searchBar.text {
         searchRequest?.cancel()
         searchRequest = API.MovieService.searchMovies(query: query, page: page) { [weak self] (result, error) in
@@ -257,8 +258,10 @@ extension MasterViewController {
         }
       }
     default:
+      mainActivityIndicator.startAnimating()
       API.MovieService.fetchMovies(page: page, movieSegment: movieSegment) { [weak self] (result, error) in
         guard let self = self else { return }
+        self.mainActivityIndicator.stopAnimating()
         if let error = error {
           self.showInformedAlert(withTitle: Constants.TitleAlert.error, message: error.localizedDescription)
         }
@@ -325,6 +328,7 @@ extension MasterViewController {
         if let removedIndex = self.myFavMovies.firstIndex(where: { $0.id == removedMovie.id }) {
           self.myFavMovies.remove(at: removedIndex)
           self.myFavMovieCollectionView.deleteItems(at: [IndexPath(row: removedIndex, section: 0)])
+          if self.selectedIndexPath?.row == removedIndex { self.selectedIndexPath = nil }
         }
     })
   }
