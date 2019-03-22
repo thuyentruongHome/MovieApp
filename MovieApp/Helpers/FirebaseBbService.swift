@@ -24,23 +24,34 @@ class FirebaseDbService: BaseDatabase {
   
   // MARK: - Handlers
   static func like(_ movie: Movie) {
-    let movieData: [String: Any] = [ "poster_path": movie.posterPath, "liked": true, "likedAt": -Int(Date().timeIntervalSince1970) ]
-    currentUserRef.child("Favorite").child(String(movie.id)).setValue(movieData)
+    currentFavRef.child(String(movie.id))
+                 .setValue(buildMovieData(movie))
   }
   
   static func removeLike(_ movieId: Int) {
-    currentFavRef.child(String(movieId)).removeValue()
+    currentFavRef.child(String(movieId))
+                 .removeValue()
   }
   
   static func didLike(_ movieId: Int, completionHandler: @escaping API.BooleanResponseHandler) {
-    currentFavRef.child("\(movieId)").observeSingleEvent(of: .value, with: { (snapshot) in
-      completionHandler(snapshot.exists())
-    })
+    currentFavRef.child("\(movieId)")
+                 .observeSingleEvent(of: .value, with: { (snapshot) in
+                    completionHandler(snapshot.exists())
+                 })
   }
   
   static func getAllLiked(completionHandler: @escaping API.DataSnapshotResponseHandler) {
-    currentFavRef.queryOrdered(byChild: "likedAt").observe(.value) { (snapshot) in
-      completionHandler(snapshot)
-    }
+    currentFavRef.queryOrdered(byChild: "likedAt")
+                 .observe(.value) { (snapshot) in
+                    completionHandler(snapshot)
+                  }
+  }
+  
+  private static func buildMovieData(_ movie: Movie) -> [String: Any] {
+    return [
+      "poster_path": movie.posterPath as Any,
+      "likedAt": -Int(Date().timeIntervalSince1970),
+      
+    ]
   }
 }

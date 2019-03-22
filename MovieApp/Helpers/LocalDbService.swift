@@ -14,7 +14,6 @@ class LocalDbService: BaseDatabase {
   
   static func like(_ movie: Movie) {
     let favoriteMovie = Movie(value: ["id": movie.id, "liked": true])
-
     if let posterPath = movie.posterPath { favoriteMovie.posterPath = posterPath }
     try! realm.write {
       realm.add(favoriteMovie, update: true)
@@ -35,6 +34,8 @@ class LocalDbService: BaseDatabase {
   }
   
   static func getAllLiked() -> Results<Movie> {
-    return realm.objects(Movie.self).filter("liked == TRUE").sorted(byKeyPath: "likedAt", ascending: false)
+    return realm.objects(Movie.self)
+                .filter("liked == TRUE")
+                .sorted(byKeyPath: "likedAt", ascending: false)
   }
 }

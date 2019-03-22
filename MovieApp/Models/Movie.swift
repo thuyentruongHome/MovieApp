@@ -15,7 +15,7 @@ class Movie: Object, Decodable {
 
   // MARK: - Properties
   private let dateFormat = "MMMM yyyy"
-  private static var dbService: BaseDatabase.Type {
+  private var dbService: BaseDatabase.Type {
     get {
       return API.UserService.isLoggedIn() ? FirebaseDbService.self : LocalDbService.self
     }
@@ -94,17 +94,17 @@ class Movie: Object, Decodable {
   required init(realm: RLMRealm, schema: RLMObjectSchema) {
     super.init(realm: realm, schema: schema)
   }
-
-  static func like(_ movie: Movie) {
-    dbService.like(movie)
+  
+  func like() {
+    dbService.like(self)
   }
-
-  static func removeLike(_ movieId: Int) {
-    dbService.removeLike(movieId)
+  
+  func removeLike() {
+    dbService.removeLike(id)
   }
-
-  static func didLike(_ movieId: Int, completionHandler: @escaping API.BooleanResponseHandler) {
-    dbService.didLike(movieId, completionHandler: completionHandler)
+  
+  func didLike(completionHandler: @escaping API.BooleanResponseHandler) {
+    dbService.didLike(id, completionHandler: completionHandler)
   }
 }
 

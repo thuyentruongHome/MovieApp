@@ -192,7 +192,7 @@ class MovieDetailViewController: UIViewController {
     movieReleaseDate.text = movie.formattedReleaseDate()
     movieStar.rating = movie.voteAverage
     
-    Movie.didLike(movie.id) { [weak self] in self?.likeBtn.isSelected = $0 }
+    movie.didLike { [weak self] in self?.likeBtn.isSelected = $0 }
   }
 
   private func loadDetailsSection() {
@@ -223,7 +223,7 @@ class MovieDetailViewController: UIViewController {
     let button = sender as! UIButton
     button.isSelected = !button.isSelected
     if let movie = movie {
-      button.isSelected ? Movie.like(movie) : Movie.removeLike(movie.id)
+      button.isSelected ? movie.like() : movie.removeLike()
     }
   }
 }
