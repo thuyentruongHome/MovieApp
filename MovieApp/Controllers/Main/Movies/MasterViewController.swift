@@ -8,7 +8,6 @@
 
 import UIKit
 import RealmSwift
-import FirebaseDatabase
 import Alamofire
 
 class MasterViewController: UIViewController {
@@ -233,18 +232,7 @@ extension MasterViewController {
     case .MyFav:
       mainActivityIndicator.startAnimating()
       if API.UserService.isLoggedIn() {
-        FirebaseDbService.getAllLiked { [weak self] (snapshot) in
-          guard let self = self else { return }
-          self.myFavMovies.removeAll()
-          for child in snapshot.children {
-            if let snapshot = child as? DataSnapshot,
-              let movie = Movie(from: snapshot) {
-              self.myFavMovies.append(movie)
-            }
-          }
-          self.myFavMovieCollectionView.reloadData()
-          self.mainActivityIndicator.stopAnimating()
-        }
+        setUpFirebaseFavObserver()
       } else {
         let realmFavoriteMovies = LocalDbService.getAllLiked()
         myFavMovies = Array(realmFavoriteMovies)
@@ -318,6 +306,26 @@ extension MasterViewController {
       case .error(let error):
         fatalError("\(error)")
       }
+    })
+  }
+  
+  // Observe Firebase Fav Movies
+  private func setUpFirebaseFavObserver() {
+    FirebaseDbService.observeFavMovies(completionHandler: { [weak self] (favMovies) in
+      guard let self = self else { return }
+      self.myFavMovies = favMovies
+      self.myFavMovieCollectionView.reloadData()
+      self.mainActivityIndicator.stopAnimating()
+      }, addCompletionHandler: { [weak self] (addedMovie) in
+        guard let self = self else { return }
+        self.myFavMovies.insert(addedMovie, at: 0)
+        self.myFavMovieCollectionView.insertItems(at: [IndexPath(row: 0, section: 0)])
+      }, removeCompletionHandler: { [weak self] (removedMovie) in
+        guard let self = self else { return }
+        if let removedIndex = self.myFavMovies.firstIndex(where: { $0.id == removedMovie.id }) {
+          self.myFavMovies.remove(at: removedIndex)
+          self.myFavMovieCollectionView.deleteItems(at: [IndexPath(row: removedIndex, section: 0)])
+        }
     })
   }
 

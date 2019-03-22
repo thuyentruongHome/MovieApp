@@ -22,6 +22,11 @@ public struct Constants {
     public static let popularMoviesPath = "/movie/popular"
     public static let mostRatedMoviesPath = "/movie/top_rated"
   }
+  
+  public struct Firebase {
+    public static let likedAt = "liked_at"
+    public static let posterPath = "poster_path"
+  }
 
   public struct Policy {
     public static let minimumPasswordLength = 6

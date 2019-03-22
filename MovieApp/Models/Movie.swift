@@ -29,6 +29,7 @@ class Movie: Object, Decodable {
   @objc dynamic var overview: String?
   @objc dynamic var liked = false
   @objc dynamic var likedAt = Date()
+  @objc dynamic var firebaseLikedAt: Int = 0
   
   override static func primaryKey() -> String? {
     return "id"
@@ -67,7 +68,8 @@ class Movie: Object, Decodable {
       return nil
     }
     self.id = id
-    posterPath = value["poster_path"] as? String
+    posterPath = value[Constants.Firebase.posterPath] as? String
+    firebaseLikedAt = value[Constants.Firebase.likedAt] as! Int
   }
 
   // MARK: - Instance Methods
