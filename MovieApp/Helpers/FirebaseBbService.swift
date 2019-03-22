@@ -14,10 +14,10 @@ class FirebaseDbService: BaseDatabase {
   
   // MARK: - Properties
   private static let databaseReference = Database.database().reference()
-  private static let currentUserRef: DatabaseReference = {
+  private static var currentUserRef: DatabaseReference {
     let userUid = API.UserService.currentUser()!.uid
     return databaseReference.child("users").child(userUid)
-  }()
+  }
   private static var currentFavRef: DatabaseReference {
     return currentUserRef.child("Favorite")
   }
@@ -46,7 +46,7 @@ class FirebaseDbService: BaseDatabase {
           likedMovies.append(movie)
         }
       }
-      
+
       // Register Add/Remove Movie From Fav Movies
       // mockTime is to only fetch Added Movie after initial observing
       let mockTime = likedMovies.count > 0 ? likedMovies[0].firebaseLikedAt : currentTimeInInt()
