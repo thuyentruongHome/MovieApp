@@ -104,8 +104,8 @@ extension API {
       }
     }
     
-    class func searchMovies(query: String, page: Int = 1, completionHandler: @escaping MoviesResponseHandler) {
-      Alamofire.request(searchMoviesPath, method: .get, parameters: ["api_key": apiKey, "query": query, "page": page]).validate().responseData { (response) in
+    class func searchMovies(query: String, page: Int = 1, completionHandler: @escaping MoviesResponseHandler) -> DataRequest {
+      return Alamofire.request(searchMoviesPath, method: .get, parameters: ["api_key": apiKey, "query": query, "page": page]).validate().responseData { (response) in
         switch response.result {
         case .success(let data):
           do {
@@ -115,7 +115,7 @@ extension API {
             completionHandler(nil, error)
           }
         case .failure(let error):
-          completionHandler(nil, error)
+          if error._code != API.cancelledErrorCode { completionHandler(nil, error) }
         }
       }
     }

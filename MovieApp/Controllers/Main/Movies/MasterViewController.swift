@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import FirebaseDatabase
+import Alamofire
 
 class MasterViewController: UIViewController {
 
@@ -53,6 +54,7 @@ class MasterViewController: UIViewController {
     }
   }
   private var searchMovies = [Movie]()
+  private var searchRequest: DataRequest?
 
   // MARK: - Init
   override func viewDidLoad() {
@@ -250,7 +252,8 @@ extension MasterViewController {
       }
     case .Search:
       if let query = searchBar.text {
-        API.MovieService.searchMovies(query: query, page: page) { [weak self] (result, error) in
+        searchRequest?.cancel()
+        searchRequest = API.MovieService.searchMovies(query: query, page: page) { [weak self] (result, error) in
           guard let self = self else { return }
           self.mainActivityIndicator.stopAnimating()
           self.searchResultView.isHidden = false

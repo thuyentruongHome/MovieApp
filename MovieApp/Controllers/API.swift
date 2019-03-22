@@ -18,4 +18,6 @@ class API {
   typealias ImageResponseHandler = (UIImage?) -> Void
   typealias BooleanResponseHandler = (Bool) -> Void
   typealias DataSnapshotResponseHandler = (DataSnapshot) -> Void
+  
+  static let cancelledErrorCode = -999
 }
