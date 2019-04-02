@@ -13,6 +13,7 @@ class SignInViewController: UIViewController, KeyboardObserver {
   var container: UIScrollView {
     return scrollView
   }
+  var observers = NSPointerArray.weakObjects()
 
   // MARK: - Properties
   @IBOutlet weak var emailTextField: UITextField!
@@ -23,7 +24,18 @@ class SignInViewController: UIViewController, KeyboardObserver {
   // MARK: - Init
   override func viewDidLoad() {
     super.viewDidLoad()
-    registerForKeyboardNotifications()
+    registerNotifications()
+  }
+
+  private func registerNotifications() {
+    for observer in registerForKeyboardNotifications() {
+      NotificationService.shared.addNotification(in: &observers, with: observer)
+    }
+  }
+
+  override func viewDidDisappear(_ animated: Bool) {
+    super.viewDidDisappear(animated)
+    NotificationService.shared.removeNotifications(observers)
   }
 
   // MARK: - Handlers

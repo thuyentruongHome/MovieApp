@@ -43,6 +43,7 @@
 		E26BC59E221C675D001CDEBA /* LandingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26BC59D221C675D001CDEBA /* LandingTests.swift */; };
 		E26BC5A1221C68C5001CDEBA /* CommonSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26BC5A0221C68C5001CDEBA /* CommonSteps.swift */; };
 		E26BC5A4221C72E0001CDEBA /* AuthenticationScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26BC5A3221C72E0001CDEBA /* AuthenticationScreens.swift */; };
+		E278910D2253A5C9004A511D /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E278910C2253A5C9004A511D /* NotificationService.swift */; };
 		E28B267D22263E340090C5EC /* LoggedUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B267C22263E340090C5EC /* LoggedUserTests.swift */; };
 		E28B26802226431C0090C5EC /* UnloggedUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B267F2226431C0090C5EC /* UnloggedUserTests.swift */; };
 		E291647F221B1AA70052997B /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291647D221B1AA70052997B /* UserService.swift */; };
@@ -148,6 +149,7 @@
 		E26BC59D221C675D001CDEBA /* LandingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingTests.swift; sourceTree = "<group>"; };
 		E26BC5A0221C68C5001CDEBA /* CommonSteps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonSteps.swift; sourceTree = "<group>"; };
 		E26BC5A3221C72E0001CDEBA /* AuthenticationScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationScreens.swift; sourceTree = "<group>"; };
+		E278910C2253A5C9004A511D /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		E28B267C22263E340090C5EC /* LoggedUserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedUserTests.swift; sourceTree = "<group>"; };
 		E28B267F2226431C0090C5EC /* UnloggedUserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnloggedUserTests.swift; sourceTree = "<group>"; };
 		E291647D221B1AA70052997B /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserService.swift; path = MovieApp/Controllers/UserService.swift; sourceTree = SOURCE_ROOT; };
@@ -277,6 +279,7 @@
 				97411BB722433FE40074479F /* BaseDatabase.swift */,
 				97411BB522433EE80074479F /* LocalDbService.swift */,
 				97411BB322433C070074479F /* FirebaseBbService.swift */,
+				E278910C2253A5C9004A511D /* NotificationService.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1045,6 +1048,7 @@
 				97411BB622433EE80074479F /* LocalDbService.swift in Sources */,
 				E2B9D64A2227DC650034FD5E /* MoviesResult.swift in Sources */,
 				E2ABB5DB2232676900F11FE9 /* ReviewsResult.swift in Sources */,
+				E278910D2253A5C9004A511D /* NotificationService.swift in Sources */,
 				E22A498D2223AE4700B91EFA /* ForgotPasswordViewController.swift in Sources */,
 				E25F9848221E485B00A01AC4 /* Constants.swift in Sources */,
 				E2B9D6452227BEA40034FD5E /* MovieService.swift in Sources */,

@@ -9,14 +9,15 @@
 import UIKit
 
 protocol KeyboardObserver {
-  func registerForKeyboardNotifications()
+  func registerForKeyboardNotifications() -> [NSObjectProtocol]
   var container: UIScrollView { get }
 }
 
 extension KeyboardObserver {
-  func registerForKeyboardNotifications() {
-    NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: OperationQueue.main, using: keyboardWillBeShow(notification:))
-    NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: OperationQueue.main, using: keyboardWillBeHide(notification:))
+  func registerForKeyboardNotifications() -> [NSObjectProtocol] {
+    return [
+      NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: OperationQueue.main, using: keyboardWillBeShow(notification:)),
+      NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: container, queue: OperationQueue.main, using: keyboardWillBeHide(notification:))]
   }
 
   private func keyboardWillBeShow(notification: Notification) {
